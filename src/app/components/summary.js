@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Picture from "../static/NishitSharma.jpg";
+import Picture from "../static/NishitSharma.JPG";
 
 const styleImage = {
     borderRadius: "10%",
@@ -18,7 +18,7 @@ export default function summary() {
             <div className="container mx-auto px-4 center-true flex flex-row">
                 <div className="container mx-auto py-4 px-4 center-true bg-gray-500 text-center hover:object-top rounded">
                     <div className="rounded-xl w-80 h-80 overflow-hidden object-cover object-center mx-auto">
-                        <Image src={Picture} alt="Nishit Sharma"/>
+                        <Image src={Picture} alt="Nishit Sharma" loading="lazy"/>
                     </div>
                     <h1>Hello! My name is Nishit Sharma</h1>
                 </div>
