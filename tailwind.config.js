@@ -9,6 +9,14 @@ module.exports = {
     extend: {
       
     },
+    colors: {
+      jet: {
+        default: "#333333",
+        dark: "#292929",
+      },
+      davygray:"#50514F",
+      cream: "#FCFFD6",
+    },
   },
   plugins: [],
 };
