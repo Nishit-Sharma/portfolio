@@ -33,7 +33,17 @@ export default function summary() {
     function Summary() {
         return (
             <div className="container rounded-3xl mx-10 px-10 py-6 bg-jet text-center shadow-2xl hover:scale-105 duration-500 w-96">
-                <h1>I am a student at the Morris County School of Technology and I will be attending the County College of Morris in my senior year. I am passionate about Game Design, Robotics, and Video Games.</h1>
+                <h1
+                    >I am a top-performing student at the Morris County School of Technology, with a 4.17 unweighted GPA, and I will be attending the County College of Morris in my senior year. I am passionate about Game Design, Robotics, and Video Games.
+                </h1>
+                <br></br>
+                <h1>
+                    I earned a 4 on the AP CSP Test and maintained High Honor Roll status throughout high school. I have mastered Java, Python, and C++ and am expanding my knowledge to HTML, CSS, Javascript, and Next.js, which I used to code this website.
+                </h1>
+                <br></br>
+                <h1>
+                    I am also involved in my school's robotics team, Team 8588, Tech Devils. As the President, I led the team to its most successful year to date, increasing membership by 40% and securing $10,000 in funding. I also volunteer at the Parsippany Library, where I teach coding workshops to over 30 elementary school students.
+                </h1>
             </div>
         );
     }
@@ -70,11 +80,11 @@ export default function summary() {
                     </div>
                     <h1 className="pt-4">Hello! My name is Nishit Sharma</h1>
                 </div>
-                <div className="justify-center items-center content-center">
+                <div className="justify-center items-center content-center flex-col">
                     {resumeClick ? <Resume/>
                         : transcriptClick ? <Transcript/>
                             : <Summary/>}
-                    <div className="container mx-10 py-6 bg-jet text-center w-96 flex flex-row items-center justify-center">
+                    <div className="container mx-auto py-6 bg-jet text-center w-96 flex flex-row items-center justify-center content-center">
                         <button className="container rounded-3xl mx-10 px-5 py-6 bg-jet text-center shadow-2xl hover:scale-105 duration-500 w-auto" onClick={handleResumeClick}>RESUME</button>
                         <button className="container rounded-3xl mx-10 px-5 py-6 bg-jet text-center shadow-2xl hover:scale-105 duration-500 w-auto" onClick={handleTranscriptClick}>TRANSCRIPT</button>
                     </div>
