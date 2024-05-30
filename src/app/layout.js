@@ -21,8 +21,8 @@ const styles = {
 
 export function Header() {
   return (
-    <header className="static bg-jet shadow-md w-auto mx-auto">
-      <div className="container flex items-center justify-between h-16 mx-auto px-4">
+    <header className="static bg-jet shadow-md mx-auto">
+      <div className="container flex items-center justify-between h-16 w-auto mx-auto px-4">
         <div className="rounded-lg hover:bg-jet-dark object-center">
           <h1 className="text-lg font-semibold px-1.5" href="/page.js">
             Nishit Sharma
