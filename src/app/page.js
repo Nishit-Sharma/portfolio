@@ -76,12 +76,16 @@ export default function Home() {
 
   return (
     <main className="pt-1">
-      <div className="container flex flex-row items-center content-center justify-center px-4 py-6 mx-auto bg-black-500">
-        <div className="container w-auto px-10 py-6 mx-10 text-center duration-500 shadow-2xl rounded-3xl bg-black-600 hover:scale-105">
-          <div className="mx-auto overflow-hidden rounded-3xl w-80 h-80">
-            <Image src={Picture} alt="Nishit Sharma" />
+      <div className="container flex flex-col items-center content-center justify-center px-4 py-6 mx-auto bg-black-500">
+        <div className="container flex flex-row items-center content-center justify-center px-4 py-6 bg-black-500">
+          <div className="container w-auto px-10 py-6 mx-5 text-xl text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105">
+            <h1 >Hello, My name is Nishit Sharma!</h1>
           </div>
-          <h1 className="pt-4">Hello! My name is Nishit Sharma</h1>
+          <div className="container w-auto px-10 py-6 mx-5 text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105">
+            <div className="mx-auto overflow-hidden rounded-3xl w-80 h-80">
+              <Image src={Picture} alt="Nishit Sharma" />
+            </div>
+          </div>
         </div>
         <div className="flex-col items-center content-center justify-center">
           
@@ -100,7 +104,7 @@ export default function Home() {
               width={24}
               height={24}
               onClick={handleResumeClick}
-              className="container w-auto px-5 py-6 mx-10 text-center duration-500 shadow-2xl bg-white-500 rounded-3xl hover:scale-105"
+              className="container w-auto px-5 py-6 mx-10 text-center duration-500 shadow-md bg-white-500 rounded-3xl hover:scale-105"
             />
             <Image
               src={TranscriptIcon}
@@ -108,7 +112,7 @@ export default function Home() {
               width={24}
               height={24}
               onClick={handleTranscriptClick}
-              className="container w-auto px-5 py-6 mx-10 text-center duration-500 shadow-2xl bg-white-500 rounded-3xl hover:scale-105"
+              className="container w-auto px-5 py-6 mx-10 text-center duration-500 shadow-md bg-white-500 rounded-3xl hover:scale-105"
             />
           </div>
         </div>
