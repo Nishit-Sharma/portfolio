@@ -14,53 +14,50 @@ export const metadata = {
   description: "Nishit Sharma's Portfolio",
 };
 
-const styles = {
-  header: {
-    backgroundColor: "#333333",
-  },
-};
-
 export function Header() {
   return (
-    <header className="static mx-auto shadow-md bg-jet">
+    <header className="static mx-auto shadow-md bg-black-500">
       <div className="container flex items-center justify-between w-auto h-16 px-4 mx-auto">
-        <div className="object-center rounded-lg hover:bg-jet-dark">
+        <div className="object-center rounded-lg hover:bg-black-600">
           <Link href="/">
             <h1 className="text-lg font-semibold px-1.5">Nishit Sharma</h1>
           </Link>
         </div>
         <nav className="flex justify-end space-x-4">
-          <div className="object-center mx-auto rounded-lg hover:bg-jet-dark">
-            <a href="/about" className="text-base px-1.5">
+          {/* <div className="object-center mx-auto rounded-lg hover:bg-black-600">
+            <a className="text-base px-1.5">
               About
             </a>
+          </div> */}
+          <div className="object-center mx-auto rounded-lg hover:bg-black-600">
+            <Link href="/projects">
+              <h1 className="text-base px-1.5">
+                Projects
+              </h1>
+            </Link>
           </div>
-          <div className="object-center mx-auto rounded-lg hover:bg-jet-dark">
-            <a href="/projects" className="text-base px-1.5">
-              Projects
-            </a>
-          </div>
-          <div className="object-center mx-auto rounded-lg hover:bg-jet-dark">
-            <a href="/Contact" className="text-base px-1.5">
+          {/* <div className="object-center mx-auto rounded-lg hover:bg-black-600">
+            <a className="text-base px-1.5">
               Contact
             </a>
-          </div>
+          </div> */}
         </nav>
       </div>
     </header>
   );
 }
 
-// DO THE SAME FOR THIS
 export function Footer() {
   return (
-    <footer className="relative top-0 left-0 right-0 z-10 shadow-md bg-cream">
+    <footer className="relative top-0 left-0 right-0 z-10 shadow-md bg-white-500">
       <div className="container flex items-center justify-between h-16 px-4 mx-auto text-jet-default">
         <Link href="/">
           <h1 className="text-lg font-semibold px-1.5">Nishit Sharma</h1>
         </Link>
         <nav className="flex space-x-4">
-          <Image src={GithubIcon} alt="Github" width={24} height={24} />
+          <Link href={"https://github.com/Nishit-Sharma"}>
+            <Image src={GithubIcon} alt="Github" width={24} height={24}/>
+          </Link>
           <Image src={InstagramIcon} alt="Instagram" width={24} height={24} />
           <Image src={TwitterIcon} alt="Twitter" width={24} height={24} />
         </nav>
