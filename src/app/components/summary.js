@@ -2,17 +2,13 @@
 
 import Image from "next/image";
 import Picture from "../static/NishitSharma.JPG";
-import { pdfjs, Document, Page } from "react-pdf";
 import { useState } from "react";
-import myResume from "../static/NishitSharmaResume.pdf";
-import myTranscript from "../static/NishitSharmaTranscript.pdf";
+import MyResume from "../static/NishitSharmaResume.jpg";
+import MyTranscript from "../static/NishitSharmaTranscript.jpg";
 import ResumeIcon from "../static/resume.png"
 import TranscriptIcon from "../static/transcript.png"
 
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-  "pdfjs-dist/build/pdf.worker.min.mjs",
-  import.meta.url
-).toString();
+
 
 export default function summary() {
   const [resumeClick, setResumeClick] = useState(false);
@@ -66,14 +62,7 @@ export default function summary() {
     }
     return (
       <div className="container w-auto px-10 py-6 mx-10 text-center duration-500 shadow-2xl rounded-3xl bg-cream hover:scale-105">
-        <Document file={myResume}>
-          <Page
-            pageNumber={1}
-            renderTextLayer={false}
-            renderAnnotationLayer={false}
-            customTextRenderer={false}
-          />
-        </Document>
+            <Image src={MyResume} alt="Resume" width={700} height={700} />
       </div>
     );
   }
@@ -81,14 +70,7 @@ export default function summary() {
   function Transcript() {
     return (
       <div className="container w-auto px-10 py-6 mx-10 text-center duration-500 shadow-2xl rounded-3xl bg-cream hover:scale-105">
-        <Document file={myTranscript}>
-          <Page
-            pageNumber={1}
-            renderTextLayer={false}
-            renderAnnotationLayer={false}
-            customTextRenderer={false}
-          />
-        </Document>
+            <Image src={MyTranscript} alt="Transcript" width={700} height={700}/>
       </div>
     );
   }
@@ -98,7 +80,7 @@ export default function summary() {
       <div className="container flex flex-row items-center content-center justify-center px-4 py-6 mx-auto bg-jet">
         <div className="container w-auto px-10 py-6 mx-10 text-center duration-500 shadow-2xl rounded-3xl bg-jet hover:scale-105">
           <div className="mx-auto overflow-hidden rounded-3xl w-80 h-80">
-            <Image src={Picture} alt="Nishit Sharma" loading="lazy" />
+            <Image src={Picture} alt="Nishit Sharma" />
           </div>
           <h1 className="pt-4">Hello! My name is Nishit Sharma</h1>
         </div>
