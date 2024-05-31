@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import Image from "next/image";
 import "./globals.css";
+import Link from "next/link";
 
 import GithubIcon from "./static/Github.png";
 import InstagramIcon from "./static/instagram.png";
@@ -21,25 +22,25 @@ const styles = {
 
 export function Header() {
   return (
-    <header className="static bg-jet shadow-md mx-auto">
-      <div className="container flex items-center justify-between h-16 w-auto mx-auto px-4">
-        <div className="rounded-lg hover:bg-jet-dark object-center">
-          <h1 className="text-lg font-semibold px-1.5" href="/page.js">
-            Nishit Sharma
-          </h1>
+    <header className="static mx-auto shadow-md bg-jet">
+      <div className="container flex items-center justify-between w-auto h-16 px-4 mx-auto">
+        <div className="object-center rounded-lg hover:bg-jet-dark">
+          <Link href="/">
+            <h1 className="text-lg font-semibold px-1.5">Nishit Sharma</h1>
+          </Link>
         </div>
-        <nav className="flex space-x-4 justify-end">
-          <div className="rounded-lg hover:bg-jet-dark mx-auto object-center">
+        <nav className="flex justify-end space-x-4">
+          <div className="object-center mx-auto rounded-lg hover:bg-jet-dark">
             <a href="/about" className="text-base px-1.5">
               About
             </a>
           </div>
-          <div className="rounded-lg hover:bg-jet-dark mx-auto object-center">
+          <div className="object-center mx-auto rounded-lg hover:bg-jet-dark">
             <a href="/projects" className="text-base px-1.5">
               Projects
             </a>
           </div>
-          <div className="rounded-lg hover:bg-jet-dark mx-auto object-center">
+          <div className="object-center mx-auto rounded-lg hover:bg-jet-dark">
             <a href="/Contact" className="text-base px-1.5">
               Contact
             </a>
@@ -53,11 +54,11 @@ export function Header() {
 // DO THE SAME FOR THIS
 export function Footer() {
   return (
-    <footer className="relative top-0 left-0 right-0 z-10 bg-cream shadow-md">
-      <div className="container flex items-center justify-between h-16 mx-auto px-4 text-jet-default">
-        <h1 className="text-lg font-semibold" href="/page.js">
-          Nishit Sharma
-        </h1>
+    <footer className="relative top-0 left-0 right-0 z-10 shadow-md bg-cream">
+      <div className="container flex items-center justify-between h-16 px-4 mx-auto text-jet-default">
+        <Link href="/">
+          <h1 className="text-lg font-semibold px-1.5">Nishit Sharma</h1>
+        </Link>
         <nav className="flex space-x-4">
           <Image src={GithubIcon} alt="Github" width={24} height={24} />
           <Image src={InstagramIcon} alt="Instagram" width={24} height={24} />

@@ -1,14 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import Picture from "../static/NishitSharma.JPG";
 import { useState } from "react";
+
+import Picture from "../static/NishitSharma.JPG";
+import ResumeIcon from "../static/resume.png";
+import TranscriptIcon from "../static/transcript.png";
 import MyResume from "../static/NishitSharmaResume.jpg";
 import MyTranscript from "../static/NishitSharmaTranscript.jpg";
-import ResumeIcon from "../static/resume.png"
-import TranscriptIcon from "../static/transcript.png"
-
-
 
 export default function summary() {
   const [resumeClick, setResumeClick] = useState(false);
@@ -62,7 +61,7 @@ export default function summary() {
     }
     return (
       <div className="container w-auto px-10 py-6 mx-10 text-center duration-500 shadow-2xl rounded-3xl bg-cream hover:scale-105">
-            <Image src={MyResume} alt="Resume" width={700} height={700} />
+        <Image src={MyResume} alt="Resume" width={700} height={700} />
       </div>
     );
   }
@@ -70,7 +69,7 @@ export default function summary() {
   function Transcript() {
     return (
       <div className="container w-auto px-10 py-6 mx-10 text-center duration-500 shadow-2xl rounded-3xl bg-cream hover:scale-105">
-            <Image src={MyTranscript} alt="Transcript" width={700} height={700}/>
+        <Image src={MyTranscript} alt="Transcript" width={700} height={700} />
       </div>
     );
   }
@@ -93,8 +92,22 @@ export default function summary() {
             <Summary />
           )}
           <div className="container flex flex-row items-center content-center justify-center py-6 mx-auto text-center bg-jet w-96">
-            <Image src={ResumeIcon} alt="Resume" width={24} height={24} onClick={handleResumeClick} className="container w-auto px-5 py-6 mx-10 text-center duration-500 shadow-2xl bg-cream rounded-3xl bg-jet hover:scale-105" />
-            <Image src={TranscriptIcon} alt="Transcript" width={24} height={24} onClick={handleTranscriptClick} className="container w-auto px-5 py-6 mx-10 text-center duration-500 shadow-2xl bg-cream rounded-3xl bg-jet hover:scale-105" />
+            <Image
+              src={ResumeIcon}
+              alt="Resume"
+              width={24}
+              height={24}
+              onClick={handleResumeClick}
+              className="container w-auto px-5 py-6 mx-10 text-center duration-500 shadow-2xl bg-cream rounded-3xl bg-jet hover:scale-105"
+            />
+            <Image
+              src={TranscriptIcon}
+              alt="Transcript"
+              width={24}
+              height={24}
+              onClick={handleTranscriptClick}
+              className="container w-auto px-5 py-6 mx-10 text-center duration-500 shadow-2xl bg-cream rounded-3xl bg-jet hover:scale-105"
+            />
           </div>
         </div>
       </div>
