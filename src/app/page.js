@@ -75,7 +75,7 @@ export default function Home() {
   }
 
   return (
-    <main>
+    <main className="pt-1">
       <div className="container flex flex-row items-center content-center justify-center px-4 py-6 mx-auto bg-black-500">
         <div className="container w-auto px-10 py-6 mx-10 text-center duration-500 shadow-2xl rounded-3xl bg-black-600 hover:scale-105">
           <div className="mx-auto overflow-hidden rounded-3xl w-80 h-80">
