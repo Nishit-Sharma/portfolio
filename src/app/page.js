@@ -16,13 +16,10 @@ export default function Home() {
 
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 750], [0, 750]);
-  const x = useTransform(scrollY, [0, 750], [0, -223]);
-  const fontSize = useTransform(scrollY, [700, 800], [36, 20]);
-  const lineHeight = useTransform(scrollY, [700, 800], [40, 28]);
-  const size = useTransform(scrollY, [0, 750], [36, 20]);
+  const x = useTransform(scrollY, [750, 900], [0, -223]);
 
-  const imageOpacity = useTransform(scrollY, [550, 750], [0, 1]);
-  const textOpacity = useTransform(scrollY, [765, 900], [0, 1]);
+  const imageOpacity = useTransform(scrollY, [750, 850], [0, 1]);
+  const textOpacity = useTransform(scrollY, [800, 900], [0, 1]);
   const buttonOpacity = useTransform(scrollY, [1175, 1300], [0, 1]);
 
   function handleResumeClick() {
@@ -46,7 +43,7 @@ export default function Home() {
         x: x,
         y: y
       }} 
-        className="container flex flex-row items-center content-center justify-center px-4 py-6 mx-auto text-2xl bg-black-500"
+        className="container flex flex-row items-center content-center justify-center px-4 py-10 mx-auto text-2xl bg-black-500"
       >
         <div className="container w-auto px-10 py-6 mx-5 text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105">
           <h1>Hello, My name is Nishit Sharma!</h1>
@@ -78,7 +75,7 @@ export default function Home() {
           <Summary />
         )}
         
-        <motion.div style={{opacity: buttonOpacity}} className="container flex flex-row items-center content-center justify-center py-6 mx-auto text-center w-96">
+        <motion.div style={{opacity: buttonOpacity}} className="container flex flex-row items-center content-center justify-center py-6 pb-10 mx-auto text-center w-96">
           <Image
             src={ResumeIcon}
             alt="Resume"

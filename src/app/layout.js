@@ -20,7 +20,7 @@ const styles = {
 
 export function Header() {
   const { scrollY } = useScroll();
-  const opacity = useTransform(scrollY, [550, 750], [0, 1]);
+  const opacity = useTransform(scrollY, [750, 850], [0, 1]);
 
   return (
     <motion.div
