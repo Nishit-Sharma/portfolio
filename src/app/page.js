@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { motion, useInView, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
 
 import Picture from "./static/NishitSharma.JPG";
 import ResumeIcon from "./static/resume.png";
@@ -25,6 +26,62 @@ export default function Home() {
       handleResumeClick();
     }
     setTranscriptClick(!transcriptClick);
+  }
+
+  function BeforeScroll() {
+    return (
+      <div className="container items-center content-center justify-center px-10 py-6 mx-auto text-4xl text-center duration-500 shadow-md w-96 rounded-3xl bg-black-600 hover:scale-105">
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} >
+          <h1 >Hello, My name is Nishit Sharma!</h1>
+        </motion.div>
+      </div>
+    );
+  }
+
+  function AfterScroll() {
+    return (
+      <div className="container flex flex-col items-center content-center justify-center px-4 py-6 mx-auto bg-black-500">
+      <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="container flex flex-row items-center content-center justify-center px-4 py-6 bg-black-500">
+        <div className="container w-auto px-10 py-6 mx-5 text-xl text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105">
+          <h1 >Hello, My name is Nishit Sharma!</h1>
+        </div>
+        <div className="container w-auto px-10 py-6 mx-5 text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105">
+          <div className="mx-auto overflow-hidden rounded-3xl w-80 h-80">
+            <Image src={Picture} alt="Nishit Sharma" />
+          </div>
+        </div>
+      </motion.div>
+      <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="flex-col items-center content-center justify-center">
+        
+        {resumeClick ? (
+          <Resume />
+        ) : transcriptClick ? (
+          <Transcript />
+        ) : (
+          <Summary />
+        )}
+        
+        <div className="container flex flex-row items-center content-center justify-center py-6 mx-auto text-center bg-black-500 w-96">
+          <Image
+            src={ResumeIcon}
+            alt="Resume"
+            width={24}
+            height={24}
+            onClick={handleResumeClick}
+            className="container w-auto px-5 py-6 mx-10 text-center duration-500 shadow-md bg-white-500 rounded-3xl hover:scale-105"
+          />
+          <Image
+            src={TranscriptIcon}
+            alt="Transcript"
+            width={24}
+            height={24}
+            onClick={handleTranscriptClick}
+            className="container w-auto px-5 py-6 mx-10 text-center duration-500 shadow-md bg-white-500 rounded-3xl hover:scale-105"
+          />
+        </div>
+      </motion.div>
+    </div>
+    );
   }
 
   function Summary() {
@@ -75,48 +132,11 @@ export default function Home() {
   }
 
   return (
-    <main className="pt-1">
-      <div className="container flex flex-col items-center content-center justify-center px-4 py-6 mx-auto bg-black-500">
-        <div className="container flex flex-row items-center content-center justify-center px-4 py-6 bg-black-500">
-          <div className="container w-auto px-10 py-6 mx-5 text-xl text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105">
-            <h1 >Hello, My name is Nishit Sharma!</h1>
-          </div>
-          <div className="container w-auto px-10 py-6 mx-5 text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105">
-            <div className="mx-auto overflow-hidden rounded-3xl w-80 h-80">
-              <Image src={Picture} alt="Nishit Sharma" />
-            </div>
-          </div>
-        </div>
-        <div className="flex-col items-center content-center justify-center">
-          
-          {resumeClick ? (
-            <Resume />
-          ) : transcriptClick ? (
-            <Transcript />
-          ) : (
-            <Summary />
-          )}
-          
-          <div className="container flex flex-row items-center content-center justify-center py-6 mx-auto text-center bg-black-500 w-96">
-            <Image
-              src={ResumeIcon}
-              alt="Resume"
-              width={24}
-              height={24}
-              onClick={handleResumeClick}
-              className="container w-auto px-5 py-6 mx-10 text-center duration-500 shadow-md bg-white-500 rounded-3xl hover:scale-105"
-            />
-            <Image
-              src={TranscriptIcon}
-              alt="Transcript"
-              width={24}
-              height={24}
-              onClick={handleTranscriptClick}
-              className="container w-auto px-5 py-6 mx-10 text-center duration-500 shadow-md bg-white-500 rounded-3xl hover:scale-105"
-            />
-          </div>
-        </div>
+    <main className="pt-96">
+      <div className="pb-big">
+        <BeforeScroll />
       </div>
+      <AfterScroll />
     </main>
   );
 }

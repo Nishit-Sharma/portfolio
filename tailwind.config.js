@@ -6,7 +6,11 @@ module.exports = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      spacing: {
+        "big": "50rem",
+      }
+    },
     colors: {
       black: {
           100: "#d6d6d6",
