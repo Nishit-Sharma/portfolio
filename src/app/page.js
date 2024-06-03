@@ -15,12 +15,12 @@ export default function Home() {
   const [transcriptClick, setTranscriptClick] = useState(false);
 
   const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 750], [0, 850]);
+  const y = useTransform(scrollY, [0, 750], [0, 1050]);
   const x = useTransform(scrollY, [750, 900], [0, -223]);
 
-  const imageOpacity = useTransform(scrollY, [750, 850], [0, 1]);
-  const textOpacity = useTransform(scrollY, [800, 900], [0, 1]);
-  const buttonOpacity = useTransform(scrollY, [1175, 1300], [0, 1]);
+  const imageOpacity = useTransform(scrollY, [800, 950], [0, 1]);
+  const textOpacity = useTransform(scrollY, [900, 1000], [0, 1]);
+  const buttonOpacity = useTransform(scrollY, [1275, 1400], [0, 1]);
 
   function handleResumeClick() {
     if (transcriptClick) {
@@ -64,7 +64,7 @@ export default function Home() {
 
   function AfterScroll() {
     return (
-      <div className="container flex flex-col items-center content-center justify-center px-4 pt-56 mx-auto bg-black-500">
+      <div className="container flex flex-col items-center content-center justify-center px-4 mx-auto pt-96 bg-black-500">
         <motion.div className="container flex flex-row items-center content-center justify-center px-4 py-6 bg-black-500">
           <div className="container w-auto px-10 py-6 mx-5 text-xl text-center duration-500 shadow-md opacity-0 rounded-3xl bg-black-600 hover:scale-105">
             <h1>Hello, My name is Nishit Sharma!</h1>
