@@ -24,7 +24,7 @@ export function Header() {
   return (
     <motion.div
       style={{ opacity }}
-      className="container sticky top-0 z-50 flex items-center justify-between w-auto h-16 px-4 mx-auto shadow-md bg-black-500"
+      className="sticky top-0 z-50 flex items-center justify-between w-auto h-16 px-4 mx-auto shadow-md bg-black-500"
     >
       <div className="object-center rounded-lg hover:bg-black-600">
         {/* <Link href="/"> */}
