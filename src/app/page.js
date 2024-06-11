@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { motion, stagger, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 import Picture from "./static/NishitSharma.JPG";
 import ResumeIcon from "./static/resume.png";
