@@ -67,8 +67,6 @@ body {
   }
 }
 
-
-
 @keyframes down {
 	0% {
 		transform: translate(0);
