@@ -234,7 +234,7 @@ export default function Home() {
                     This was a collaborative project was submitted for the NJTSA Software Development competition. It is a personal assistant that was designed to make ordinary tasks easier. Telling the time, date, weather, googling things are all possible with A.L.P.H.A. It was designed with React and Python, where React was used for the front end and Python was used for the backend. I primarily worked on the connection between React and Python, and the Python file itself. 
                   </p>
                   <a
-                    href="https://github.com/Nishit-Sharma/portfolio"
+                    href="https://github.com/Nishit-Sharma/NJTSA-Software-Development-LocalHost"
                     target="_blank"
                     rel="noreferrer"
                   >
@@ -270,7 +270,7 @@ export default function Home() {
                     This portfolio website was my first time using Next.js, and I learned a lot about React and the thought process of a Web Designer. I used Tailwind CSS for styling and Framer Motion for animations, which were also two new frameworks for me. I also used Vercel for deployment to make sure that my website was easily accessible. I learned a lot about web development, React, and Next.js from this project and it changed my perspective on web development in a positive way.
                   </p>
                   <a
-                    href="https://github.com/nishitsharma/web-development"
+                    href="https://github.com/Nishit-Sharma/portfolio"
                     target="_blank"
                     rel="noreferrer"
                   >
