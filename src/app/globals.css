@@ -10,6 +10,8 @@
 
   /* Background color / gradient */
   --background-rgb: 51, 51, 51;
+
+  scroll-behavior: smooth;
 }
 
 /* width */
