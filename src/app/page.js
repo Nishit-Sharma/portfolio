@@ -9,6 +9,8 @@ import {
   AnimatePresence,
 } from "framer-motion";
 
+const { window } = globalThis;
+
 import Picture from "./static/NishitSharma.JPG";
 import ResumeIcon from "./static/resume.png";
 import TranscriptIcon from "./static/transcript.png";
