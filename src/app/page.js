@@ -51,7 +51,7 @@ export default function Home() {
 
   function Summary() {
     return (
-      <div className="container z-50 px-10 py-6 mx-10 text-center duration-500 shadow-2xl rounded-3xl bg-black-600 hover:scale-105 w-96">
+      <div className="container px-10 py-6 mx-10 text-center duration-500 shadow-2xl rounded-3xl bg-black-600 hover:scale-105 w-96">
         <h1>
           I am a top-performing student at the Morris County School of
           Technology, with a 4.17 unweighted GPA, and I will be attending the
@@ -110,7 +110,7 @@ export default function Home() {
 
   function NameAndPicture() {
     return isMobile ? (
-      <div className="container flex flex-col items-center content-center justify-center px-4 py-6 bg-black-500">
+      <div className="container flex flex-col items-center content-center justify-center px-4 bg-black-500">
         <div className="container w-auto px-10 py-6 mx-5 my-5 text-2xl text-center duration-500 shadow-md opacity-100 rounded-3xl bg-black-600 hover:scale-105">
           <h1>Hello, My name is Nishit Sharma!</h1>
         </div>
@@ -223,7 +223,7 @@ export default function Home() {
     return isMobile ? (
       <div>
         <div className="container flex flex-col items-center content-center justify-center w-auto py-6 pb-10 mx-auto text-center">
-            <div className="container px-10 py-6 mx-5 text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105">
+            <div className="container px-10 py-6 mx-5 my-5 text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105">
               <h1 className="text-xl">A.L.P.H.A Personal Assistant</h1>
               <p>
                 <br></br>A personal assistant designed to make life easier.
@@ -236,7 +236,7 @@ export default function Home() {
                 View Details
               </button>
             </div>
-            <div className="container px-10 py-6 mx-5 text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105">
+            <div className="container px-10 py-6 mx-5 my-5 text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105">
               <h1 className="text-xl">FRC Charged Up Robot</h1>
               <p>
                 <br></br>
@@ -249,7 +249,7 @@ export default function Home() {
                 View Details
               </button>
             </div>
-            <div className="container px-10 py-6 mx-5 text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105">
+            <div className="container px-10 py-6 mx-5 my-5 text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105">
               <h1 className="text-xl">My Portfolio</h1>
               <p>
                 <br></br>
@@ -538,7 +538,7 @@ export default function Home() {
 
   function AfterScroll() {
     return (
-      <div className="container flex flex-col items-center content-center justify-center px-4 mx-auto pt-96 bg-black-500">
+      <div className="container flex flex-col items-center content-center justify-center px-4 mx-auto sm:pt-96 bg-black-500">
         <NameAndPicture />
         <Information />
         <Projects />
@@ -548,7 +548,7 @@ export default function Home() {
 
   return (
     <main className="flex flex-col items-center content-center justify-center">
-      <div className="py-big">
+      <div className="sm:py-big">
         <BeforeScroll />
       </div>
       <AfterScroll />
