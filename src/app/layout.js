@@ -21,20 +21,24 @@ const styles = {
 export function Header() {
   const { scrollY } = useScroll();
   const opacity = useTransform(scrollY, [800, 950], [0, 1]);
-  
+
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    setIsMobile(window.innerWidth < 640);
+    setIsMobile(window.innerWidth < 1025);
   }, []);
 
-  return (
-    isMobile ? (
-      <div className="sticky top-0 z-50 flex items-center justify-between w-auto h-16 px-4 mx-auto shadow-md bg-black-500">
-        <div className="object-center rounded-lg hover:bg-black-600">
-          <h1 className="text-lg font-semibold px-1.5">Nishit Sharma</h1>
-        </div>
-        {/* <nav className="flex justify-end space-x-4">
+  return isMobile ? (
+    <motion.div
+      initial={{ opacity: 0 }}
+      transition={{ delay: 2.5 }}
+      whileInView={{ opacity: 1 }}
+      className="sticky top-0 z-50 flex items-center justify-between w-auto h-16 px-4 mx-auto shadow-md bg-black-500"
+    >
+      <div className="object-center rounded-lg hover:bg-black-600">
+        <h1 className="text-lg font-semibold px-1.5">Nishit Sharma</h1>
+      </div>
+      {/* <nav className="flex justify-end space-x-4">
           <div className="object-center mx-auto rounded-lg hover:bg-black-600">
               <a className="text-base px-1.5">
                 About
@@ -51,15 +55,15 @@ export function Header() {
               </a>
             </div>
         </nav> */}
-      </div>
-    ) : (
-      <motion.div
+    </motion.div>
+  ) : (
+    <motion.div
       style={{ opacity }}
       className="sticky top-0 z-50 flex items-center justify-between w-auto h-16 px-4 mx-auto shadow-md bg-black-500"
     >
       <div className="object-center rounded-lg hover:bg-black-600">
         {/* <Link href="/"> */}
-          <h1 className="text-lg font-semibold px-1.5">Nishit Sharma</h1>
+        <h1 className="text-lg font-semibold px-1.5">Nishit Sharma</h1>
         {/* </Link> */}
       </div>
       {/* <nav className="flex justify-end space-x-4">
@@ -80,7 +84,6 @@ export function Header() {
           </div>
       </nav> */}
     </motion.div>
-    )
   );
 }
 

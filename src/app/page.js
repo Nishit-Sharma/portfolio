@@ -32,7 +32,7 @@ export default function Home() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    setIsMobile(window.innerWidth < 640);
+    setIsMobile(window.innerWidth < 1025);
   }, []);
 
   function handleResumeClick() {
@@ -51,7 +51,11 @@ export default function Home() {
 
   function Summary() {
     return (
-      <div className="container px-10 py-6 mx-10 text-center duration-500 shadow-2xl rounded-3xl bg-black-600 hover:scale-105 w-96">
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 3 }}
+       className="container px-10 py-6 mx-10 text-center duration-500 shadow-2xl rounded-3xl bg-black-600 hover:scale-105 w-96">
         <h1>
           I am a top-performing student at the Morris County School of
           Technology, with a 4.17 unweighted GPA, and I will be attending the
@@ -73,7 +77,7 @@ export default function Home() {
           I also volunteer at the Parsippany Library, where I teach coding
           workshops to over 30 elementary school students.
         </h1>
-      </div>
+      </motion.div>
     );
   }
 
@@ -110,15 +114,25 @@ export default function Home() {
 
   function NameAndPicture() {
     return isMobile ? (
-      <div className="container flex flex-col items-center content-center justify-center px-4 bg-black-500">
-        <div className="container w-auto px-10 py-6 mx-5 my-5 text-2xl text-center duration-500 shadow-md opacity-100 rounded-3xl bg-black-600 hover:scale-105">
+      <div className="container flex flex-col items-center content-center justify-center px-4 pt-5 bg-black-500">
+        <motion.div
+          animate={{ y: -20, opacity: 1 }}
+          initial={{ y: 0, opacity: 0 }}
+          // transition={{ delay: 1 }}
+          className="container w-auto px-10 py-6 mx-5 my-5 text-2xl text-center duration-500 shadow-md opacity-100 rounded-3xl bg-black-600 hover:scale-105"
+        >
           <h1>Hello, My name is Nishit Sharma!</h1>
-        </div>
-        <div className="container w-auto px-10 py-6 mx-5 text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105">
+        </motion.div>
+        <motion.div
+          animate={{ y: -20, opacity: 1 }}
+          initial={{ y: 0, opacity: 0 }}
+          transition={{ delay: 1 }}
+          className="container w-auto px-10 py-6 mx-5 text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105"
+        >
           <div className="mx-auto overflow-hidden rounded-3xl w-80 h-80">
             <Image src={Picture} alt="Nishit Sharma" />
           </div>
-        </div>
+        </motion.div>
       </div>
     ) : (
       <motion.div
@@ -223,44 +237,44 @@ export default function Home() {
     return isMobile ? (
       <div>
         <div className="container flex flex-col items-center content-center justify-center w-auto py-6 pb-10 mx-auto text-center">
-            <div className="container px-10 py-6 mx-5 my-5 text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105">
-              <h1 className="text-xl">A.L.P.H.A Personal Assistant</h1>
-              <p>
-                <br></br>A personal assistant designed to make life easier.
-                Designed with React and Python
-              </p>
-              <button
-                onClick={() => handleProjectClick("assistant")}
-                className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
-              >
-                View Details
-              </button>
-            </div>
-            <div className="container px-10 py-6 mx-5 my-5 text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105">
-              <h1 className="text-xl">FRC Charged Up Robot</h1>
-              <p>
-                <br></br>
-                The code for MCST's FRC Robot during the Charged Up Year, 2023
-              </p>
-              <button
-                onClick={() => handleProjectClick("robotics")}
-                className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
-              >
-                View Details
-              </button>
-            </div>
-            <div className="container px-10 py-6 mx-5 my-5 text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105">
-              <h1 className="text-xl">My Portfolio</h1>
-              <p>
-                <br></br>
-                This Portfolio website!
-              </p>
-              <button
-                onClick={() => handleProjectClick("web-development")}
-                className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
-              >
-                View Details
-              </button>
+          <div className="container px-10 py-6 mx-5 my-5 text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105">
+            <h1 className="text-xl">A.L.P.H.A Personal Assistant</h1>
+            <p>
+              <br></br>A personal assistant designed to make life easier.
+              Designed with React and Python
+            </p>
+            <button
+              onClick={() => handleProjectClick("assistant")}
+              className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+            >
+              View Details
+            </button>
+          </div>
+          <div className="container px-10 py-6 mx-5 my-5 text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105">
+            <h1 className="text-xl">FRC Charged Up Robot</h1>
+            <p>
+              <br></br>
+              The code for MCST's FRC Robot during the Charged Up Year, 2023
+            </p>
+            <button
+              onClick={() => handleProjectClick("robotics")}
+              className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+            >
+              View Details
+            </button>
+          </div>
+          <div className="container px-10 py-6 mx-5 my-5 text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105">
+            <h1 className="text-xl">My Portfolio</h1>
+            <p>
+              <br></br>
+              This Portfolio website!
+            </p>
+            <button
+              onClick={() => handleProjectClick("web-development")}
+              className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+            >
+              View Details
+            </button>
           </div>
         </div>
 
@@ -537,8 +551,14 @@ export default function Home() {
   }
 
   function AfterScroll() {
-    return (
-      <div className="container flex flex-col items-center content-center justify-center px-4 mx-auto sm:pt-96 bg-black-500">
+    return isMobile ? (
+      <div className="container flex flex-col items-center content-center justify-center px-4 mx-auto bg-black-500">
+        <NameAndPicture />
+        <Information />
+        <Projects />
+      </div>
+    ) : (
+      <div className="container flex flex-col items-center content-center justify-center px-4 mx-auto pt-96 bg-black-500">
         <NameAndPicture />
         <Information />
         <Projects />
@@ -546,9 +566,16 @@ export default function Home() {
     );
   }
 
-  return (
+  return isMobile ? (
     <main className="flex flex-col items-center content-center justify-center">
-      <div className="sm:py-big">
+      <div>
+        <BeforeScroll />
+      </div>
+      <AfterScroll />
+    </main>
+  ) : (
+    <main className="flex flex-col items-center content-center justify-center">
+      <div className="py-big">
         <BeforeScroll />
       </div>
       <AfterScroll />
