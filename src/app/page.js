@@ -9,7 +9,7 @@ import {
   AnimatePresence,
 } from "framer-motion";
 
-import Picture from "./static/NishitSharma.JPG";
+import Picture from "./static/NishitSharma.png";
 import ResumeIcon from "./static/resume.png";
 import TranscriptIcon from "./static/transcript.png";
 import MyResume from "./static/NishitSharmaResume.jpg";
