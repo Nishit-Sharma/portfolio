@@ -32,7 +32,7 @@ export function Header() {
     <motion.div
       initial={{ opacity: 0 }}
       transition={{ delay: 2.5 }}
-      whileInView={{ opacity: 1 }}
+      animate={{ opacity: 1 }}
       className="sticky top-0 z-50 flex items-center justify-between w-auto h-16 px-4 mx-auto shadow-md bg-black-500"
     >
       <div className="object-center rounded-lg hover:bg-black-600">

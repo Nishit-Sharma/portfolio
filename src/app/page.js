@@ -51,11 +51,12 @@ export default function Home() {
 
   function Summary() {
     return (
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 3 }}
-       className="container px-10 py-6 mx-10 text-center duration-500 shadow-2xl rounded-3xl bg-black-600 hover:scale-105 w-96">
+        className="container px-10 py-6 mx-10 text-center duration-500 shadow-2xl rounded-3xl bg-black-600 hover:scale-105 w-96"
+      >
         <h1>
           I am a top-performing student at the Morris County School of
           Technology, with a 4.17 unweighted GPA, and I will be attending the
@@ -114,20 +115,23 @@ export default function Home() {
 
   function NameAndPicture() {
     return isMobile ? (
-      <div className="container flex flex-col items-center content-center justify-center px-4 pt-5 bg-black-500">
+      <div className="container flex flex-col items-center content-center justify-center px-4 bg-black-500">
         <motion.div
-          animate={{ y: -20, opacity: 1 }}
+          animate={{ y: 20, opacity: 1 }}
           initial={{ y: 0, opacity: 0 }}
-          // transition={{ delay: 1 }}
-          className="container w-auto px-10 py-6 mx-5 my-5 text-2xl text-center duration-500 shadow-md opacity-100 rounded-3xl bg-black-600 hover:scale-105"
+          transition={{ delay: 0.5 }}
+          className="container flex flex-col items-center content-center justify-center px-4 mx-auto text-2xl opacity-0 bg-black-500"
         >
-          <h1>Hello, My name is Nishit Sharma!</h1>
+          <div className="container w-auto px-10 py-6 mx-5 text-center duration-500 shadow-md opacity-100 rounded-3xl bg-black-600 hover:scale-105">
+            <h1>Hello, My name is Nishit Sharma!</h1>
+          </div>
         </motion.div>
+
         <motion.div
-          animate={{ y: -20, opacity: 1 }}
-          initial={{ y: 0, opacity: 0 }}
-          transition={{ delay: 1 }}
-          className="container w-auto px-10 py-6 mx-5 text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105"
+          animate={{ y: 40, opacity: 1 }}
+          initial={{ y: 60, opacity: 0 }}
+          transition={{ delay: 1.5 }}
+          className="container flex flex-col items-center content-center justify-center w-auto px-10 py-6 mx-5 text-2xl shadow-md opacity-0 rounded-3xl bg-black-600 hover:scale-105"
         >
           <div className="mx-auto overflow-hidden rounded-3xl w-80 h-80">
             <Image src={Picture} alt="Nishit Sharma" />
@@ -156,7 +160,7 @@ export default function Home() {
 
   function Information() {
     return isMobile ? (
-      <div className="container flex flex-col items-center content-center justify-center px-4 py-6 bg-black-500">
+      <div className="container flex flex-col items-center content-center justify-center px-4 py-6 pt-20 bg-black-500">
         {resumeClick ? (
           <Resume />
         ) : transcriptClick ? (
@@ -240,11 +244,11 @@ export default function Home() {
           <div className="container px-10 py-6 mx-5 my-5 text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105">
             <h1 className="text-xl">A.L.P.H.A Personal Assistant</h1>
             <p>
-              <br />A personal assistant designed to make life easier.
-              Designed with React and Python
+              <br />A personal assistant designed to make life easier. Designed
+              with React and Python
             </p>
             <button
-            type="button"
+              type="button"
               onClick={() => handleProjectClick("assistant")}
               className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
             >
@@ -258,7 +262,7 @@ export default function Home() {
               The code for MCST's FRC Robot during the Charged Up Year, 2023
             </p>
             <button
-            type="button"
+              type="button"
               onClick={() => handleProjectClick("robotics")}
               className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
             >
@@ -272,7 +276,7 @@ export default function Home() {
               This Portfolio website!
             </p>
             <button
-            type="button"
+              type="button"
               onClick={() => handleProjectClick("web-development")}
               className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
             >
@@ -316,7 +320,9 @@ export default function Home() {
                     rel="noreferrer"
                   >
                     <button
-                    type="button" className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
+                      type="button"
+                      className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+                    >
                       View on GitHub
                     </button>
                   </a>
@@ -339,7 +345,9 @@ export default function Home() {
                     rel="noreferrer"
                   >
                     <button
-                    type="button" className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
+                      type="button"
+                      className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+                    >
                       View on GitHub
                     </button>
                   </a>
@@ -365,7 +373,9 @@ export default function Home() {
                     rel="noreferrer"
                   >
                     <button
-                    type="button" className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
+                      type="button"
+                      className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+                    >
                       View on GitHub
                     </button>
                   </a>
@@ -384,11 +394,11 @@ export default function Home() {
           <motion.div className="container px-10 py-6 mx-5 text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105">
             <h1 className="text-xl">A.L.P.H.A Personal Assistant</h1>
             <p>
-              <br />A personal assistant designed to make life easier.
-              Designed with React and Python
+              <br />A personal assistant designed to make life easier. Designed
+              with React and Python
             </p>
             <button
-            type="button"
+              type="button"
               onClick={() => handleProjectClick("assistant")}
               className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
             >
@@ -402,7 +412,7 @@ export default function Home() {
               The code for MCST's FRC Robot during the Charged Up Year, 2023
             </p>
             <button
-            type="button"
+              type="button"
               onClick={() => handleProjectClick("robotics")}
               className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
             >
@@ -416,7 +426,7 @@ export default function Home() {
               This Portfolio website!
             </p>
             <button
-            type="button"
+              type="button"
               onClick={() => handleProjectClick("web-development")}
               className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
             >
@@ -461,7 +471,9 @@ export default function Home() {
                       rel="noreferrer"
                     >
                       <button
-                      type="button" className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
+                        type="button"
+                        className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+                      >
                         View on GitHub
                       </button>
                     </a>
@@ -485,7 +497,9 @@ export default function Home() {
                       rel="noreferrer"
                     >
                       <button
-                      type="button" className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
+                        type="button"
+                        className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+                      >
                         View on GitHub
                       </button>
                     </a>
@@ -512,7 +526,9 @@ export default function Home() {
                       rel="noreferrer"
                     >
                       <button
-                      type="button" className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
+                        type="button"
+                        className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+                      >
                         View on GitHub
                       </button>
                     </a>
@@ -551,7 +567,7 @@ export default function Home() {
           whileInView={{ opacity: 1 }}
         >
           <button
-          type="button"
+            type="button"
             className="opacity-0 scroll"
             onClick={() => {
               infoRef.current?.scrollIntoView({
