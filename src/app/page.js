@@ -62,14 +62,14 @@ export default function Home() {
           County College of Morris in my senior year. I am passionate about Game
           Design, Robotics, and Video Games.
         </h1>
-        <br></br>
+        <br />
         <h1>
           I earned a 4 on the AP CSP Test and maintained High Honor Roll status
           throughout high school. I have mastered Java, Python, and C++ and am
           expanding my knowledge to HTML, CSS, Javascript, and Next.js, which I
           used to code this website.
         </h1>
-        <br></br>
+        <br />
         <h1>
           I am also involved in my school's robotics team, Team 8588, Tech
           Devils. As the President, I led the team to its most successful year
@@ -240,10 +240,11 @@ export default function Home() {
           <div className="container px-10 py-6 mx-5 my-5 text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105">
             <h1 className="text-xl">A.L.P.H.A Personal Assistant</h1>
             <p>
-              <br></br>A personal assistant designed to make life easier.
+              <br />A personal assistant designed to make life easier.
               Designed with React and Python
             </p>
             <button
+            type="button"
               onClick={() => handleProjectClick("assistant")}
               className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
             >
@@ -253,10 +254,11 @@ export default function Home() {
           <div className="container px-10 py-6 mx-5 my-5 text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105">
             <h1 className="text-xl">FRC Charged Up Robot</h1>
             <p>
-              <br></br>
+              <br />
               The code for MCST's FRC Robot during the Charged Up Year, 2023
             </p>
             <button
+            type="button"
               onClick={() => handleProjectClick("robotics")}
               className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
             >
@@ -266,10 +268,11 @@ export default function Home() {
           <div className="container px-10 py-6 mx-5 my-5 text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105">
             <h1 className="text-xl">My Portfolio</h1>
             <p>
-              <br></br>
+              <br />
               This Portfolio website!
             </p>
             <button
+            type="button"
               onClick={() => handleProjectClick("web-development")}
               className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
             >
@@ -282,6 +285,7 @@ export default function Home() {
           <div
             className="fixed top-0 left-0 flex items-center justify-center w-full h-screen p-10 bg-opacity-50 bg-black-500"
             onClick={handleModalClose}
+            onKeyDown={handleModalClose}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -296,7 +300,7 @@ export default function Home() {
                 <div>
                   <h1 className="text-xl">A.L.P.H.A Personal Assistant</h1>
                   <p>
-                    <br></br>
+                    <br />
                     This was a collaborative project was submitted for the NJTSA
                     Software Development competition. It is a personal assistant
                     that was designed to make ordinary tasks easier. Telling the
@@ -311,7 +315,8 @@ export default function Home() {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <button className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
+                    <button
+                    type="button" className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
                       View on GitHub
                     </button>
                   </a>
@@ -321,7 +326,7 @@ export default function Home() {
                 <div>
                   <h1 className="text-xl">FRC Charged Up Robot</h1>
                   <p>
-                    <br></br>
+                    <br />
                     This was also a collaborative project where I worked with my
                     team to program our bot for the 2023 FRC season. We used
                     Java to program the robot, and I primarily worked on the
@@ -333,7 +338,8 @@ export default function Home() {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <button className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
+                    <button
+                    type="button" className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
                       View on GitHub
                     </button>
                   </a>
@@ -343,7 +349,7 @@ export default function Home() {
                 <div>
                   <h1 className="text-xl">My Portfolio</h1>
                   <p>
-                    <br></br>
+                    <br />
                     This portfolio website was my first time using Next.js, and
                     I learned a lot about React and the thought process of a Web
                     Designer. I used Tailwind CSS for styling and Framer Motion
@@ -358,7 +364,8 @@ export default function Home() {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <button className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
+                    <button
+                    type="button" className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
                       View on GitHub
                     </button>
                   </a>
@@ -377,10 +384,11 @@ export default function Home() {
           <motion.div className="container px-10 py-6 mx-5 text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105">
             <h1 className="text-xl">A.L.P.H.A Personal Assistant</h1>
             <p>
-              <br></br>A personal assistant designed to make life easier.
+              <br />A personal assistant designed to make life easier.
               Designed with React and Python
             </p>
             <button
+            type="button"
               onClick={() => handleProjectClick("assistant")}
               className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
             >
@@ -390,10 +398,11 @@ export default function Home() {
           <motion.div className="container px-10 py-6 mx-5 text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105">
             <h1 className="text-xl">FRC Charged Up Robot</h1>
             <p>
-              <br></br>
+              <br />
               The code for MCST's FRC Robot during the Charged Up Year, 2023
             </p>
             <button
+            type="button"
               onClick={() => handleProjectClick("robotics")}
               className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
             >
@@ -403,10 +412,11 @@ export default function Home() {
           <motion.div className="container px-10 py-6 mx-5 text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105">
             <h1 className="text-xl">My Portfolio</h1>
             <p>
-              <br></br>
+              <br />
               This Portfolio website!
             </p>
             <button
+            type="button"
               onClick={() => handleProjectClick("web-development")}
               className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
             >
@@ -434,7 +444,7 @@ export default function Home() {
                   <div>
                     <h1 className="text-xl">A.L.P.H.A Personal Assistant</h1>
                     <p>
-                      <br></br>
+                      <br />
                       This was a collaborative project was submitted for the
                       NJTSA Software Development competition. It is a personal
                       assistant that was designed to make ordinary tasks easier.
@@ -450,7 +460,8 @@ export default function Home() {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      <button className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
+                      <button
+                      type="button" className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
                         View on GitHub
                       </button>
                     </a>
@@ -460,7 +471,7 @@ export default function Home() {
                   <div>
                     <h1 className="text-xl">FRC Charged Up Robot</h1>
                     <p>
-                      <br></br>
+                      <br />
                       This was also a collaborative project where I worked with
                       my team to program our bot for the 2023 FRC season. We
                       used Java to program the robot, and I primarily worked on
@@ -473,7 +484,8 @@ export default function Home() {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      <button className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
+                      <button
+                      type="button" className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
                         View on GitHub
                       </button>
                     </a>
@@ -483,7 +495,7 @@ export default function Home() {
                   <div>
                     <h1 className="text-xl">My Portfolio</h1>
                     <p>
-                      <br></br>
+                      <br />
                       This portfolio website was my first time using Next.js,
                       and I learned a lot about React and the thought process of
                       a Web Designer. I used Tailwind CSS for styling and Framer
@@ -499,7 +511,8 @@ export default function Home() {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      <button className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
+                      <button
+                      type="button" className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
                         View on GitHub
                       </button>
                     </a>
@@ -538,13 +551,19 @@ export default function Home() {
           whileInView={{ opacity: 1 }}
         >
           <button
+          type="button"
             className="opacity-0 scroll"
             onClick={() => {
               infoRef.current?.scrollIntoView({
                 behavior: "smooth",
               });
             }}
-          ></button>
+            onKeyDown={() => {
+              infoRef.current?.scrollIntoView({
+                behavior: "smooth",
+              });
+            }}
+          />
         </motion.div>
       </>
     );
