@@ -11,7 +11,7 @@ export const metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://nishitsharma.vercel.app',
-    title: 'Nishit Sharma - Stident & Robotics Enthusiast',
+    title: 'Nishit Sharma - Student & Robotics Enthusiast',
     description: 'Personal portfolio of Nishit Sharma showcasing web development and robotics projects.',
     images: [
       {
