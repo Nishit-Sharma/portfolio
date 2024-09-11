@@ -1,0 +1,15 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Nishit Sharma",
+  "url": "https://nishitsharma.vercel.app",
+  "sameAs": [
+    "https://github.com/nishit-sharma",
+    "https://www.instagram.com/nishit.sharma13",
+    "https://www.linkedin.com/in/nishit-sharma13/"
+  ],
+  "jobTitle": "Web Developer",
+  "description": "Web developer and robotics enthusiast specializing in React, Next.js, and Python."
+}
+</script>
