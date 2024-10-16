@@ -54,7 +54,8 @@ export default function Home() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 3 }}
+        transition={{ delay: 1 }}
+        exit={{ opacity: 0 }}
         className="container px-10 py-6 mx-10 text-center duration-500 shadow-2xl rounded-3xl bg-black-600 hover:scale-105 w-96"
       >
         <h1>
@@ -87,7 +88,13 @@ export default function Home() {
       handleTranscriptClick();
     }
     return (
-      <div className="container w-auto px-10 py-6 mx-10 text-center duration-500 shadow-2xl rounded-3xl bg-white-500 hover:scale-105">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1 }}
+        exit={{ opacity: 0 }}
+        className="container w-auto px-10 py-6 mx-10 text-center duration-500 shadow-2xl rounded-3xl bg-white-500 hover:scale-105"
+      >
         <Image
           src={MyResume}
           alt="Resume"
@@ -95,13 +102,19 @@ export default function Home() {
           height={700}
           priority={true}
         />
-      </div>
+      </motion.div>
     );
   }
 
   function Transcript() {
     return (
-      <div className="container w-auto px-10 py-6 mx-10 text-center duration-500 shadow-2xl rounded-3xl bg-white-500 hover:scale-105">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1 }}
+        exit={{ opacity: 0 }}
+        className="container w-auto px-10 py-6 mx-10 text-center duration-500 shadow-2xl rounded-3xl bg-white-500 hover:scale-105"
+      >
         <Image
           src={MyTranscript}
           alt="Transcript"
@@ -109,7 +122,7 @@ export default function Home() {
           height={700}
           priority={true}
         />
-      </div>
+      </motion.div>
     );
   }
 
@@ -188,39 +201,41 @@ export default function Home() {
         </div>
       </div>
     ) : (
-      <motion.div
-        style={{ opacity: textOpacity }}
-        className="flex-col items-center content-center justify-center"
-      >
-        {resumeClick ? (
-          <Resume />
-        ) : transcriptClick ? (
-          <Transcript />
-        ) : (
-          <Summary />
-        )}
+      <AnimatePresence mode="wait">
         <motion.div
-          style={{ opacity: buttonOpacity }}
-          className="container flex flex-row items-center content-center justify-center py-6 pb-10 mx-auto text-center w-96"
+          style={{ opacity: textOpacity }}
+          className="flex-col items-center content-center justify-center"
         >
-          <Image
-            src={ResumeIcon}
-            alt="Resume"
-            width={24}
-            height={24}
-            onClick={handleResumeClick}
-            className="container w-auto px-5 py-6 mx-10 text-center duration-500 shadow-md bg-white-500 rounded-3xl hover:scale-105"
-          />
-          <Image
-            src={TranscriptIcon}
-            alt="Transcript"
-            width={24}
-            height={24}
-            onClick={handleTranscriptClick}
-            className="container w-auto px-5 py-6 mx-10 text-center duration-500 shadow-md bg-white-500 rounded-3xl hover:scale-105"
-          />
+          {resumeClick ? (
+            <Resume />
+          ) : transcriptClick ? (
+            <Transcript />
+          ) : (
+            <Summary />
+          )}
+          <motion.div
+            style={{ opacity: buttonOpacity }}
+            className="container flex flex-row items-center content-center justify-center py-6 pb-10 mx-auto text-center w-96"
+          >
+            <Image
+              src={ResumeIcon}
+              alt="Resume"
+              width={24}
+              height={24}
+              onClick={handleResumeClick}
+              className="container w-auto px-5 py-6 mx-10 text-center duration-500 shadow-md bg-white-500 rounded-3xl hover:scale-105"
+            />
+            <Image
+              src={TranscriptIcon}
+              alt="Transcript"
+              width={24}
+              height={24}
+              onClick={handleTranscriptClick}
+              className="container w-auto px-5 py-6 mx-10 text-center duration-500 shadow-md bg-white-500 rounded-3xl hover:scale-105"
+            />
+          </motion.div>
         </motion.div>
-      </motion.div>
+      </AnimatePresence>
     );
   }
 
@@ -240,8 +255,8 @@ export default function Home() {
 
     return isMobile ? (
       <div>
-        <motion.div className="container flex flex-col items-center content-center justify-center w-auto py-6 pb-10 mx-auto text-center">
-          <motion.div className="container px-10 py-6 mx-5 my-5 text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105">
+        <div className="container flex flex-col items-center content-center justify-center w-auto py-6 pb-10 mx-auto text-center">
+          <div className="container px-10 py-6 mx-5 my-5 text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105">
             <h1 className="text-xl">A.L.P.H.A Personal Assistant</h1>
             <p>
               <br />A personal assistant designed to make life easier. Designed
@@ -254,8 +269,8 @@ export default function Home() {
             >
               View Details
             </button>
-          </motion.div>
-          <motion.div className="container px-10 py-6 mx-5 my-5 text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105">
+          </div>
+          <div className="container px-10 py-6 mx-5 my-5 text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105">
             <h1 className="text-xl">FRC Charged Up Robot</h1>
             <p>
               <br />
@@ -268,8 +283,8 @@ export default function Home() {
             >
               View Details
             </button>
-          </motion.div>
-          <motion.div className="container px-10 py-6 mx-5 my-5 text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105">
+          </div>
+          <div className="container px-10 py-6 mx-5 my-5 text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105">
             <h1 className="text-xl">My Portfolio</h1>
             <p>
               <br />
@@ -282,8 +297,8 @@ export default function Home() {
             >
               View Details
             </button>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
         <AnimatePresence>
           {isModalOpen && (
@@ -306,14 +321,15 @@ export default function Home() {
                     <h1 className="text-xl">A.L.P.H.A Personal Assistant</h1>
                     <p>
                       <br />
-                      This was a collaborative project was submitted for the NJTSA
-                      Software Development competition. It is a personal assistant
-                      that was designed to make ordinary tasks easier. Telling the
-                      time, date, weather, googling things are all possible with
-                      A.L.P.H.A. It was designed with React and Python, where
-                      React was used for the front end and Python was used for the
-                      backend. I primarily worked on the connection between React
-                      and Python, and the Python file itself.
+                      This was a collaborative project was submitted for the
+                      NJTSA Software Development competition. It is a personal
+                      assistant that was designed to make ordinary tasks easier.
+                      Telling the time, date, weather, googling things are all
+                      possible with A.L.P.H.A. It was designed with React and
+                      Python, where React was used for the front end and Python
+                      was used for the backend. I primarily worked on the
+                      connection between React and Python, and the Python file
+                      itself.
                     </p>
                     <a
                       href="https://github.com/Nishit-Sharma/NJTSA-Software-Development-LocalHost"
@@ -334,11 +350,12 @@ export default function Home() {
                     <h1 className="text-xl">FRC Charged Up Robot</h1>
                     <p>
                       <br />
-                      This was also a collaborative project where I worked with my
-                      team to program our bot for the 2023 FRC season. We used
-                      Java to program the robot, and I primarily worked on the
-                      autonomous code and the drive code. This was the first big
-                      project I worked on as a team and I took a lot away from it.
+                      This was also a collaborative project where I worked with
+                      my team to program our bot for the 2023 FRC season. We
+                      used Java to program the robot, and I primarily worked on
+                      the autonomous code and the drive code. This was the first
+                      big project I worked on as a team and I took a lot away
+                      from it.
                     </p>
                     <a
                       href="https://github.com/mcstrobotics/ChargedUp8588"
@@ -359,14 +376,15 @@ export default function Home() {
                     <h1 className="text-xl">My Portfolio</h1>
                     <p>
                       <br />
-                      This portfolio website was my first time using Next.js, and
-                      I learned a lot about React and the thought process of a Web
-                      Designer. I used Tailwind CSS for styling and Framer Motion
-                      for animations, which were also two new frameworks for me. I
-                      also used Vercel for deployment to make sure that my website
-                      was easily accessible. I learned a lot about web
-                      development, React, and Next.js from this project and it
-                      changed my perspective on web development in a positive way.
+                      This portfolio website was my first time using Next.js,
+                      and I learned a lot about React and the thought process of
+                      a Web Designer. I used Tailwind CSS for styling and Framer
+                      Motion for animations, which were also two new frameworks
+                      for me. I also used Vercel for deployment to make sure
+                      that my website was easily accessible. I learned a lot
+                      about web development, React, and Next.js from this
+                      project and it changed my perspective on web development
+                      in a positive way.
                     </p>
                     <a
                       href="https://github.com/Nishit-Sharma/portfolio"
@@ -393,7 +411,7 @@ export default function Home() {
           style={{ opacity: buttonOpacity }}
           className="container flex flex-row items-center content-center justify-center w-auto py-6 pb-10 mx-auto text-center"
         >
-          <motion.div className="container px-10 py-6 mx-5 text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105">
+          <div className="container px-10 py-6 mx-5 text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105">
             <h1 className="text-xl">A.L.P.H.A Personal Assistant</h1>
             <p>
               <br />A personal assistant designed to make life easier. Designed
@@ -406,8 +424,8 @@ export default function Home() {
             >
               View Details
             </button>
-          </motion.div>
-          <motion.div className="container px-10 py-6 mx-5 text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105">
+          </div>
+          <div className="container px-10 py-6 mx-5 text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105">
             <h1 className="text-xl">FRC Charged Up Robot</h1>
             <p>
               <br />
@@ -420,8 +438,8 @@ export default function Home() {
             >
               View Details
             </button>
-          </motion.div>
-          <motion.div className="container px-10 py-6 mx-5 text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105">
+          </div>
+          <div className="container px-10 py-6 mx-5 text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105">
             <h1 className="text-xl">My Portfolio</h1>
             <p>
               <br />
@@ -434,7 +452,7 @@ export default function Home() {
             >
               View Details
             </button>
-          </motion.div>
+          </div>
         </motion.div>
 
         <AnimatePresence>
