@@ -1,28 +1,21 @@
 import MillionLint from '@million/lint';
+import withPWA from 'next-pwa';
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
     turbo: {
       resolveAlias: {
-        // Turbopack does not support standard ESM import paths yet
         './Sample.js': './app/Sample.tsx',
-        /**
-         * Critical: prevents " ⨯ ./node_modules/canvas/build/Release/canvas.node
-         * Module parse failed: Unexpected character '�' (1:0)" error
-         */
         canvas: './empty-module.ts'
       }
     }
   },
+  images: {
+    domains: ['nishitsharma.vercel.app'],
+  },
   webpack: (config, options) => {
-    output: "standalone",
-    /**
-     * Critical: prevents " ⨯ ./node_modules/canvas/build/Release/canvas.node
-     * Module parse failed: Unexpected character '�' (1:0)" error
-     */
     config.resolve.alias.canvas = false;
-
-    // You may not need this, it's just to support moduleResolution: 'node16'
     config.resolve.extensionAlias = {
       '.js': ['.js', '.ts', '.tsx']
     };
@@ -33,6 +26,12 @@ const nextConfig = {
     return config;
   }
 };
+
+const withPWAConfig = withPWA({
+  dest: 'public',
+  disable: process.env.NODE_ENV === 'development',
+});
+
 export default MillionLint.next({
   rsc: true
-})(nextConfig);
+})(withPWAConfig(nextConfig));

@@ -1,4 +1,13 @@
-import PageClient from "./page.client";
+import { Inter } from 'next/font/google'
+import Script from 'next/script'
+import dynamic from 'next/dynamic'
+
+const inter = Inter({ subsets: ['latin'] })
+
+const DynamicPageClient = dynamic(() => import("./page.client"), {
+  loading: () => <p>Loading...</p>,
+})
+
 
 export const metadata = {
   title: 'Nishit Sharma\'s - Portfolio',
@@ -30,5 +39,26 @@ export const metadata = {
 };
 
 export default function Page() {
-  return <PageClient />;
+  return (
+    <>
+      <Script id="schema" type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Person",
+          "name": "Nishit Sharma",
+          "url": "https://nishitsharma.vercel.app",
+          "sameAs": [
+            metadata.social.github,
+            metadata.social.instagram,
+            metadata.social.linkedin
+          ],
+          "jobTitle": "Student & Robotics Enthusiast",
+          "description": metadata.description
+        })}
+      </Script>
+      <main className={inter.className}>
+        <DynamicPageClient />
+      </main>
+    </>
+  );
 }
