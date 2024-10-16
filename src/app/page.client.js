@@ -54,8 +54,7 @@ export default function Home() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
-        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
         className="container px-10 py-6 mx-10 text-center duration-500 shadow-2xl rounded-3xl bg-black-600 hover:scale-105 w-96"
       >
         <h1>
@@ -91,8 +90,7 @@ export default function Home() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
-        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
         className="container w-auto px-10 py-6 mx-10 text-center duration-500 shadow-2xl rounded-3xl bg-white-500 hover:scale-105"
       >
         <Image
@@ -111,8 +109,7 @@ export default function Home() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
-        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
         className="container w-auto px-10 py-6 mx-10 text-center duration-500 shadow-2xl rounded-3xl bg-white-500 hover:scale-105"
       >
         <Image
@@ -174,13 +171,15 @@ export default function Home() {
   function Information() {
     return isMobile ? (
       <div className="container flex flex-col items-center content-center justify-center px-4 py-6 pt-20 bg-black-500">
-        {resumeClick ? (
-          <Resume />
-        ) : transcriptClick ? (
-          <Transcript />
-        ) : (
-          <Summary />
-        )}
+        <AnimatePresence mode="wait">
+          {resumeClick ? (
+            <Resume key="resume" />
+          ) : transcriptClick ? (
+            <Transcript key="transcript" />
+          ) : (
+            <Summary key="summary" />
+          )}
+        </AnimatePresence>
         <div className="container flex flex-row items-center content-center justify-center py-6 pb-10 mx-auto text-center w-96">
           <Image
             src={ResumeIcon}
@@ -203,18 +202,26 @@ export default function Home() {
     ) : (
       <AnimatePresence mode="wait">
         <motion.div
-          style={{ opacity: textOpacity }}
+          key="information"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
           className="flex-col items-center content-center justify-center"
         >
           {resumeClick ? (
-            <Resume />
+            <Resume key="resume" />
           ) : transcriptClick ? (
-            <Transcript />
+            <Transcript key="transcript" />
           ) : (
-            <Summary />
+            <Summary key="summary" />
           )}
           <motion.div
-            style={{ opacity: buttonOpacity }}
+            key="buttons"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
             className="container flex flex-row items-center content-center justify-center py-6 pb-10 mx-auto text-center w-96"
           >
             <Image
