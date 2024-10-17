@@ -12,7 +12,7 @@ function Summary() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-
+      transition={{delay: 1}}
       className="container px-10 py-6 mx-10 text-center duration-500 shadow-2xl rounded-3xl bg-black-600 hover:scale-105 w-96"
     >
       <h1>

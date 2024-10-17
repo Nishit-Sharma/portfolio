@@ -18,8 +18,6 @@ export default function Home() {
         <div className={isMobile ? '' : 'py-big'}>
           <DynamicBeforeScroll />
         </div>
-      </Suspense>
-      <Suspense fallback={<div>Loading...</div>}>
         <DynamicAfterScroll />
       </Suspense>
     </main>
