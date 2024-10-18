@@ -1,35 +1,20 @@
 import Image from "next/image";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useInView } from "react-intersection-observer";
 
 import ResumeIcon from "./static/resume.png";
 import TranscriptIcon from "./static/transcript.png";
 import MyResume from "./static/NishitSharmaResume.jpg";
 import MyTranscript from "./static/NishitSharmaTranscript.jpg";
 
-const useHasBeenViewed = () => {
-  const [ref, inView] = useInView();
-  const prevInView = useRef(false);
-  const hasBeenViewed = prevInView.current || inView;
-  useEffect(() => {
-    prevInView.current = inView;
-  });
-  
-  return [hasBeenViewed, ref];
-}
 
 function Summary() {
-  const [hasBeenViewed, ref] = useHasBeenViewed();
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{delay: hasBeenViewed ? 1 : 3}}
       className="container px-10 py-6 mx-10 text-center duration-500 shadow-2xl rounded-3xl bg-black-600 hover:scale-105 w-96"
-      ref={ref}
     >
-      {hasBeenViewed}
       <h1>
         I am a top-performing student at the Morris County School of Technology,
         with a 4.17 unweighted GPA, and I will be attending the County College
@@ -54,11 +39,12 @@ function Summary() {
     </motion.div>
   );
 }
-
 function Resume({ resumeClick, transcriptClick, handleTranscriptClick }) {
+
   if (resumeClick && transcriptClick) {
     handleTranscriptClick();
   }
+  
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -75,7 +61,6 @@ function Resume({ resumeClick, transcriptClick, handleTranscriptClick }) {
     </motion.div>
   );
 }
-
 function Transcript({ resumeClick, transcriptClick, handleResumeClick }) {
   return (
     <motion.div
@@ -93,30 +78,29 @@ function Transcript({ resumeClick, transcriptClick, handleResumeClick }) {
     </motion.div>
   );
 }
-
 export default function Information() {
   const [isMobile, setIsMobile] = useState(false);
   const [resumeClick, setResumeClick] = useState(false);
   const [transcriptClick, setTranscriptClick] = useState(false);
-
+  
   useEffect(() => {
     setIsMobile(window.innerWidth < 1025);
   }, []);
-
+  
   function handleResumeClick() {
     if (transcriptClick) {
       handleTranscriptClick();
     }
     setResumeClick(!resumeClick);
   }
-
+  
   function handleTranscriptClick() {
     if (resumeClick) {
       handleResumeClick();
     }
     setTranscriptClick(!transcriptClick);
   }
-
+  
   return isMobile ? (
     <div className="container flex flex-col items-center content-center justify-center px-4 py-6 pt-20 bg-black-500">
       <AnimatePresence mode="wait">
