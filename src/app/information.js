@@ -1,21 +1,36 @@
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 import ResumeIcon from "./static/resume.png";
 import TranscriptIcon from "./static/transcript.png";
 import MyResume from "./static/NishitSharmaResume.jpg";
 import MyTranscript from "./static/NishitSharmaTranscript.jpg";
 
+const useHasBeenViewed = () => {
+  const [ref, inView] = useInView();
+  const prevInView = useRef(false);
+  const hasBeenViewed = prevInView.current || inView;
+  
+  useEffect(() => {
+    prevInView.current = inView;
+  });
+  
+  return [hasBeenViewed, ref];
+}
+
 function Summary() {
+  const [hasBeenViewed, ref] = useHasBeenViewed();
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{delay: 3}}
-      viewport={{once: true}}
+      transition={{delay: hasBeenViewed ? 3 : 1}}
       className="container px-10 py-6 mx-10 text-center duration-500 shadow-2xl rounded-3xl bg-black-600 hover:scale-105 w-96"
+      ref={ref}
     >
+      {hasBeenViewed}
       <h1>
         I am a top-performing student at the Morris County School of Technology,
         with a 4.17 unweighted GPA, and I will be attending the County College
