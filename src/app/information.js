@@ -10,31 +10,26 @@ import MyTranscript from "./static/NishitSharmaTranscript.jpg";
 
 const useHasBeenViewed = () => {
   const [ref, inView] = useInView();
-  const [hasBeenViewed, setHasBeenViewed] = useState(false);
-  const isFirstRender = useRef(true);
-
+  const prevInView = useRef(false);
+  const hasBeenViewed = prevInView.current || inView;
   useEffect(() => {
-    if (inView && !hasBeenViewed) {
-      setHasBeenViewed(true);
-    }
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-    }
-  }, [inView, hasBeenViewed]);
+    prevInView.current = inView;
+  });
   
-  return [hasBeenViewed, isFirstRender.current, ref];
+  return [hasBeenViewed, ref];
 }
 
 function Summary() {
-  const [hasBeenViewed, isFirstRender, ref] = useHasBeenViewed();
+  const [hasBeenViewed, ref] = useHasBeenViewed();
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{delay: isFirstRender ? 3 : 1}}
+      transition={{delay: hasBeenViewed ? 1 : 3}}
       className="container px-10 py-6 mx-10 text-center duration-500 shadow-2xl rounded-3xl bg-black-600 hover:scale-105 w-96"
       ref={ref}
     >
+      {hasBeenViewed}
       <h1>
         I am a top-performing student at the Morris County School of Technology,
         with a 4.17 unweighted GPA, and I will be attending the County College
