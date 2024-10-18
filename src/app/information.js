@@ -1,5 +1,13 @@
 import Image from "next/image";
-import { useState, useEffect, useCallback, useMemo, memo, inView } from "react";
+import {
+  useState,
+  useEffect,
+  useCallback,
+  useMemo,
+  memo,
+  React,
+  inView,
+} from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useScrollAnimations } from "./scrollanimations";
 
@@ -8,9 +16,26 @@ import TranscriptIcon from "./static/transcript.png";
 import MyResume from "./static/NishitSharmaResume.jpg";
 import MyTranscript from "./static/NishitSharmaTranscript.jpg";
 
+const MemoizedImage = memo(
+  ({ src, alt, width, height, onClick, className }) => (
+    <Image
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      onClick={onClick}
+      className={className}
+    />
+  )
+);
+
 const Summary = memo(() => {
   return (
-    <div className="container px-10 py-6 mx-10 text-center duration-500 shadow-2xl rounded-3xl bg-black-600 hover:scale-105 w-96">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="container px-10 py-6 mx-10 text-center duration-500 shadow-2xl rounded-3xl bg-black-600 hover:scale-105 w-96"
+    >
       <h1>
         I am a top-performing student at the Morris County School of Technology,
         with a 4.17 unweighted GPA, and I will be attending the County College
@@ -32,31 +57,36 @@ const Summary = memo(() => {
         volunteer at the Parsippany Library, where I teach coding workshops to
         over 30 elementary school students.
       </h1>
-    </div>
-  );
-});
-
-const Resume = memo(({ resumeClick, transcriptClick, handleTranscriptClick }) => {
-  if (resumeClick && transcriptClick) {
-    handleTranscriptClick();
-  }
-
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="container w-auto px-10 py-6 mx-10 text-center duration-500 shadow-2xl rounded-3xl bg-white-500 hover:scale-105"
-    >
-      <Image
-        src={MyResume}
-        alt="Resume"
-        width={700}
-        height={700}
-        priority={true}
-      />
     </motion.div>
   );
 });
+
+const Resume = memo(
+  ({ resumeClick, transcriptClick, handleTranscriptClick }) => {
+    if (resumeClick && transcriptClick) {
+      handleTranscriptClick();
+    }
+
+    return (
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="container w-auto px-10 py-6 mx-10 text-center duration-500 shadow-2xl rounded-3xl bg-white-500 hover:scale-105"
+      >
+        <Image
+          src={MyResume}
+          alt="Resume"
+          width={700}
+          height={700}
+          priority={true}
+        />
+      </motion.div>
+    );
+  },
+  (prevProps, nextProps) =>
+    prevProps.resumeClick === nextProps.resumeClick &&
+    prevProps.transcriptClick === nextProps.transcriptClick
+);
 
 const Transcript = memo(() => {
   return (
@@ -107,7 +137,6 @@ export default function Information() {
     setSummaryHasBeenSeen(true);
   }
 
-  // Memoize the style objects
   const informationStyle = useMemo(() => {
     return !inView ? { opacity: textOpacity } : undefined;
   }, [textOpacity]);
@@ -140,7 +169,7 @@ export default function Information() {
         )}
 
         <div className="container flex flex-row items-center content-center justify-center py-6 pb-10 mx-auto text-center w-96">
-          <Image
+          <MemoizedImage
             src={ResumeIcon}
             alt="Resume"
             width={24}
@@ -148,7 +177,7 @@ export default function Information() {
             onClick={handleResumeClick}
             className="container w-auto px-5 py-6 mx-10 text-center duration-500 shadow-md bg-white-500 rounded-3xl hover:scale-105"
           />
-          <Image
+          <MemoizedImage
             src={TranscriptIcon}
             alt="Transcript"
             width={24}
@@ -185,7 +214,7 @@ export default function Information() {
           style={buttonsStyle}
           className="container flex flex-row items-center content-center justify-center py-6 pb-10 mx-auto text-center w-96"
         >
-          <Image
+          <MemoizedImage
             src={ResumeIcon}
             alt="Resume"
             width={24}
@@ -193,7 +222,7 @@ export default function Information() {
             onClick={handleResumeClick}
             className="container w-auto px-5 py-6 mx-10 text-center duration-500 shadow-md bg-white-500 rounded-3xl hover:scale-105"
           />
-          <Image
+          <MemoizedImage
             src={TranscriptIcon}
             alt="Transcript"
             width={24}
