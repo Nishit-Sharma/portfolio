@@ -153,7 +153,7 @@ export default function Information() {
         transition={{
           delay: summaryHasBeenSeen ? 1 : 2.5,
         }}
-        className="container flex flex-col items-center content-center justify-center px-4 py-6 pt-20 bg-black-500"
+        className="container z-0 flex flex-col items-center content-center justify-center px-4 py-6 pt-20 bg-black-500"
       >
         {resumeClick ? (
           <Resume

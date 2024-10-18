@@ -33,7 +33,7 @@ export default function NameAndPicture() {
   }), [imageOpacity]);
 
   return isMobile ? (
-    <div className="container flex flex-col items-center content-center justify-center px-4 bg-black-500">
+    <div className="container z-50 flex flex-col items-center content-center justify-center px-4 bg-black-500">
       <motion.div
         {...mobileAnimationProps}
         className="container flex flex-col items-center content-center justify-center px-4 mx-auto text-2xl opacity-0 bg-black-500"
