@@ -1,20 +1,16 @@
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useMemo, memo, inView } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useScrollAnimations } from "./scrollanimations";
 
 import ResumeIcon from "./static/resume.png";
 import TranscriptIcon from "./static/transcript.png";
 import MyResume from "./static/NishitSharmaResume.jpg";
 import MyTranscript from "./static/NishitSharmaTranscript.jpg";
 
-
-function Summary() {
+const Summary = memo(() => {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="container px-10 py-6 mx-10 text-center duration-500 shadow-2xl rounded-3xl bg-black-600 hover:scale-105 w-96"
-    >
+    <div className="container px-10 py-6 mx-10 text-center duration-500 shadow-2xl rounded-3xl bg-black-600 hover:scale-105 w-96">
       <h1>
         I am a top-performing student at the Morris County School of Technology,
         with a 4.17 unweighted GPA, and I will be attending the County College
@@ -36,15 +32,15 @@ function Summary() {
         volunteer at the Parsippany Library, where I teach coding workshops to
         over 30 elementary school students.
       </h1>
-    </motion.div>
+    </div>
   );
-}
-function Resume({ resumeClick, transcriptClick, handleTranscriptClick }) {
+});
 
+const Resume = memo(({ resumeClick, transcriptClick, handleTranscriptClick }) => {
   if (resumeClick && transcriptClick) {
     handleTranscriptClick();
   }
-  
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -60,8 +56,9 @@ function Resume({ resumeClick, transcriptClick, handleTranscriptClick }) {
       />
     </motion.div>
   );
-}
-function Transcript({ resumeClick, transcriptClick, handleResumeClick }) {
+});
+
+const Transcript = memo(() => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -77,33 +74,58 @@ function Transcript({ resumeClick, transcriptClick, handleResumeClick }) {
       />
     </motion.div>
   );
-}
+});
+
 export default function Information() {
   const [isMobile, setIsMobile] = useState(false);
   const [resumeClick, setResumeClick] = useState(false);
   const [transcriptClick, setTranscriptClick] = useState(false);
-  
+  const [summaryHasBeenSeen, setSummaryHasBeenSeen] = useState(false);
+  const { textOpacity, buttonOpacity } = useScrollAnimations();
+
   useEffect(() => {
     setIsMobile(window.innerWidth < 1025);
   }, []);
-  
-  function handleResumeClick() {
+
+  const handleResumeClick = useCallback(() => {
     if (transcriptClick) {
       handleTranscriptClick();
+      handleSummarySeen();
     }
     setResumeClick(!resumeClick);
-  }
-  
-  function handleTranscriptClick() {
+  }, [transcriptClick, resumeClick]);
+
+  const handleTranscriptClick = useCallback(() => {
     if (resumeClick) {
       handleResumeClick();
+      handleSummarySeen();
     }
     setTranscriptClick(!transcriptClick);
+  }, [resumeClick, transcriptClick, handleResumeClick]);
+
+  function handleSummarySeen() {
+    setSummaryHasBeenSeen(true);
   }
-  
+
+  // Memoize the style objects
+  const informationStyle = useMemo(() => {
+    return !inView ? { opacity: textOpacity } : undefined;
+  }, [textOpacity]);
+
+  const buttonsStyle = useMemo(() => {
+    return !inView ? { opacity: buttonOpacity } : undefined;
+  }, [buttonOpacity]);
+
   return isMobile ? (
-    <div className="container flex flex-col items-center content-center justify-center px-4 py-6 pt-20 bg-black-500">
-      <AnimatePresence mode="wait">
+    <AnimatePresence mode="wait">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{
+          delay: summaryHasBeenSeen ? 1 : 2.5,
+        }}
+        className="container flex flex-col items-center content-center justify-center px-4 py-6 pt-20 bg-black-500"
+      >
         {resumeClick ? (
           <Resume
             key="resume"
@@ -112,42 +134,39 @@ export default function Information() {
             handleTranscriptClick={handleTranscriptClick}
           />
         ) : transcriptClick ? (
-          <Transcript
-            key="transcript"
-            resumeClick={resumeClick}
-            transcriptClick={transcriptClick}
-            handleResumeClick={handleResumeClick}
-          />
+          <Transcript key="transcript" />
         ) : (
           <Summary key="summary" />
         )}
-      </AnimatePresence>
-      <div className="container flex flex-row items-center content-center justify-center py-6 pb-10 mx-auto text-center w-96">
-        <Image
-          src={ResumeIcon}
-          alt="Resume"
-          width={24}
-          height={24}
-          onClick={handleResumeClick}
-          className="container w-auto px-5 py-6 mx-10 text-center duration-500 shadow-md bg-white-500 rounded-3xl hover:scale-105"
-        />
-        <Image
-          src={TranscriptIcon}
-          alt="Transcript"
-          width={24}
-          height={24}
-          onClick={handleTranscriptClick}
-          className="container w-auto px-5 py-6 mx-10 text-center duration-500 shadow-md bg-white-500 rounded-3xl hover:scale-105"
-        />
-      </div>
-    </div>
+
+        <div className="container flex flex-row items-center content-center justify-center py-6 pb-10 mx-auto text-center w-96">
+          <Image
+            src={ResumeIcon}
+            alt="Resume"
+            width={24}
+            height={24}
+            onClick={handleResumeClick}
+            className="container w-auto px-5 py-6 mx-10 text-center duration-500 shadow-md bg-white-500 rounded-3xl hover:scale-105"
+          />
+          <Image
+            src={TranscriptIcon}
+            alt="Transcript"
+            width={24}
+            height={24}
+            onClick={handleTranscriptClick}
+            className="container w-auto px-5 py-6 mx-10 text-center duration-500 shadow-md bg-white-500 rounded-3xl hover:scale-105"
+          />
+        </div>
+      </motion.div>
+    </AnimatePresence>
   ) : (
     <AnimatePresence mode="wait">
       <motion.div
         key="information"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
+        initial={inView ? { opacity: 0 } : false}
+        animate={inView ? { opacity: 1 } : false}
+        exit={inView ? { opacity: 0 } : false}
+        style={informationStyle}
         className="flex-col items-center content-center justify-center"
       >
         {resumeClick ? (
@@ -157,11 +176,13 @@ export default function Information() {
         ) : (
           <Summary key="summary" />
         )}
+
         <motion.div
           key="buttons"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+          initial={inView ? { opacity: 0 } : false}
+          animate={inView ? { opacity: 1 } : false}
+          exit={inView ? { opacity: 0 } : false}
+          style={buttonsStyle}
           className="container flex flex-row items-center content-center justify-center py-6 pb-10 mx-auto text-center w-96"
         >
           <Image

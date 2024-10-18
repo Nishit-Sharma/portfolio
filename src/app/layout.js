@@ -88,7 +88,44 @@ export function Header() {
 }
 
 export function Footer() {
-  return (
+  const { scrollY } = useScroll();
+  const opacity = useTransform(scrollY, [800, 950], [0, 1]);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 1025);
+  }, []);
+
+  return isMobile ? (
+    <motion.div
+      initial={{ opacity: 0 }}
+      transition={{ delay: 2.5 }}
+      animate={{ opacity: 1 }}
+    >
+      <footer className="relative top-0 left-0 right-0 z-10 shadow-md bg-white-500">
+        <div className="container flex items-center justify-between h-16 px-4 mx-auto text-black-500">
+          <Link href="/">
+            <h1 className="text-lg font-semibold px-1.5 text-black-500">
+              Nishit Sharma
+            </h1>
+          </Link>
+          <nav className="flex space-x-4">
+            <Link href={"https://github.com/Nishit-Sharma"}>
+              <Image src={GithubIcon} alt="Github" width={24} height={24} />
+            </Link>
+            <Link href={"https://www.instagram.com/nishit.sharma13/"}>
+              <Image
+                src={InstagramIcon}
+                alt="Instagram"
+                width={24}
+                height={24}
+              />
+            </Link>
+          </nav>
+        </div>
+      </footer>
+    </motion.div>
+  ) : (
     <footer className="relative top-0 left-0 right-0 z-10 shadow-md bg-white-500">
       <div className="container flex items-center justify-between h-16 px-4 mx-auto text-black-500">
         <Link href="/">
