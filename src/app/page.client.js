@@ -2,8 +2,8 @@
 
 import { useState, useEffect, lazy, Suspense } from "react";
 
-const DynamicBeforeScroll = lazy(() => import("./beforescroll"));
-const DynamicAfterScroll = lazy(() => import("./afterscroll"));
+const DynamicBeforeScroll = lazy(() => import("./components/beforescroll"));
+const DynamicAfterScroll = lazy(() => import("./components/afterscroll"));
 
 export default function Home() {
   const [isMobile, setIsMobile] = useState(false);

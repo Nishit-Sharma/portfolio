@@ -11,10 +11,10 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import { useScrollAnimations } from "./scrollanimations";
 
-import ResumeIcon from "./static/resume.png";
-import TranscriptIcon from "./static/transcript.png";
-import MyResume from "./static/NishitSharmaResume.jpg";
-import MyTranscript from "./static/NishitSharmaTranscript.jpg";
+import ResumeIcon from "../static/resume.png";
+import TranscriptIcon from "../static/transcript.png";
+import MyResume from "../static/NishitSharmaResume.jpg";
+import MyTranscript from "../static/NishitSharmaTranscript.jpg";
 
 const MemoizedImage = memo(
   ({ src, alt, width, height, onClick, className }) => (

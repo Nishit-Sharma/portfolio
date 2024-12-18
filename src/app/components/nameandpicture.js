@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useScrollAnimations } from './scrollanimations';
-import NishitSharmaPicture from './static/NishitSharma.png';
+import NishitSharmaPicture from '../static/NishitSharma.png';
 
 const MemoizedImage = React.memo(({ src, alt }) => (
   <Image src={src} alt={alt} />
