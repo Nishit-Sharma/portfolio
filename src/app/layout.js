@@ -108,7 +108,6 @@ function Footer() {
 
 export default function RootLayout({ children }) {
   return (
-    <Analytics>
       <html lang="en">
         <body className={inter.className}>
           <Header />
@@ -122,6 +121,5 @@ export default function RootLayout({ children }) {
           <Footer />
         </body>
       </html>
-    </Analytics>
   );
 }
