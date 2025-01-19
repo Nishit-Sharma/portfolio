@@ -6,6 +6,7 @@ import Link from "next/link";
 import { motion, useScroll } from "framer-motion";
 import { SmoothReveal, fadeInVariants } from "./utils/animation-utils";
 import { useState, useEffect } from "react";
+import { Analytics } from "@vercel/analytics/react";
 
 import "./globals.css";
 
@@ -39,9 +40,9 @@ function Header() {
           // opacity: headerOpacity,
           backdropFilter: `blur(${headerBlur}px)`,
         }}
-        className="sticky top-0 z-50 bg-black-500/80 shadow-md"
+        className="sticky top-0 z-50 shadow-md bg-black-500/80"
       >
-        <div className="container mx-auto px-4">
+        <div className="container px-4 mx-auto">
           <div className="flex items-center justify-between h-16">
             <NavLink href="/">Nishit Sharma</NavLink>
             <nav className="flex space-x-6">
@@ -68,7 +69,7 @@ function Footer() {
   return (
     <SmoothReveal delay={2.5}>
       <footer className="bg-white-500">
-        <div className="container mx-auto px-4">
+        <div className="container px-4 mx-auto">
           <div className="flex items-center justify-between h-16">
             <NavLink href="/">
               <span className="text-black-500">Nishit Sharma</span>
@@ -107,18 +108,20 @@ function Footer() {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <Header />
-        <motion.main
-          initial="hidden"
-          animate="visible"
-          variants={fadeInVariants}
-        >
-          {children}
-        </motion.main>
-        <Footer />
-      </body>
-    </html>
+    <Analytics>
+      <html lang="en">
+        <body className={inter.className}>
+          <Header />
+          <motion.main
+            initial="hidden"
+            animate="visible"
+            variants={fadeInVariants}
+          >
+            {children}
+          </motion.main>
+          <Footer />
+        </body>
+      </html>
+    </Analytics>
   );
 }
