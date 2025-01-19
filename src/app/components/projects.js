@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   SmoothReveal,
@@ -12,7 +12,7 @@ const ProjectCard = ({ title, description, onClick }) => (
     variants={fadeInVariants}
     whileHover="hover"
     whileTap="tap"
-    // variants={hoverVariants}
+    variants={hoverVariants}
     className="container px-10 py-6 mx-5 text-center shadow-md rounded-3xl bg-black-600"
     onClick={onClick}
   >
@@ -21,7 +21,7 @@ const ProjectCard = ({ title, description, onClick }) => (
     <motion.button
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
-      className="px-4 py-2 mt-4 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+      className="px-4 py-2 mt-4 font-bold text-white rounded"
     >
       View Details
     </motion.button>
@@ -43,7 +43,7 @@ const ProjectModal = ({ isOpen, project, onClose }) => (
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.9, opacity: 0 }}
           transition={{ type: "spring", duration: 0.5 }}
-          className="p-10 mx-4 text-center w-96 bg-white-500 text-black-500 rounded-3xl"
+          className="p-10 mx-4 text-center bg-white-500 text-black-500 rounded-3xl"
           onClick={(e) => e.stopPropagation()}
         >
           {project}
@@ -53,10 +53,10 @@ const ProjectModal = ({ isOpen, project, onClose }) => (
   </AnimatePresence>
 );
 
-const Projects = () => {
+export default function Projects() {
   const [modalContent, setModalContent] = useState(null);
 
-  const projects = useMemo(() => [
+  const projects = [
     {
       title: "A.L.P.H.A Personal Assistant",
       description:
@@ -82,7 +82,7 @@ const Projects = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+              className="px-4 py-2 font-bold text-white rounded"
             >
               View on GitHub
             </motion.button>
@@ -113,7 +113,7 @@ const Projects = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+              className="px-4 py-2 font-bold text-white rounded"
             >
               View on GitHub
             </motion.button>
@@ -146,7 +146,7 @@ const Projects = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+              className="px-4 py-2 font-bold text-white rounded"
             >
               View on GitHub
             </motion.button>
@@ -154,15 +154,7 @@ const Projects = () => {
         </>
       ),
     },
-  ], []);
-
-  const handleOpenModal = useCallback((details) => {
-    setModalContent(details);
-  }, []);
-
-  const handleCloseModal = useCallback(() => {
-    setModalContent(null);
-  }, []);
+  ];
 
   return (
     <SmoothReveal delay={0}>
@@ -170,15 +162,15 @@ const Projects = () => {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="container px-4 py-12 mx-auto"
+        className="container flex items-center justify-center px-4 py-12 mx-auto"
       >
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="flex flex-col items-center content-center justify-center gap-8 lg:flex-row">
           {projects.map((project, index) => (
             <ProjectCard
-              key={project.title}
+              key={index}
               title={project.title}
               description={project.description}
-              onClick={() => handleOpenModal(project.details)}
+              onClick={() => setModalContent(project.details)}
             />
           ))}
         </div>
@@ -186,11 +178,9 @@ const Projects = () => {
         <ProjectModal
           isOpen={modalContent !== null}
           project={modalContent}
-          onClose={handleCloseModal}
+          onClose={() => setModalContent(null)}
         />
       </motion.div>
     </SmoothReveal>
   );
-};
-
-export default React.memo(Projects);
+}

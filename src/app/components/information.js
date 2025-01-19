@@ -19,8 +19,8 @@ const InfoCard = ({ children }) => (
       variants={fadeInVariants}
       whileHover="hover"
       whileTap="tap"
-      // variants={hoverVariants}
-      className="container px-10 py-6 mx-auto text-center duration-500 shadow-2xl rounded-3xl bg-black-600 hover:scale-105 w-96"
+      variants={hoverVariants}
+      className="container px-10 py-6 mx-auto text-center shadow-2xl rounded-3xl bg-black-600 w-96"
     >
       {children}
     </motion.div>
@@ -31,7 +31,7 @@ const DocumentViewer = memo(({ src, alt }) => useMemo(() => (
   <SmoothReveal>
     <motion.div
       variants={fadeInVariants}
-      className="container w-auto px-10 py-6 text-center shadow-2xl mx-96 rounded-3xl bg-white-500"
+      className="container w-auto max-w-3xl px-10 py-6 mx-auto text-center shadow-2xl rounded-3xl bg-white-500"
     >
       <Image
         src={src}
@@ -135,7 +135,7 @@ export default function Information() {
           </motion.div>
         </AnimatePresence>
 
-        <motion.div className="flex justify-center mt-8 space-x-4">
+        <motion.div className="flex justify-center mx-auto mt-8">
           <IconButton
             src={ResumeIcon}
             alt="Resume"

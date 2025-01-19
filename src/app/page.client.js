@@ -55,7 +55,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex flex-col items-center content-center justify-center">
+    <main className="flex flex-col items-center content-center justify-center mx-auto">
       <Suspense fallback={<LoadingSpinner />}>
         <LazyLoadWrapper>
           <motion.div

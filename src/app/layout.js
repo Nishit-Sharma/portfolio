@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, useScroll } from "framer-motion";
 import { SmoothReveal, fadeInVariants } from "./utils/animation-utils";
-import { useMemo, memo } from "react";
+import { useState, useEffect } from "react";
 
 import "./globals.css";
 
@@ -14,20 +14,17 @@ import InstagramIcon from "./static/instagram.png";
 
 const inter = Inter({ subsets: ["latin"] });
 
-const navLinkHover = { scale: 1.05 };
-const navLinkTap = { scale: 0.95 };
-
-const NavLink = memo(({ href, children }) => (
+const NavLink = ({ href, children }) => (
   <motion.div
-    whileHover={navLinkHover}
-    whileTap={navLinkTap}
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
     className="rounded-lg"
   >
     <Link href={href}>
       <span className="text-lg font-semibold px-1.5">{children}</span>
     </Link>
   </motion.div>
-));
+);
 
 function Header() {
   const { scrollY } = useScroll();
@@ -42,9 +39,9 @@ function Header() {
           // opacity: headerOpacity,
           backdropFilter: `blur(${headerBlur}px)`,
         }}
-        className="sticky top-0 z-50 bg-black-500/80"
+        className="sticky top-0 z-50 bg-black-500/80 shadow-md"
       >
-        <div className="container px-4 mx-auto">
+        <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             <NavLink href="/">Nishit Sharma</NavLink>
             <nav className="flex space-x-6">
@@ -60,45 +57,45 @@ function Header() {
 }
 
 function Footer() {
-  const githubHover = useMemo(() => ({ scale: 1.1, rotate: 5 }), []);
-  const githubTap = useMemo(() => ({ scale: 0.9 }), []);
-  const instagramHover = useMemo(() => ({ scale: 1.1, rotate: -5 }), []);
-  const instagramTap = useMemo(() => ({ scale: 0.9 }), []);
+  const [isMobile, setIsMobile] = useState(false);
 
-  const githubImage = useMemo(() => (
-    <Image src={GithubIcon} alt="Github" width={24} height={24} />
-  ), []);
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 1025);
+  }, []);
 
-  const instagramImage = useMemo(() => (
-    <Image src={InstagramIcon} alt="Instagram" width={24} height={24} />
-  ), []);
+  const delay = isMobile ? 2.5 : 0;
 
   return (
-    <SmoothReveal delay={4}>
+    <SmoothReveal delay={2.5}>
       <footer className="bg-white-500">
-        <div className="container px-4 mx-auto">
+        <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             <NavLink href="/">
               <span className="text-black-500">Nishit Sharma</span>
             </NavLink>
             <nav className="flex space-x-4">
               <motion.a
-                whileHover={githubHover}
-                whileTap={githubTap}
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                whileTap={{ scale: 0.9 }}
                 href="https://github.com/Nishit-Sharma"
                 target="_blank"
                 rel="noreferrer"
               >
-                {githubImage}
+                <Image src={GithubIcon} alt="Github" width={24} height={24} />
               </motion.a>
               <motion.a
-                whileHover={instagramHover}
-                whileTap={instagramTap}
+                whileHover={{ scale: 1.1, rotate: -5 }}
+                whileTap={{ scale: 0.9 }}
                 href="https://www.instagram.com/nishit.sharma13/"
                 target="_blank"
                 rel="noreferrer"
               >
-                {instagramImage}
+                <Image
+                  src={InstagramIcon}
+                  alt="Instagram"
+                  width={24}
+                  height={24}
+                />
               </motion.a>
             </nav>
           </div>

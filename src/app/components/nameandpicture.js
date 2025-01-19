@@ -1,31 +1,8 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { SmoothAppear } from "../utils/smooth-appear";
 import NishitSharmaPicture from "../static/NishitSharma.png";
-
-// Define containerVariants outside the component to ensure stability
-const containerVariants = {
-  hidden: {
-    opacity: 0,
-  },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.3,
-    },
-  },
-};
-
-// Define animation properties for the underline effect
-const underlineInitial = { width: 0 };
-const underlineAnimate = { width: "100%" };
-const underlineTransition = { duration: 1, delay: 0.8 };
-
-// Define animation properties for the image hover effect
-const imageHover = { scale: 1.02 };
-const imageTransition = { duration: 0.3 };
 
 export default function NameAndPicture() {
   // Track viewport size for responsive design
@@ -46,28 +23,44 @@ export default function NameAndPicture() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Define animation sequence for staggered children
+  const containerVariants = {
+    hidden: {
+      opacity: 0,
+    },
+    visible: {
+      opacity: 1,
+      transition: {
+        // Delay each child's animation by 0.2s
+        staggerChildren: 0.2,
+        // Wait 0.3s before starting animations
+        delayChildren: 0.3,
+      },
+    },
+  };
+
   return (
     <motion.div
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="relative z-40 w-full overflow-hidden bg-black-500"
+      className="relative w-full overflow-hidden bg-black-500"
     >
-      <div className="container px-4 mx-auto">
-        <div className="flex flex-col items-center justify-center gap-12 py-16 lg:flex-row lg:py-24">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col lg:flex-row items-center justify-center gap-12 py-16 lg:py-24">
           {/* Text Content Section */}
           <SmoothAppear delay={0.2}>
-            <div className="space-y-6 lg:w-1/2">
-              <h1 className="text-4xl font-bold tracking-tight lg:text-6xl">
+            <div className="lg:w-1/2 space-y-6">
+              <h1 className="text-4xl lg:text-6xl font-bold tracking-tight">
                 Hello, I'm
                 <span className="block mt-2">Nishit Sharma</span>
               </h1>
 
               {/* Animated underline effect */}
               <motion.div
-                initial={underlineInitial}
-                animate={underlineAnimate}
-                transition={underlineTransition}
+                initial={{ width: 0 }}
+                animate={{ width: "100%" }}
+                transition={{ duration: 1, delay: 0.8 }}
                 className="h-1 bg-white-500"
               />
 
@@ -81,13 +74,13 @@ export default function NameAndPicture() {
           <SmoothAppear delay={0.4} direction="left">
             <div className="relative w-72 h-72 lg:w-96 lg:h-96">
               {/* Decorative gradient background */}
-              <div className="absolute inset-0 transform scale-95 bg-gradient-to-br from-white-500/20 to-transparent rounded-3xl rotate-6" />
+              <div className="absolute inset-0 bg-gradient-to-br from-white-500/20 to-transparent rounded-3xl transform rotate-6 scale-95" />
 
               {/* Image container with hover effect */}
               <motion.div
-                className="relative overflow-hidden shadow-xl rounded-3xl"
-                whileHover={imageHover}
-                transition={imageTransition}
+                className="relative overflow-hidden rounded-3xl shadow-xl"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
               >
                 <Image
                   src={NishitSharmaPicture}
