@@ -1,73 +1,106 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import Image from 'next/image';
-import { motion } from 'framer-motion';
-import { useScrollAnimations } from './scrollanimations';
-import NishitSharmaPicture from '../static/NishitSharma.png';
+import React, { useState, useEffect, useMemo } from "react";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { SmoothAppear } from "../utils/smooth-appear";
+import NishitSharmaPicture from "../static/NishitSharma.png";
 
-const MemoizedImage = React.memo(({ src, alt }) => (
-  <Image src={src} alt={alt} />
-));
+// Define containerVariants outside the component to ensure stability
+const containerVariants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.3,
+    },
+  },
+};
+
+// Define animation properties for the underline effect
+const underlineInitial = { width: 0 };
+const underlineAnimate = { width: "100%" };
+const underlineTransition = { duration: 1, delay: 0.8 };
+
+// Define animation properties for the image hover effect
+const imageHover = { scale: 1.02 };
+const imageTransition = { duration: 0.3 };
 
 export default function NameAndPicture() {
+  // Track viewport size for responsive design
   const [isMobile, setIsMobile] = useState(false);
-  const { infoRef, imageOpacity } = useScrollAnimations();
 
   useEffect(() => {
+    // Initial check for mobile viewport
     setIsMobile(window.innerWidth < 1025);
+
+    // Add resize listener for responsive updates
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1025);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup listener on component unmount
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const mobileAnimationProps = useMemo(() => ({
-    animate: { y: 20, opacity: 1 },
-    initial: { y: 0, opacity: 0 },
-    transition: { delay: 0.5 }
-  }), []);
-
-  const mobileImageAnimationProps = useMemo(() => ({
-    animate: { y: 40, opacity: 1 },
-    initial: { y: 60, opacity: 0 },
-    transition: { delay: 1.5 }
-  }), []);
-
-  const desktopImageStyle = useMemo(() => ({
-    opacity: imageOpacity
-  }), [imageOpacity]);
-
-  return isMobile ? (
-    <div className="container z-40 flex flex-col items-center content-center justify-center px-4 bg-black-500">
-      <motion.div
-        {...mobileAnimationProps}
-        className="container flex flex-col items-center content-center justify-center px-4 mx-auto text-2xl opacity-0 bg-black-500"
-      >
-        <div className="container w-auto px-10 py-6 mx-5 text-center duration-500 shadow-md opacity-100 rounded-3xl bg-black-600 hover:scale-105">
-          <h1>Hello, My name is Nishit Sharma!</h1>
-        </div>
-      </motion.div>
-
-      <motion.div
-        {...mobileImageAnimationProps}
-        className="container flex flex-col items-center content-center justify-center w-auto px-10 py-6 mx-5 text-2xl shadow-md opacity-0 rounded-3xl bg-black-600 hover:scale-105"
-      >
-        <div className="mx-auto overflow-hidden rounded-3xl w-80 h-80">
-          <MemoizedImage src={NishitSharmaPicture} alt="Nishit Sharma" />
-        </div>
-      </motion.div>
-    </div>
-  ) : (
+  return (
     <motion.div
-      ref={infoRef}
-      className="container flex flex-row items-center content-center justify-center px-4 py-6 bg-black-500"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      className="relative z-40 w-full overflow-hidden bg-black-500"
     >
-      <div className="container w-auto px-10 py-6 mx-5 my-5 text-2xl text-center duration-500 shadow-md opacity-0 rounded-3xl bg-black-600 hover:scale-105">
-        <h1>Hello, My name is Nishit Sharma!</h1>
-      </div>
-      <motion.div
-        style={desktopImageStyle}
-        className="container z-40 w-auto px-10 py-6 mx-5 text-center duration-500 shadow-md rounded-3xl bg-black-600 hover:scale-105"
-      >
-        <div className="mx-auto overflow-hidden rounded-3xl w-80 h-80">
-          <MemoizedImage src={NishitSharmaPicture} alt="Nishit Sharma" />
+      <div className="container px-4 mx-auto">
+        <div className="flex flex-col items-center justify-center gap-12 py-16 lg:flex-row lg:py-24">
+          {/* Text Content Section */}
+          <SmoothAppear delay={0.2}>
+            <div className="space-y-6 lg:w-1/2">
+              <h1 className="text-4xl font-bold tracking-tight lg:text-6xl">
+                Hello, I'm
+                <span className="block mt-2">Nishit Sharma</span>
+              </h1>
+
+              {/* Animated underline effect */}
+              <motion.div
+                initial={underlineInitial}
+                animate={underlineAnimate}
+                transition={underlineTransition}
+                className="h-1 bg-white-500"
+              />
+
+              <p className="text-lg lg:text-xl text-white-300">
+                Student • Robotics Enthusiast • Developer
+              </p>
+            </div>
+          </SmoothAppear>
+
+          {/* Image Section with decorative effects */}
+          <SmoothAppear delay={0.4} direction="left">
+            <div className="relative w-72 h-72 lg:w-96 lg:h-96">
+              {/* Decorative gradient background */}
+              <div className="absolute inset-0 transform scale-95 bg-gradient-to-br from-white-500/20 to-transparent rounded-3xl rotate-6" />
+
+              {/* Image container with hover effect */}
+              <motion.div
+                className="relative overflow-hidden shadow-xl rounded-3xl"
+                whileHover={imageHover}
+                transition={imageTransition}
+              >
+                <Image
+                  src={NishitSharmaPicture}
+                  alt="Nishit Sharma"
+                  className="object-cover"
+                  priority
+                  layout="responsive"
+                />
+              </motion.div>
+            </div>
+          </SmoothAppear>
         </div>
-      </motion.div>
+      </div>
     </motion.div>
   );
 }

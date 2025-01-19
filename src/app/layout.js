@@ -2,147 +2,109 @@
 
 import { Inter } from "next/font/google";
 import Image from "next/image";
-import "./globals.css";
 import Link from "next/link";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useState, useEffect } from "react";
+import { motion, useScroll } from "framer-motion";
+import { SmoothReveal, fadeInVariants } from "./utils/animation-utils";
+import { useMemo, memo } from "react";
+
+import "./globals.css";
 
 import GithubIcon from "./static/Github.png";
 import InstagramIcon from "./static/instagram.png";
 
 const inter = Inter({ subsets: ["latin"] });
 
-const styles = {
-  header: {
-    backgroundColor: "#333333",
-  },
-};
+const navLinkHover = { scale: 1.05 };
+const navLinkTap = { scale: 0.95 };
 
-export function Header() {
+const NavLink = memo(({ href, children }) => (
+  <motion.div
+    whileHover={navLinkHover}
+    whileTap={navLinkTap}
+    className="rounded-lg"
+  >
+    <Link href={href}>
+      <span className="text-lg font-semibold px-1.5">{children}</span>
+    </Link>
+  </motion.div>
+));
+
+function Header() {
   const { scrollY } = useScroll();
-  const opacity = useTransform(scrollY, [800, 950], [0, 1]);
+  // const headerOpacity = useTransform(scrollY, [0, 100], [1, 0.95]);
+  // const headerBlur = useTransform(scrollY, [0, 100], [0, 8]);
+  const headerBlur = 8;
 
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    setIsMobile(window.innerWidth < 1025);
-  }, []);
-
-  return isMobile ? (
-    <motion.div
-      initial={{ opacity: 0 }}
-      transition={{ delay: 2.5 }}
-      animate={{ opacity: 1 }}
-      className="sticky top-0 z-50 flex items-center justify-between w-auto h-16 px-4 mx-auto shadow-md bg-black-500"
-    >
-      <div className="object-center rounded-lg hover:bg-black-600">
-        <h1 className="text-lg font-semibold px-1.5">Nishit Sharma</h1>
-      </div>
-      {/* <nav className="flex justify-end space-x-4">
-          <div className="object-center mx-auto rounded-lg hover:bg-black-600">
-              <a className="text-base px-1.5">
-                About
-              </a>
-            </div>
-          <div className="object-center mx-auto rounded-lg hover:bg-black-600">
-            <Link href="">
-              <h1 className="text-base px-1.5">Projects</h1>
-            </Link>
+  return (
+    <SmoothReveal delay={4}>
+      <motion.header
+        style={{
+          // opacity: headerOpacity,
+          backdropFilter: `blur(${headerBlur}px)`,
+        }}
+        className="sticky top-0 z-50 bg-black-500/80"
+      >
+        <div className="container px-4 mx-auto">
+          <div className="flex items-center justify-between h-16">
+            <NavLink href="/">Nishit Sharma</NavLink>
+            <nav className="flex space-x-6">
+              {/* <NavLink href="/about">About</NavLink>
+            <NavLink href="/projects">Projects</NavLink>
+            <NavLink href="/contact">Contact</NavLink> */}
+            </nav>
           </div>
-          <div className="object-center mx-auto rounded-lg hover:bg-black-600">
-              <a className="text-base px-1.5">
-                Contact
-              </a>
-            </div>
-        </nav> */}
-    </motion.div>
-  ) : (
-    <motion.div
-      style={{ opacity }}
-      className="sticky top-0 z-50 flex items-center justify-between w-auto h-16 px-4 mx-auto shadow-md bg-black-500"
-    >
-      <div className="object-center rounded-lg hover:bg-black-600">
-        {/* <Link href="/"> */}
-        <h1 className="text-lg font-semibold px-1.5">Nishit Sharma</h1>
-        {/* </Link> */}
-      </div>
-      {/* <nav className="flex justify-end space-x-4">
-        <div className="object-center mx-auto rounded-lg hover:bg-black-600">
-            <a className="text-base px-1.5">
-              About
-            </a>
-          </div>
-        <div className="object-center mx-auto rounded-lg hover:bg-black-600">
-          <Link href="">
-            <h1 className="text-base px-1.5">Projects</h1>
-          </Link>
         </div>
-        <div className="object-center mx-auto rounded-lg hover:bg-black-600">
-            <a className="text-base px-1.5">
-              Contact
-            </a>
-          </div>
-      </nav> */}
-    </motion.div>
+      </motion.header>
+    </SmoothReveal>
   );
 }
 
-export function Footer() {
-  const { scrollY } = useScroll();
-  const opacity = useTransform(scrollY, [800, 950], [0, 1]);
-  const [isMobile, setIsMobile] = useState(false);
+function Footer() {
+  const githubHover = useMemo(() => ({ scale: 1.1, rotate: 5 }), []);
+  const githubTap = useMemo(() => ({ scale: 0.9 }), []);
+  const instagramHover = useMemo(() => ({ scale: 1.1, rotate: -5 }), []);
+  const instagramTap = useMemo(() => ({ scale: 0.9 }), []);
 
-  useEffect(() => {
-    setIsMobile(window.innerWidth < 1025);
-  }, []);
+  const githubImage = useMemo(() => (
+    <Image src={GithubIcon} alt="Github" width={24} height={24} />
+  ), []);
 
-  return isMobile ? (
-    <motion.div
-      initial={{ opacity: 0 }}
-      transition={{ delay: 2.5 }}
-      animate={{ opacity: 1 }}
-    >
-      <footer className="relative top-0 left-0 right-0 z-10 shadow-md bg-white-500">
-        <div className="container flex items-center justify-between h-16 px-4 mx-auto text-black-500">
-          <Link href="/">
-            <h1 className="text-lg font-semibold px-1.5 text-black-500">
-              Nishit Sharma
-            </h1>
-          </Link>
-          <nav className="flex space-x-4">
-            <Link href={"https://github.com/Nishit-Sharma"}>
-              <Image src={GithubIcon} alt="Github" width={24} height={24} />
-            </Link>
-            <Link href={"https://www.instagram.com/nishit.sharma13/"}>
-              <Image
-                src={InstagramIcon}
-                alt="Instagram"
-                width={24}
-                height={24}
-              />
-            </Link>
-          </nav>
+  const instagramImage = useMemo(() => (
+    <Image src={InstagramIcon} alt="Instagram" width={24} height={24} />
+  ), []);
+
+  return (
+    <SmoothReveal delay={4}>
+      <footer className="bg-white-500">
+        <div className="container px-4 mx-auto">
+          <div className="flex items-center justify-between h-16">
+            <NavLink href="/">
+              <span className="text-black-500">Nishit Sharma</span>
+            </NavLink>
+            <nav className="flex space-x-4">
+              <motion.a
+                whileHover={githubHover}
+                whileTap={githubTap}
+                href="https://github.com/Nishit-Sharma"
+                target="_blank"
+                rel="noreferrer"
+              >
+                {githubImage}
+              </motion.a>
+              <motion.a
+                whileHover={instagramHover}
+                whileTap={instagramTap}
+                href="https://www.instagram.com/nishit.sharma13/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                {instagramImage}
+              </motion.a>
+            </nav>
+          </div>
         </div>
       </footer>
-    </motion.div>
-  ) : (
-    <footer className="relative top-0 left-0 right-0 z-10 shadow-md bg-white-500">
-      <div className="container flex items-center justify-between h-16 px-4 mx-auto text-black-500">
-        <Link href="/">
-          <h1 className="text-lg font-semibold px-1.5 text-black-500">
-            Nishit Sharma
-          </h1>
-        </Link>
-        <nav className="flex space-x-4">
-          <Link href={"https://github.com/Nishit-Sharma"}>
-            <Image src={GithubIcon} alt="Github" width={24} height={24} />
-          </Link>
-          <Link href={"https://www.instagram.com/nishit.sharma13/"}>
-            <Image src={InstagramIcon} alt="Instagram" width={24} height={24} />
-          </Link>
-        </nav>
-      </div>
-    </footer>
+    </SmoothReveal>
   );
 }
 
@@ -151,7 +113,13 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <Header />
-        {children}
+        <motion.main
+          initial="hidden"
+          animate="visible"
+          variants={fadeInVariants}
+        >
+          {children}
+        </motion.main>
         <Footer />
       </body>
     </html>
