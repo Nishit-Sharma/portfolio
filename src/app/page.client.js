@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, lazy, Suspense } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import LoadingSpinner from "./utils/loading-spinner";
 
 const DynamicNameAndPicture = lazy(() => import("./components/nameandpicture"));

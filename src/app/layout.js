@@ -3,8 +3,8 @@
 import { Inter } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useScroll } from "framer-motion";
-import { SmoothReveal, fadeInVariants } from "./utils/animation-utils";
+import { motion, useScroll } from "motion/react";
+import { SmoothReveal, SmoothAppear, fadeInVariants } from "./utils/animation-utils";
 import { useState, useEffect } from "react";
 import { Analytics } from "@vercel/analytics/react";
 
@@ -29,31 +29,30 @@ const NavLink = ({ href, children }) => (
 
 function Header() {
   const { scrollY } = useScroll();
-  // const headerOpacity = useTransform(scrollY, [0, 100], [1, 0.95]);
-  // const headerBlur = useTransform(scrollY, [0, 100], [0, 8]);
   const headerBlur = 8;
 
   return (
-    <SmoothReveal delay={4}>
-      <motion.header
-        style={{
-          // opacity: headerOpacity,
-          backdropFilter: `blur(${headerBlur}px)`,
-        }}
-        className="sticky top-0 z-50 shadow-md bg-black-500/80"
-      >
-        <div className="container px-4 mx-auto">
-          <div className="flex items-center justify-between h-16">
-            <NavLink href="/">Nishit Sharma</NavLink>
-            <nav className="flex space-x-6">
-              {/* <NavLink href="/about">About</NavLink>
-            <NavLink href="/projects">Projects</NavLink>
-            <NavLink href="/contact">Contact</NavLink> */}
-            </nav>
+    <div className="fixed top-0 left-0 right-0 z-50 w-auto">
+      <SmoothAppear direction="down" delay={4}>
+        <motion.header
+          style={{
+            backdropFilter: `blur(${headerBlur}px)`,
+          }}
+          className="relative shadow-md bg-black-500/80"
+        >
+          <div className="container px-4 mx-auto">
+            <div className="flex items-center justify-between h-16">
+              <NavLink href="/">Nishit Sharma</NavLink>
+              <nav className="flex space-x-6">
+                {/* <NavLink href="/about">About</NavLink>
+                <NavLink href="/projects">Projects</NavLink>
+                <NavLink href="/contact">Contact</NavLink> */}
+              </nav>
+            </div>
           </div>
-        </div>
-      </motion.header>
-    </SmoothReveal>
+        </motion.header>
+      </SmoothAppear>
+    </div>
   );
 }
 
@@ -67,7 +66,7 @@ function Footer() {
   const delay = isMobile ? 2.5 : 0;
 
   return (
-    <SmoothReveal delay={2.5}>
+    <SmoothAppear delay={2.5}>
       <footer className="bg-white-500">
         <div className="container px-4 mx-auto">
           <div className="flex items-center justify-between h-16">
@@ -102,7 +101,7 @@ function Footer() {
           </div>
         </div>
       </footer>
-    </SmoothReveal>
+    </SmoothAppear>
   );
 }
 

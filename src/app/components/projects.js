@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import {
   SmoothReveal,
   fadeInVariants,
   containerVariants,
   hoverVariants,
+  SmoothAppear
 } from "../utils/animation-utils";
 
 const ProjectCard = ({ title, description, onClick }) => (
   <motion.div
-    variants={fadeInVariants}
+    variants={{ ...hoverVariants, ...fadeInVariants }}
     whileHover="hover"
     whileTap="tap"
-    variants={hoverVariants}
     className="container px-10 py-6 mx-5 text-center shadow-md rounded-3xl bg-black-600"
     onClick={onClick}
   >
@@ -28,6 +28,7 @@ const ProjectCard = ({ title, description, onClick }) => (
   </motion.div>
 );
 
+const headerBlur = 8;
 const ProjectModal = ({ isOpen, project, onClose }) => (
   <AnimatePresence>
     {isOpen && (
@@ -37,13 +38,16 @@ const ProjectModal = ({ isOpen, project, onClose }) => (
         exit={{ opacity: 0 }}
         className="fixed inset-0 z-50 flex items-center justify-center bg-opacity-75 bg-black-500"
         onClick={onClose}
+        style={{
+          backdropFilter: `blur(${headerBlur}px)`,
+        }}
       >
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.9, opacity: 0 }}
           transition={{ type: "spring", duration: 0.5 }}
-          className="p-10 mx-4 text-center bg-white-500 text-black-500 rounded-3xl"
+          className="w-6/12 p-10 mx-4 text-center bg-white-500 text-black-500 rounded-3xl"
           onClick={(e) => e.stopPropagation()}
         >
           {project}
@@ -58,6 +62,7 @@ export default function Projects() {
 
   const projects = [
     {
+      id: "alpha-personal-assistant",
       title: "A.L.P.H.A Personal Assistant",
       description:
         "A personal assistant designed to make life easier. Designed with React and Python",
@@ -91,6 +96,7 @@ export default function Projects() {
       ),
     },
     {
+      id: "frc-charged-up-robot",
       title: "FRC Charged Up Robot",
       description:
         "The code for MCST's FRC Robot during the Charged Up Year, 2023",
@@ -122,6 +128,7 @@ export default function Projects() {
       ),
     },
     {
+      id: "my-portfolio",
       title: "My Portfolio",
       description: "This Portfolio Website!",
       details: (
@@ -157,30 +164,27 @@ export default function Projects() {
   ];
 
   return (
-    <SmoothReveal delay={0}>
+    <SmoothAppear>
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="container flex items-center justify-center px-4 py-12 mx-auto"
+        className="container flex flex-col items-center justify-center w-8/12 gap-4 px-4 py-12 mx-auto lg:flex-row lg:gap-12 lg:w-auto"
       >
-        <div className="flex flex-col items-center content-center justify-center gap-8 lg:flex-row">
-          {projects.map((project, index) => (
-            <ProjectCard
-              key={index}
-              title={project.title}
-              description={project.description}
-              onClick={() => setModalContent(project.details)}
-            />
-          ))}
-        </div>
-
+        {projects.map((project) => (
+          <ProjectCard
+            key={project.id}
+            title={project.title}
+            description={project.description}
+            onClick={() => setModalContent(project.details)}
+          />
+        ))}
         <ProjectModal
           isOpen={modalContent !== null}
           project={modalContent}
           onClose={() => setModalContent(null)}
         />
       </motion.div>
-    </SmoothReveal>
+    </SmoothAppear>
   );
 }

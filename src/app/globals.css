@@ -21,15 +21,15 @@
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  /* background: #1f1f1f; */
-  background: transparent;
+  background: #1f1f1f;
+  /* background: transparent; */
   border-radius: 5px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  /* background: #5c5c5c; */
-  background: transparent;
+  background: #5c5c5c;
+  /* background: transparent; */
 }
 
 

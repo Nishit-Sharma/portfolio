@@ -1,11 +1,12 @@
 import Image from "next/image";
 import { useState, useCallback, useMemo, memo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import {
   SmoothReveal,
   fadeInVariants,
   containerVariants,
   hoverVariants,
+  SmoothAppear
 } from "../utils/animation-utils";
 
 import ResumeIcon from "../static/resume.png";
@@ -14,21 +15,20 @@ import ResumeImage from "../static/NishitSharmaResume.jpg";
 import TranscriptImage from "../static/NishitSharmaTranscript.jpg";
 
 const InfoCard = ({ children }) => (
-  <SmoothReveal>
+  <SmoothAppear>
     <motion.div
-      variants={fadeInVariants}
+      variants={{ ...hoverVariants, ...fadeInVariants }}
       whileHover="hover"
       whileTap="tap"
-      variants={hoverVariants}
       className="container px-10 py-6 mx-auto text-center shadow-2xl rounded-3xl bg-black-600 w-96"
     >
       {children}
     </motion.div>
-  </SmoothReveal>
+  </SmoothAppear>
 );
 
 const DocumentViewer = memo(({ src, alt }) => useMemo(() => (
-  <SmoothReveal>
+  <SmoothAppear>
     <motion.div
       variants={fadeInVariants}
       className="container w-auto max-w-3xl px-10 py-6 mx-auto text-center shadow-2xl rounded-3xl bg-white-500"
@@ -42,7 +42,7 @@ const DocumentViewer = memo(({ src, alt }) => useMemo(() => (
         className="mx-auto rounded-lg"
       />
     </motion.div>
-  </SmoothReveal>
+  </SmoothAppear>
 ), [src, alt]));
 
 const IconButton = ({ src, alt, onClick }) => (
@@ -116,7 +116,7 @@ export default function Information() {
   };
 
   return (
-    <SmoothReveal delay={2.5}>
+    <SmoothAppear delay={2.5}>
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -148,6 +148,6 @@ export default function Information() {
           />
         </motion.div>
       </motion.div>
-    </SmoothReveal>
+    </SmoothAppear>
   );
 }
