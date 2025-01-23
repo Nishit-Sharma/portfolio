@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import {
   SmoothReveal,
   fadeInVariants,
@@ -47,7 +47,7 @@ const ProjectModal = ({ isOpen, project, onClose }) => (
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.9, opacity: 0 }}
           transition={{ type: "spring", duration: 0.5 }}
-          className="w-6/12 p-10 mx-4 text-center bg-white-500 text-black-500 rounded-3xl"
+          className="w-auto p-10 mx-4 text-center lg:w-6/12 bg-white-500 text-black-500 rounded-3xl"
           onClick={(e) => e.stopPropagation()}
         >
           {project}
