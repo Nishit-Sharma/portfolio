@@ -17,7 +17,9 @@ export const manropeSemiBold = localFont({ src: "./fonts/manrope-semibold.otf" }
 export const headerBlur = 8;
 
 function checkMobile() {
-  return window.innerWidth < 1025;
+  if (typeof window !== "undefined") {
+    return window.innerWidth < 1025;
+  }
 }
 
 export const nameDirection = checkMobile() ? "right" : "up";
