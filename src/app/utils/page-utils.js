@@ -12,9 +12,7 @@ import { SmoothAppear, hoverVariants, fadeInVariants } from "./animation-utils";
 export const scholarRegular = localFont({ src: "./fonts/scholar-regular.otf" });
 export const scholarItalic = localFont({ src: "./fonts/scholar-italic.otf" });
 export const manropeRegular = localFont({ src: "./fonts/manrope-regular.otf" });
-export const manropeSemiBold = localFont({
-  src: "./fonts/manrope-semibold.otf",
-});
+export const manropeSemiBold = localFont({ src: "./fonts/manrope-semibold.otf" });
 
 export const headerBlur = 8;
 
