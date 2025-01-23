@@ -3,7 +3,7 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import { SmoothAppear, containerVariants } from "../utils/animation-utils";
 import NishitSharmaPicture from "../static/NishitSharma.png";
-import { scholarRegular, scholarRegularItalic, nameDirection } from "../utils/page-utils";
+import { scholarRegular, scholarItalic, nameDirection } from "../utils/page-utils";
 
 export default function NameAndPicture() {
   return (
@@ -32,7 +32,7 @@ export default function NameAndPicture() {
               />
 
               <p
-                className={`text-lg lg:text-xl tracking-wide text-white-300 ${scholarRegularItalic.className}`}
+                className={`text-lg lg:text-xl tracking-wide text-white-300 ${scholarItalic.className}`}
               >
                 Student • Robotics Enthusiast • Developer
               </p>
