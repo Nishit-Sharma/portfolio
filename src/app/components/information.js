@@ -6,7 +6,7 @@ import {
   fadeInVariants,
   containerVariants,
   hoverVariants,
-  SmoothAppear
+  SmoothAppear,
 } from "../utils/animation-utils";
 
 import ResumeIcon from "../static/resume.png";
@@ -27,23 +27,23 @@ const InfoCard = ({ children }) => (
   </SmoothAppear>
 );
 
-const DocumentViewer = memo(({ src, alt }) => useMemo(() => (
-  <div>
-    <motion.div
-      variants={fadeInVariants}
-      className="container w-auto max-w-3xl px-10 py-6 mx-auto text-center shadow-2xl rounded-3xl bg-white-500"
-    >
-      <Image
-        src={src}
-        alt={alt}
-        width={700}
-        height={700}
-        priority={true}
-        className="mx-auto rounded-lg"
-      />
-    </motion.div>
-  </div>
-), [src, alt]));
+const DocumentViewer = memo(({ src, alt }) =>
+  useMemo(
+    () => (
+      <motion.div className="container w-auto max-w-3xl px-10 py-6 mx-auto text-center shadow-2xl rounded-3xl bg-white-500">
+        <Image
+          src={src}
+          alt={alt}
+          width={700}
+          height={700}
+          priority={true}
+          className="mx-auto rounded-lg"
+        />
+      </motion.div>
+    ),
+    [src, alt]
+  )
+);
 
 const IconButton = ({ src, alt, onClick }) => (
   <motion.div
