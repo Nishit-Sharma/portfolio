@@ -1,60 +1,10 @@
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { useState } from "react";
+import { motion } from "motion/react";
 import {
-  fadeInVariants,
   containerVariants,
-  hoverVariants,
   SmoothAppear,
 } from "../utils/animation-utils";
-
-const ProjectCard = ({ title, description, onClick }) => (
-  <motion.div
-    variants={{ ...hoverVariants, ...fadeInVariants }}
-    whileHover="hover"
-    whileTap="tap"
-    className="container px-10 py-6 mx-5 text-center shadow-md rounded-3xl bg-black-600"
-    onClick={onClick}
-  >
-    <h1 className="text-xl">{title}</h1>
-    <p className="mt-4">{description}</p>
-    <motion.button
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      className="px-4 py-2 mt-4 font-bold text-white rounded"
-    >
-      View Details
-    </motion.button>
-  </motion.div>
-);
-
-const headerBlur = 8;
-const ProjectModal = ({ isOpen, project, onClose }) => (
-  <AnimatePresence>
-    {isOpen && (
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="fixed inset-0 z-50 flex items-center justify-center bg-opacity-75 bg-black-500"
-        onClick={onClose}
-        style={{
-          backdropFilter: `blur(${headerBlur}px)`,
-        }}
-      >
-        <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          exit={{ scale: 0.9, opacity: 0 }}
-          transition={{ type: "spring", duration: 0.5 }}
-          className="w-auto p-10 mx-4 text-center lg:w-6/12 bg-white-500 text-black-500 rounded-3xl"
-          onClick={(e) => e.stopPropagation()}
-        >
-          {project}
-        </motion.div>
-      </motion.div>
-    )}
-  </AnimatePresence>
-);
+import { manropeSemiBold, manropeRegular, ProjectCard, ProjectModal } from "../utils/page-utils";
 
 export default function Projects() {
   const [modalContent, setModalContent] = useState(null);
@@ -67,8 +17,8 @@ export default function Projects() {
         "A personal assistant designed to make life easier. Designed with React and Python",
       details: (
         <>
-          <h1 className="text-xl">A.L.P.H.A Personal Assistant</h1>
-          <p className="mt-4">
+          <h1 className={`text-xl ${manropeSemiBold.className}`}>A.L.P.H.A Personal Assistant</h1>
+          <p className={`mt-4 ${manropeRegular.className}`}>
             This was a collaborative project was submitted for the NJTSA
             Software Development competition. It is a personal assistant that
             was designed to make ordinary tasks easier. Telling the time, date,
@@ -86,7 +36,7 @@ export default function Projects() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-4 py-2 font-bold text-white rounded"
+              className={`px-4 py-2 font-bold text-white rounded ${manropeSemiBold.className}`}
             >
               View on GitHub
             </motion.button>
@@ -101,8 +51,8 @@ export default function Projects() {
         "The code for MCST's FRC Robot during the Charged Up Year, 2023",
       details: (
         <>
-          <h1 className="text-xl">FRC Charged Up Robot</h1>
-          <p className="mt-4">
+          <h1 className={`text-xl ${manropeSemiBold.className}`}>FRC Charged Up Robot</h1>
+          <p className={`mt-4 ${manropeRegular.className}`}>
             This was also a collaborative project where I worked with my team to
             program our bot for the 2023 FRC season. We used Java to program the
             robot, and I primarily worked on the autonomous code and the drive
@@ -118,7 +68,7 @@ export default function Projects() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-4 py-2 font-bold text-white rounded"
+              className={`px-4 py-2 font-bold text-white rounded ${manropeSemiBold.className}`}
             >
               View on GitHub
             </motion.button>
@@ -132,12 +82,12 @@ export default function Projects() {
       description: "This Portfolio Website!",
       details: (
         <>
-          <h1 className="text-xl">My Portfolio</h1>
-          <p className="mt-4">
+          <h1 className={`text-xl ${manropeSemiBold.className}`}>My Portfolio</h1>
+          <p className={`mt-4 ${manropeRegular.className}`}>
             This portfolio website was my first time using Next.js, and I
             learned a lot about React and the thought process of a Web Designer.
             I used Tailwind CSS for styling and Framer Motion for animations,
-            which were also two new frameworks for me. I also used Vercel for
+            which were also two new libraries for me. I also used Vercel for
             deployment to make sure that my website was easily accessible. I
             learned a lot about web development, React, and Next.js from this
             project and it changed my perspective on web development in a
@@ -152,7 +102,8 @@ export default function Projects() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-4 py-2 font-bold text-white rounded"
+              className=
+              {`px-4 py-2 font-bold text-white rounded ${manropeSemiBold.className}`}
             >
               View on GitHub
             </motion.button>

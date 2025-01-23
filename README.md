@@ -1,36 +1,134 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Nishit Sharma's Portfolio Website
 
-## Getting Started
+A modern, responsive portfolio website built with Next.js, featuring smooth animations and an elegant user interface.
 
-First, run the development server:
+## 🌟 Live Demo
+Visit the live website at: [nishitsharma.vercel.app](https://nishitsharma.vercel.app)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🚀 Features
+
+- **Responsive Design**: Optimized for all screen sizes from mobile to desktop
+- **Modern UI/UX**: Clean, professional interface with smooth animations
+- **Interactive Elements**: 
+  - Project cards with detailed modal views
+  - Animated document viewers for resume and transcript
+- **Performance Optimized**:
+  - Lazy loading of components
+  - Optimized images
+  - Smooth animations
+- **SEO Friendly**: Includes metadata and schema markup
+
+## 🛠️ Technologies Used
+
+- **Frontend Framework**: Next.js
+- **Styling**: Tailwind CSS
+- **Animations**: Framer Motion
+- **Deployment**: Vercel
+- **Language**: JavaScript/React
+
+## 📁 Project Structure
+
+```
+nishit-sharma-portfolio/
+├── tailwind.config.js      # Tailwind CSS configuration
+└── src/
+    └── app/
+        ├── layout.js       # Main layout component
+        ├── page.client.js  # Client-side main page
+        ├── page.js         # Server-side main page
+        ├── components/     # React components
+        │   ├── information.js
+        │   ├── nameandpicture.js
+        │   └── projects.js
+        └── utils/          # Utility functions
+            ├── animation-utils.js
+            └── loading-spinner.js
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎯 Core Components
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+1. **Layout (layout.js)**
+   - Manages the overall structure
+   - Includes header and footer
+   - Handles navigation and social links
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+2. **Name and Picture (nameandpicture.js)**
+   - Hero section with introduction
+   - Professional photo
+   - Animated title and subtitle
 
-## Learn More
+3. **Information (information.js)**
+   - Personal bio and achievements
+   - Interactive document viewers
+   - Resume and transcript display
 
-To learn more about Next.js, take a look at the following resources:
+4. **Projects (projects.js)**
+   - Project showcase cards
+   - Modal windows with detailed information
+   - Links to GitHub repositories
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎨 Design Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Custom color scheme
+- Responsive typography system
+- Smooth animations and transitions
+- Interactive hover effects
+- Loading states and spinners
 
-## Deploy on Vercel
+## 🚀 Getting Started
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. **Clone the repository**
+```bash
+git clone https://github.com/Nishit-Sharma/portfolio.git
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+2. **Install dependencies**
+```bash
+npm install
+```
+
+3. **Run development server**
+```bash
+npm run dev
+```
+
+4. **Build for production**
+```bash
+npm run build
+```
+
+## 🔧 Configuration
+
+### Tailwind Configuration
+The project uses a custom Tailwind configuration with:
+- Custom spacing values
+- Extended color palette
+- Custom animations
+
+### Animation Utils
+Custom animation utilities include:
+- Fade-in animations
+- Hover effects
+- Container animations
+- Smooth appear transitions
+
+## 📱 Responsive Design
+
+The website is fully responsive with breakpoints for:
+- Mobile devices
+- Tablets
+- Desktop screens
+- Large displays
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## 👤 Contact
+
+- GitHub: [@Nishit-Sharma](https://github.com/Nishit-Sharma)
+- Instagram: [@nishit.sharma13](https://www.instagram.com/nishit.sharma13/)
+
+---
+
+Built with ❤️ by Nishit Sharma

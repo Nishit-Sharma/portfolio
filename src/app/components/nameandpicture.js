@@ -1,7 +1,9 @@
 import Image from "next/image";
+
 import { motion } from "motion/react";
 import { SmoothAppear, containerVariants } from "../utils/animation-utils";
 import NishitSharmaPicture from "../static/NishitSharma.png";
+import { scholarRegular, scholarRegularItalic, nameDirection } from "../utils/page-utils";
 
 export default function NameAndPicture() {
   return (
@@ -13,9 +15,11 @@ export default function NameAndPicture() {
     >
       <div className="container px-4 mx-auto">
         <div className="flex flex-col items-center justify-center gap-12 py-16 lg:flex-row lg:py-24">
-          <SmoothAppear delay={0.2}>
+          <SmoothAppear delay={0.2} direction={nameDirection}>
             <div className="space-y-6 lg:w-1/2">
-              <h1 className="text-4xl font-bold tracking-tight lg:text-6xl">
+              <h1
+                className={`text-4xl font-bold tracking-wide lg:text-6xl ${scholarRegular.className}`}
+              >
                 Hello, I'm
                 <span className="block mt-2">Nishit Sharma</span>
               </h1>
@@ -27,13 +31,15 @@ export default function NameAndPicture() {
                 className="h-1 bg-white-500"
               />
 
-              <p className="text-lg lg:text-xl text-white-300">
+              <p
+                className={`text-lg lg:text-xl tracking-wide text-white-300 ${scholarRegularItalic.className}`}
+              >
                 Student • Robotics Enthusiast • Developer
               </p>
             </div>
           </SmoothAppear>
 
-          <SmoothAppear delay={0.4} direction="left">
+          <SmoothAppear delay={2} direction="left">
             <div className="relative w-72 h-72 lg:w-96 lg:h-96">
               <div className="absolute inset-0 transform scale-95 bg-gradient-to-br from-white-500/20 to-transparent rounded-3xl rotate-6" />
               <motion.div

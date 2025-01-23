@@ -1,60 +1,15 @@
-import Image from "next/image";
-import { useState, useCallback, useMemo, memo } from "react";
+import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import {
-  fadeInVariants,
   containerVariants,
-  hoverVariants,
   SmoothAppear,
 } from "../utils/animation-utils";
+import { InfoCard, DocumentViewer, IconButton } from "../utils/page-utils";
 
 import ResumeIcon from "../static/resume.png";
 import TranscriptIcon from "../static/transcript.png";
 import ResumeImage from "../static/NishitSharmaResume.jpg";
 import TranscriptImage from "../static/NishitSharmaTranscript.jpg";
-
-const InfoCard = ({ children }) => (
-  <SmoothAppear>
-    <motion.div
-      variants={{ ...hoverVariants, ...fadeInVariants }}
-      whileHover="hover"
-      whileTap="tap"
-      className="container px-10 py-6 mx-auto text-center shadow-2xl rounded-3xl bg-black-600 w-96"
-    >
-      {children}
-    </motion.div>
-  </SmoothAppear>
-);
-
-const DocumentViewer = memo(({ src, alt }) =>
-  useMemo(
-    () => (
-      <motion.div className="container w-auto max-w-3xl px-10 py-6 mx-auto text-center shadow-2xl rounded-3xl bg-white-500">
-        <Image
-          src={src}
-          alt={alt}
-          width={700}
-          height={700}
-          priority={true}
-          className="mx-auto rounded-lg"
-        />
-      </motion.div>
-    ),
-    [src, alt]
-  )
-);
-
-const IconButton = ({ src, alt, onClick }) => (
-  <motion.div
-    whileHover="hover"
-    whileTap="tap"
-    variants={hoverVariants}
-    onClick={onClick}
-    className="container w-auto px-5 py-6 mx-10 text-center shadow-md cursor-pointer bg-white-500 rounded-3xl"
-  >
-    <Image src={src} alt={alt} width={24} height={24} />
-  </motion.div>
-);
 
 export default function Information() {
   const [activeDocument, setActiveDocument] = useState("summary");

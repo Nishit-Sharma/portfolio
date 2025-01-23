@@ -1,36 +1,17 @@
 "use client";
 
-import { Inter } from "next/font/google";
 import Image from "next/image";
-import Link from "next/link";
 import { motion, useScroll } from "motion/react";
-import { SmoothAppear, fadeInVariants } from "./utils/animation-utils";
-import { useState, useEffect } from "react";
 import { Analytics } from "@vercel/analytics/react";
+import { SmoothAppear, fadeInVariants } from "./utils/animation-utils";
+import { NavLink, headerBlur } from "./utils/page-utils";
 
 import "./globals.css";
 
 import GithubIcon from "./static/Github.png";
 import InstagramIcon from "./static/instagram.png";
 
-const inter = Inter({ subsets: ["latin"] });
-
-const NavLink = ({ href, children }) => (
-  <motion.div
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.95 }}
-    className="rounded-lg"
-  >
-    <Link href={href}>
-      <span className="text-lg font-semibold px-1.5">{children}</span>
-    </Link>
-  </motion.div>
-);
-
 function Header() {
-  const { scrollY } = useScroll();
-  const headerBlur = 8;
-
   return (
     <div className="fixed top-0 left-0 right-0 z-50 w-auto">
       <SmoothAppear direction="down" delay={4}>
@@ -57,14 +38,6 @@ function Header() {
 }
 
 function Footer() {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    setIsMobile(window.innerWidth < 1025);
-  }, []);
-
-  const delay = isMobile ? 2.5 : 0;
-
   return (
     <SmoothAppear delay={2.5}>
       <footer className="bg-white-500">
@@ -108,7 +81,7 @@ function Footer() {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
         <Header />
         <motion.main
           initial="hidden"

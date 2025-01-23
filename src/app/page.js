@@ -1,8 +1,6 @@
-import { Inter } from "next/font/google";
 import Script from "next/script";
 import dynamic from "next/dynamic";
 
-const inter = Inter({ subsets: ["latin"] });
 
 const DynamicPageClient = dynamic(() => import("./page.client"), {
   loading: () => <p>Loading...</p>,
@@ -66,7 +64,7 @@ export default function Page() {
           description: metadata.description,
         })}
       </Script>
-      <main className={inter.className}>
+      <main>
         <DynamicPageClient />
       </main>
     </>

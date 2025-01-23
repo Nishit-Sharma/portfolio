@@ -1,12 +1,12 @@
-import React from "react";
 import { motion } from "motion/react";
+import { scholarRegular } from "./page-utils";
 
 const LoadingSpinner = () => {
   return (
     <div className="fixed inset-0 flex flex-col items-center content-center justify-center mx-auto text-center bg-black-500">
       <div className="">
         <motion.h1
-          className="mx-auto mb-8 text-4xl font-bold"
+          className={`mx-auto mb-8 text-6xl font-bold ${scholarRegular.className}`}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
