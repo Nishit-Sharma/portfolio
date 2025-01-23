@@ -4,7 +4,7 @@ import { Inter } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useScroll } from "motion/react";
-import { SmoothReveal, SmoothAppear, fadeInVariants } from "./utils/animation-utils";
+import { SmoothAppear, fadeInVariants } from "./utils/animation-utils";
 import { useState, useEffect } from "react";
 import { Analytics } from "@vercel/analytics/react";
 
@@ -107,18 +107,18 @@ function Footer() {
 
 export default function RootLayout({ children }) {
   return (
-      <html lang="en">
-        <body className={inter.className}>
-          <Header />
-          <motion.main
-            initial="hidden"
-            animate="visible"
-            variants={fadeInVariants}
-          >
-            {children}
-          </motion.main>
-          <Footer />
-        </body>
-      </html>
+    <html lang="en">
+      <body className={inter.className}>
+        <Header />
+        <motion.main
+          initial="hidden"
+          animate="visible"
+          variants={fadeInVariants}
+        >
+          {children}
+        </motion.main>
+        <Footer />
+      </body>
+    </html>
   );
 }

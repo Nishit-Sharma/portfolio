@@ -2,7 +2,6 @@ import Image from "next/image";
 import { useState, useCallback, useMemo, memo } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import {
-  SmoothReveal,
   fadeInVariants,
   containerVariants,
   hoverVariants,

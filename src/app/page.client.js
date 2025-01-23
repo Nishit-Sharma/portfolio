@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useState, useEffect, lazy, Suspense } from "react";
 import { motion, AnimatePresence } from "motion/react";
@@ -14,7 +14,7 @@ const LazyLoadWrapper = ({ children }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1500);
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -39,21 +39,6 @@ const LazyLoadWrapper = ({ children }) => {
 };
 
 export default function Home() {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 1025);
-    };
-
-    handleResize();
-
-    window.addEventListener('resize', handleResize);
-
-    // Cleanup
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
   return (
     <main className="flex flex-col items-center content-center justify-center mx-auto">
       <Suspense fallback={<LoadingSpinner />}>
@@ -63,7 +48,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <DynamicNameAndPicture isMobile={isMobile} />
+            <DynamicNameAndPicture />
             <DynamicInformation />
             <DynamicProjects />
           </motion.div>

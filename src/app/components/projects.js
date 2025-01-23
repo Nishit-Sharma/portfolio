@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import {
-  SmoothReveal,
   fadeInVariants,
   containerVariants,
   hoverVariants,
-  SmoothAppear
+  SmoothAppear,
 } from "../utils/animation-utils";
 
 const ProjectCard = ({ title, description, onClick }) => (

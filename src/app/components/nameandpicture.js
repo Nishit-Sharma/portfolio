@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion } from "motion/react";
 import { SmoothAppear, containerVariants } from "../utils/animation-utils";

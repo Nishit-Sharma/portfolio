@@ -1,11 +1,11 @@
-import React from 'react';
-import { motion } from 'motion/react';
+import React from "react";
+import { motion } from "motion/react";
 
 const LoadingSpinner = () => {
   return (
     <div className="fixed inset-0 flex flex-col items-center content-center justify-center mx-auto text-center bg-black-500">
       <div className="">
-        <motion.h1 
+        <motion.h1
           className="mx-auto mb-8 text-4xl font-bold"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -13,7 +13,7 @@ const LoadingSpinner = () => {
         >
           NS
         </motion.h1>
-        
+
         <div className="relative w-16 h-16">
           <motion.div
             className="absolute inset-0 border-4 rounded-full border-white-500/20"
@@ -23,13 +23,13 @@ const LoadingSpinner = () => {
           />
           <motion.div
             className="absolute inset-0 border-4 rounded-full border-t-white-500"
-            animate={{ 
-              rotate: 360 
+            animate={{
+              rotate: 360,
             }}
-            transition={{ 
+            transition={{
               duration: 1.5,
               repeat: Number.POSITIVE_INFINITY,
-              ease: "linear"
+              ease: "linear",
             }}
           />
         </div>
