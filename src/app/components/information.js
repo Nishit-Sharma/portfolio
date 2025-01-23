@@ -28,7 +28,7 @@ const InfoCard = ({ children }) => (
 );
 
 const DocumentViewer = memo(({ src, alt }) => useMemo(() => (
-  <SmoothAppear>
+  <div>
     <motion.div
       variants={fadeInVariants}
       className="container w-auto max-w-3xl px-10 py-6 mx-auto text-center shadow-2xl rounded-3xl bg-white-500"
@@ -42,7 +42,7 @@ const DocumentViewer = memo(({ src, alt }) => useMemo(() => (
         className="mx-auto rounded-lg"
       />
     </motion.div>
-  </SmoothAppear>
+  </div>
 ), [src, alt]));
 
 const IconButton = ({ src, alt, onClick }) => (
