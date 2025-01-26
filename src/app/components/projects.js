@@ -36,7 +36,7 @@ export default function Projects() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className={`px-4 py-2 font-bold text-white rounded ${manropeSemiBold.className}`}
+              className={`px-4 py-2 font-bold text-white rounded-sm ${manropeSemiBold.className}`}
             >
               View on GitHub
             </motion.button>
@@ -68,7 +68,7 @@ export default function Projects() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className={`px-4 py-2 font-bold text-white rounded ${manropeSemiBold.className}`}
+              className={`px-4 py-2 font-bold text-white rounded-sm ${manropeSemiBold.className}`}
             >
               View on GitHub
             </motion.button>
@@ -103,7 +103,7 @@ export default function Projects() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className=
-              {`px-4 py-2 font-bold text-white rounded ${manropeSemiBold.className}`}
+              {`px-4 py-2 font-bold text-white rounded-sm ${manropeSemiBold.className}`}
             >
               View on GitHub
             </motion.button>

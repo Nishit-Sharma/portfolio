@@ -41,7 +41,7 @@ export default function NameAndPicture() {
 
           <SmoothAppear delay={2} direction="left">
             <div className="relative w-72 h-72 lg:w-96 lg:h-96">
-              <div className="absolute inset-0 transform scale-95 bg-gradient-to-br from-white-500/20 to-transparent rounded-3xl rotate-6" />
+              <div className="absolute inset-0 transform scale-95 bg-linear-to-br from-white-500/20 to-transparent rounded-3xl rotate-6" />
               <motion.div
                 className="relative overflow-hidden shadow-xl rounded-3xl"
                 whileHover={{ scale: 1.02 }}

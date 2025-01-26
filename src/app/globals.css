@@ -1,68 +1,110 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-:root {
-  /* These are variables that are later referenced in body */
+@theme {
+  --color-*: initial;
+  --color-transparent: transparent;
 
-  /* Text color */
-  --foreground-rgb: 255, 255, 214;
+  --color-black-100: #d6d6d6;
+  --color-black-200: #adadad;
+  --color-black-300: #858585;
+  --color-black-400: #5c5c5c;
+  --color-black-500: #333333;
+  --color-black-600: #292929;
+  --color-black-700: #1f1f1f;
+  --color-black-800: #141414;
+  --color-black-900: #0a0a0a;
 
-  /* Background color / gradient */
-  --background-rgb: 51, 51, 51;
+  --color-white-100: #fefff7;
+  --color-white-200: #feffef;
+  --color-white-300: #fdffe6;
+  --color-white-400: #fdffde;
+  --color-white-500: #fcffd6;
+  --color-white-600: #caccab;
+  --color-white-700: #979980;
+  --color-white-800: #656656;
+  --color-white-900: #32332b;
 
-  scroll-behavior: smooth;
+  --spacing-big: 20rem;
 }
 
-::-webkit-scrollbar {
-  width: 10px;
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
 }
 
-::-webkit-scrollbar-thumb {
-  background: #1f1f1f;
-  /* background: transparent; */
-  border-radius: 5px;
+@utility text-balance {
+  text-wrap: balance;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #5c5c5c;
-  /* background: transparent; */
-}
-
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-rgb));
-}
-
-.header {
-  color: rgb(var(--foreground-rgb));
+@utility scroll {
+  width: 60px;
+  height: 60px;
+  border: 2px solid #fcffd6;
+  border-radius: 50%;
+  position: relative;
+  animation: down 1.5s infinite;
+  -webkit-animation: down 1.5s infinite;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 18px;
+    width: 18px;
+    height: 18px;
+    border-left: 2px solid #fcffd6;
+    border-bottom: 2px solid #fcffd6;
+    transform: rotate(-45deg);
+  }
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  :root {
+    /* These are variables that are later referenced in body */
+
+    /* Text color */
+    --foreground-rgb: 255, 255, 214;
+
+    /* Background color / gradient */
+    --background-rgb: 51, 51, 51;
+
+    scroll-behavior: smooth;
   }
 
-  .scroll {
-    width: 60px;
-    height: 60px;
-    border: 2px solid #fcffd6;
-    border-radius: 50%;
-    position: relative;
-    animation: down 1.5s infinite;
-    -webkit-animation: down 1.5s infinite;
-    &::before {
-      content: '';
-      position: absolute;
-      top: 15px;
-      left: 18px;
-      width: 18px;
-      height: 18px;
-      border-left: 2px solid #fcffd6;
-      border-bottom: 2px solid #fcffd6;
-      transform: rotate(-45deg);
-    }
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #1f1f1f;
+    /* background: transparent; */
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #5c5c5c;
+    /* background: transparent; */
+  }
+
+  body {
+    color: rgb(var(--foreground-rgb));
+    background: rgb(var(--background-rgb));
+  }
+
+  .header {
+    color: rgb(var(--foreground-rgb));
   }
 }
 
