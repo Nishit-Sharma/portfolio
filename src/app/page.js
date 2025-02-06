@@ -8,11 +8,11 @@ const DynamicPageClient = dynamic(() => import("./page.client"), {
 export const metadata = {
   metadataBase: new URL("https://nishitsharma.vercel.app"),
   title: {
-    default: "Nishit Sharma's Portfolio",
+    default: "Nishit Sharma | Student, Developer & Robotics Enthusiast",
     template: "%s | Nishit Sharma",
   },
   description:
-    "Explore the portfolio of Nishit Sharma, a skilled student and robotics enthusiast. View projects in React, Next.js, Python, and FRC robotics.",
+    "Portfolio of Nishit Sharma - A top-performing student at Morris County School of Technology, skilled in Java, Python, C++, and robotics. View projects in React, Next.js, game design, and FRC robotics.",
   keywords: [
     "Nishit Sharma",
     "web development",
@@ -21,24 +21,37 @@ export const metadata = {
     "React",
     "Next.js",
     "Python",
+    "Java",
+    "C++",
     "FRC",
+    "game design",
+    "Morris County School of Technology",
+    "Tech Devils",
+    "student developer",
   ],
-  authors: [{ name: "Nishit Sharma" }],
+  authors: [{ name: "Nishit Sharma", url: "https://nishitsharma.vercel.app" }],
   creator: "Nishit Sharma",
+  publisher: "Nishit Sharma",
+  formatDetection: {
+    telephone: false,
+    date: false,
+    address: false,
+    email: true,
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://nishitsharma.vercel.app",
-    title: "Nishit Sharma - Student & Robotics Enthusiast",
+    title: "Nishit Sharma | Student, Developer & Robotics Enthusiast",
     description:
-      "Personal portfolio of Nishit Sharma showcasing web development and robotics projects.",
+      "Portfolio of Nishit Sharma - A top-performing student at Morris County School of Technology, skilled in Java, Python, C++, and robotics.",
     siteName: "Nishit Sharma's Portfolio",
     images: [
       {
         url: "/static/NishitSharma.png",
         width: 1200,
         height: 630,
-        alt: "Nishit Sharma's Portfolio",
+        alt: "Nishit Sharma - Student Developer and Robotics Enthusiast",
       },
     ],
   },
@@ -57,21 +70,24 @@ export const metadata = {
   robots: {
     index: true,
     follow: true,
+    nocache: true,
     googleBot: {
       index: true,
       follow: true,
+      noimageindex: false,
       "max-video-preview": -1,
       "max-image-preview": "large",
       "max-snippet": -1,
     },
   },
   verification: {
-    // Add these when you have them
-    // google: 'your-google-verification-code',
-    // yandex: 'your-yandex-verification-code',
+    google: "add-your-google-verification-code",
   },
   alternates: {
     canonical: "https://nishitsharma.vercel.app",
+    languages: {
+      "en-US": "https://nishitsharma.vercel.app",
+    },
   },
   manifest: "/manifest.json",
   icons: {

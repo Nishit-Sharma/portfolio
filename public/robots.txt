@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
+# Sitemap location
 Sitemap: https://nishitsharma.vercel.app/sitemap.xml

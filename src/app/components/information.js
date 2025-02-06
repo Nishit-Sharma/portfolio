@@ -92,13 +92,17 @@ export default function Information() {
         <motion.div className="flex justify-center mx-auto mt-8">
           <IconButton
             src={ResumeIcon}
-            alt="Resume"
+            alt="View Resume"
             onClick={() => handleResumeClick()}
+            aria-label="Toggle Resume View"
+            aria-pressed={resumeClick}
           />
           <IconButton
             src={TranscriptIcon}
-            alt="Transcript"
+            alt="View Transcript"
             onClick={() => handleTranscriptClick()}
+            aria-label="Toggle Transcript View"
+            aria-pressed={transcriptClick}
           />
         </motion.div>
       </motion.div>

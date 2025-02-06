@@ -16,9 +16,9 @@ export default function NameAndPicture() {
       <div className="container px-4 mx-auto">
         <div className="flex flex-col items-center justify-center gap-12 py-16 lg:flex-row lg:py-24">
           <SmoothAppear delay={0.2} direction={nameDirection}>
-            <div className="space-y-6 lg:w-1/2">
+            <div className="space-y-8 lg:w-1/2">
               <h1
-                className={`text-4xl font-bold tracking-wide lg:text-6xl ${scholarRegular.className}`}
+                className={`text-5xl font-bold tracking-tight leading-tight lg:text-7xl ${scholarRegular.className}`}
               >
                 Hello, I'm
                 <span className="block mt-2">Nishit Sharma</span>
@@ -32,7 +32,7 @@ export default function NameAndPicture() {
               />
 
               <p
-                className={`text-lg lg:text-xl tracking-wide text-white-300 ${scholarItalic.className}`}
+                className={`text-xl lg:text-2xl tracking-wide leading-relaxed text-white-300 ${scholarItalic.className}`}
               >
                 Student • Robotics Enthusiast • Developer
               </p>

@@ -9,10 +9,33 @@ import Link from "next/link";
 import LoadingSpinner from "./loading-spinner";
 import { SmoothAppear, hoverVariants, fadeInVariants } from "./animation-utils";
 
-export const scholarRegular = localFont({ src: "./fonts/scholar-regular.otf" });
-export const scholarItalic = localFont({ src: "./fonts/scholar-italic.otf" });
-export const manropeRegular = localFont({ src: "./fonts/manrope-regular.otf" });
-export const manropeSemiBold = localFont({ src: "./fonts/manrope-semibold.otf" });
+export const scholarRegular = localFont({ 
+  src: "./fonts/scholar-regular.otf",
+  display: 'swap',
+  preload: true,
+  variable: '--font-scholar'
+});
+
+export const scholarItalic = localFont({ 
+  src: "./fonts/scholar-italic.otf",
+  display: 'swap',
+  preload: true,
+  variable: '--font-scholar-italic'
+});
+
+export const manropeRegular = localFont({ 
+  src: "./fonts/manrope-regular.otf",
+  display: 'swap',
+  preload: true,
+  variable: '--font-manrope'
+});
+
+export const manropeSemiBold = localFont({ 
+  src: "./fonts/manrope-semibold.otf",
+  display: 'swap',
+  preload: true,
+  variable: '--font-manrope-bold'
+});
 
 export const headerBlur = 8;
 
@@ -77,7 +100,7 @@ export const InfoCard = ({ children }) => (
       variants={{ ...hoverVariants, ...fadeInVariants }}
       whileHover="hover"
       whileTap="tap"
-      className={`container px-10 py-6 mx-auto text-center shadow-2xl rounded-3xl bg-black-600 w-96 ${manropeSemiBold.className}`}
+      className={`container px-10 py-8 mx-auto text-left leading-relaxed shadow-2xl rounded-3xl bg-black-600 w-auto max-w-sm  ${manropeRegular.className}`}
     >
       {children}
     </motion.div>
@@ -102,13 +125,23 @@ export const DocumentViewer = memo(({ src, alt }) =>
   )
 );
 
-export const IconButton = ({ src, alt, onClick }) => (
+export const IconButton = ({ src, alt, onClick, 'aria-label': ariaLabel, 'aria-pressed': ariaPressed }) => (
   <motion.div
     whileHover="hover"
     whileTap="tap"
     variants={hoverVariants}
     onClick={onClick}
     className="container w-auto px-5 py-6 mx-10 text-center shadow-md cursor-pointer bg-white-500 rounded-3xl"
+    role="button"
+    tabIndex={0}
+    aria-label={ariaLabel}
+    aria-pressed={ariaPressed}
+    onKeyDown={(e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        onClick();
+      }
+    }}
   >
     <Image src={src} alt={alt} width={24} height={24} />
   </motion.div>
@@ -119,15 +152,15 @@ export const ProjectCard = ({ title, description, onClick }) => (
     variants={{ ...hoverVariants, ...fadeInVariants }}
     whileHover="hover"
     whileTap="tap"
-    className="container px-10 py-6 mx-5 text-center shadow-md rounded-3xl bg-black-600"
+    className="container px-10 py-8 mx-5 text-left shadow-md rounded-3xl bg-black-600 max-w-md"
     onClick={onClick}
   >
-    <h1 className={`text-xl ${manropeSemiBold.className}`}>{title}</h1>
-    <p className={`mt-4 ${manropeRegular.className}`}>{description}</p>
+    <h2 className={`text-2xl mb-4 tracking-tight ${manropeSemiBold.className}`}>{title}</h2>
+    <p className={`leading-relaxed ${manropeRegular.className}`}>{description}</p>
     <motion.button
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
-      className={`px-4 py-2 mt-4 font-bold text-white rounded-sm ${manropeSemiBold.className}`}
+      className={`px-6 py-3 mt-6 font-bold text-white rounded-lg bg-white-500/10 hover:bg-white-500/20 ${manropeSemiBold.className}`}
     >
       View Details
     </motion.button>

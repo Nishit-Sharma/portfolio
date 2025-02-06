@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "motion/react";
+import Script from "next/script";
 import {
   containerVariants,
   SmoothAppear,
@@ -13,8 +14,10 @@ export default function Projects() {
     {
       id: "alpha-personal-assistant",
       title: "A.L.P.H.A Personal Assistant",
-      description:
-        "A personal assistant designed to make life easier. Designed with React and Python",
+      description: "A personal assistant designed to make life easier. Designed with React and Python",
+      url: "https://github.com/Nishit-Sharma/NJTSA-Software-Development-LocalHost",
+      datePublished: "2023",
+      programmingLanguage: ["React", "Python"],
       details: (
         <>
           <h1 className={`text-xl ${manropeSemiBold.className}`}>A.L.P.H.A Personal Assistant</h1>
@@ -47,8 +50,10 @@ export default function Projects() {
     {
       id: "frc-charged-up-robot",
       title: "FRC Charged Up Robot",
-      description:
-        "The code for MCST's FRC Robot during the Charged Up Year, 2023",
+      description: "The code for MCST's FRC Robot during the Charged Up Year, 2023",
+      url: "https://github.com/mcstrobotics/ChargedUp8588",
+      datePublished: "2023",
+      programmingLanguage: ["Java"],
       details: (
         <>
           <h1 className={`text-xl ${manropeSemiBold.className}`}>FRC Charged Up Robot</h1>
@@ -80,6 +85,9 @@ export default function Projects() {
       id: "my-portfolio",
       title: "My Portfolio",
       description: "This Portfolio Website!",
+      url: "https://github.com/Nishit-Sharma/portfolio",
+      datePublished: "2023",
+      programmingLanguage: ["JavaScript", "React", "Next.js"],
       details: (
         <>
           <h1 className={`text-xl ${manropeSemiBold.className}`}>My Portfolio</h1>
@@ -114,27 +122,50 @@ export default function Projects() {
   ];
 
   return (
-    <SmoothAppear>
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-        className="container flex flex-col items-center justify-center w-8/12 gap-4 px-4 py-12 mx-auto lg:flex-row lg:gap-12 lg:w-auto"
-      >
-        {projects.map((project) => (
-          <ProjectCard
-            key={project.id}
-            title={project.title}
-            description={project.description}
-            onClick={() => setModalContent(project.details)}
+    <>
+      <Script id="project-schema" type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          "itemListElement": projects.map((project, index) => ({
+            "@type": "SoftwareSourceCode",
+            "position": index + 1,
+            "name": project.title,
+            "description": project.description,
+            "url": project.url,
+            "datePublished": project.datePublished,
+            "programmingLanguage": project.programmingLanguage,
+            "author": {
+              "@type": "Person",
+              "name": "Nishit Sharma",
+              "url": "https://nishitsharma.vercel.app"
+            }
+          }))
+        })}
+      </Script>
+
+      <SmoothAppear>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="container flex flex-col items-center justify-center w-8/12 gap-4 px-4 py-12 mx-auto lg:flex-row lg:gap-12 lg:w-auto"
+        >
+          {projects.map((project) => (
+            <ProjectCard
+              key={project.id}
+              title={project.title}
+              description={project.description}
+              onClick={() => setModalContent(project.details)}
+            />
+          ))}
+          <ProjectModal
+            isOpen={modalContent !== null}
+            project={modalContent}
+            onClose={() => setModalContent(null)}
           />
-        ))}
-        <ProjectModal
-          isOpen={modalContent !== null}
-          project={modalContent}
-          onClose={() => setModalContent(null)}
-        />
-      </motion.div>
-    </SmoothAppear>
+        </motion.div>
+      </SmoothAppear>
+    </>
   );
 }
