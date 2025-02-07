@@ -18,7 +18,7 @@ export default function NameAndPicture() {
           <SmoothAppear delay={0.2} direction={nameDirection}>
             <div className="space-y-8 lg:w-1/2">
               <h1
-                className={`text-5xl font-bold tracking-tight leading-tight lg:text-7xl ${scholarRegular.className}`}
+                className={`text-5xl font-bold tracking-wider leading-tight lg:text-7xl ${scholarRegular.className}`}
               >
                 Hello, I'm
                 <span className="block mt-2">Nishit Sharma</span>
