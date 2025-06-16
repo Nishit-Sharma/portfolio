@@ -8,6 +8,9 @@ import Resume from "../static/NishitSharmaResume.jpg";
 import Transcript from "../static/NishitSharmaTranscript.jpg";
 
 export default function Information() {
+  const isMobile = useMediaQuery("(max-width: 768px)");
+  const delay = isMobile ? 0 : 2.5;
+
   const [activeDocument, setActiveDocument] = useState("summary");
 
   const [resumeClick, setResumeClick] = useState(false);
@@ -66,7 +69,7 @@ export default function Information() {
   };
 
   return (
-    <SmoothAppear direction="up" delay={2.5}>
+    <SmoothAppear direction="up" delay={{delay}}>
       <motion.div initial="hidden" className="container px-4 mx-auto">
         <AnimatePresence mode="wait">
           <motion.div
