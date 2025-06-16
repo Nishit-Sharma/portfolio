@@ -8,7 +8,8 @@ import Resume from "../static/NishitSharmaResume.jpg";
 import Transcript from "../static/NishitSharmaTranscript.jpg";
 
 export default function Information() {
-  const isMobile = useMediaQuery("(max-width: 768px)");
+  // Check if user is on mobile
+  const isMobile = window.innerWidth < 768;
   const delay = isMobile ? 0 : 2.5;
 
   const [activeDocument, setActiveDocument] = useState("summary");
