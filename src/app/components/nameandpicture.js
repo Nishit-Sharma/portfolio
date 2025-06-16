@@ -25,7 +25,7 @@ export default function NameAndPicture() {
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: "100%" }}
-                transition={{ duration: 1, delay: 0.2 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
                 className="h-1 bg-white-500 mx-auto lg:mx-0"
               />
 

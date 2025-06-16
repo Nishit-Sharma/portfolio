@@ -12,7 +12,7 @@ import Transcript from "../static/NishitSharmaTranscript.jpg";
 export default function Information() {
   function checkMobile() {
     if (typeof window !== "undefined") {
-      return window.innerHeight < 720;
+      return window.innerHeight < 764;
     }
   }
 
