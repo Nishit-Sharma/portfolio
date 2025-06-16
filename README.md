@@ -1,134 +1,52 @@
-# Nishit Sharma's Portfolio Website
+# Nishit Sharma's Personal Portfolio
 
-A modern, responsive portfolio website built with Next.js, featuring smooth animations and an elegant user interface.
+This repository contains the source code for my personal portfolio website, built to showcase my projects, skills, and experience in software development and robotics. The site is designed to be fast, modern, and fully responsive, providing an engaging overview of my capabilities.
 
-## 🌟 Live Demo
-Visit the live website at: [nishitsharma.vercel.app](https://nishitsharma.vercel.app)
+You can view the live site here: [nishitsharma.vercel.app](https://nishitsharma.vercel.app/)
 
-## 🚀 Features
+## ✨ Features
 
-- **Responsive Design**: Optimized for all screen sizes from mobile to desktop
-- **Modern UI/UX**: Clean, professional interface with smooth animations
-- **Interactive Elements**: 
-  - Project cards with detailed modal views
-  - Animated document viewers for resume and transcript
-- **Performance Optimized**:
-  - Lazy loading of components
-  - Optimized images
-  - Smooth animations
-- **SEO Friendly**: Includes metadata and schema markup
+-   **Dynamic Project Showcase:** A comprehensive projects section with a filterable grid and detailed modal pop-ups for each entry.
+-   **Orchestrated Animations:** A polished, choreographed entry animation sequence built with Framer Motion that provides a professional user experience.
+-   **Integrated Blog:** A fully functional blog to share technical write-ups and project deep dives.
+-   **Interactive Resume:** An accessible, web-native version of my resume.
+-   **Responsive Design:** A mobile-first design that looks great on all devices, from phones to desktops.
+-   **Performance Optimized:** Built with Next.js App Router for a hybrid rendering approach, leveraging Server Components for speed and Client Components for interactivity.
 
-## 🛠️ Technologies Used
+## 🛠️ Tech Stack
 
-- **Frontend Framework**: Next.js
-- **Styling**: Tailwind CSS
-- **Animations**: Framer Motion
-- **Deployment**: Vercel
-- **Language**: JavaScript/React
-
-## 📁 Project Structure
-
-```
-nishit-sharma-portfolio/
-├── tailwind.config.js      # Tailwind CSS configuration
-└── src/
-    └── app/
-        ├── layout.js       # Main layout component
-        ├── page.client.js  # Client-side main page
-        ├── page.js         # Server-side main page
-        ├── components/     # React components
-        │   ├── information.js
-        │   ├── nameandpicture.js
-        │   └── projects.js
-        └── utils/          # Utility functions
-            ├── animation-utils.js
-            └── loading-spinner.js
-```
-
-## 🎯 Core Components
-
-1. **Layout (layout.js)**
-   - Manages the overall structure
-   - Includes header and footer
-   - Handles navigation and social links
-
-2. **Name and Picture (nameandpicture.js)**
-   - Hero section with introduction
-   - Professional photo
-   - Animated title and subtitle
-
-3. **Information (information.js)**
-   - Personal bio and achievements
-   - Interactive document viewers
-   - Resume and transcript display
-
-4. **Projects (projects.js)**
-   - Project showcase cards
-   - Modal windows with detailed information
-   - Links to GitHub repositories
-
-## 🎨 Design Features
-
-- Custom color scheme
-- Responsive typography system
-- Smooth animations and transitions
-- Interactive hover effects
-- Loading states and spinners
+-   **Framework:** [Next.js](https://nextjs.org/) (App Router)
+-   **Language:** JavaScript
+-   **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+-   **Animations:** [Framer Motion](https://www.framer.com/motion/)
+-   **Deployment:** [Vercel](https://vercel.com/)
 
 ## 🚀 Getting Started
 
-1. **Clone the repository**
-```bash
-git clone https://github.com/Nishit-Sharma/portfolio.git
-```
+To run this project locally, follow these steps:
 
-2. **Install dependencies**
-```bash
-npm install
-```
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/nishit-sharma/portfolio.git
+    ```
 
-3. **Run development server**
-```bash
-npm run dev
-```
+2.  **Navigate to the project directory:**
+    ```bash
+    cd portfolio
+    ```
 
-4. **Build for production**
-```bash
-npm run build
-```
+3.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
 
-## 🔧 Configuration
+4.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
 
-### Tailwind Configuration
-The project uses a custom Tailwind configuration with:
-- Custom spacing values
-- Extended color palette
-- Custom animations
+    Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
 
-### Animation Utils
-Custom animation utilities include:
-- Fade-in animations
-- Hover effects
-- Container animations
-- Smooth appear transitions
+## License
 
-## 📱 Responsive Design
-
-The website is fully responsive with breakpoints for:
-- Mobile devices
-- Tablets
-- Desktop screens
-- Large displays
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-## 👤 Contact
-
-- GitHub: [@Nishit-Sharma](https://github.com/Nishit-Sharma)
-- Instagram: [@nishit.sharma13](https://www.instagram.com/nishit.sharma13/)
-
----
-
-Built with ❤️ by Nishit Sharma
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details. 

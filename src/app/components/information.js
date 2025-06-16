@@ -1,15 +1,11 @@
 import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import {
-  containerVariants,
-  SmoothAppear,
-} from "../utils/animation-utils";
+import { SmoothAppear } from "../utils/animation-utils";
 import { InfoCard, DocumentViewer, IconButton } from "../utils/page-utils";
-
 import ResumeIcon from "../static/resume.png";
 import TranscriptIcon from "../static/transcript.png";
-import ResumeImage from "../static/NishitSharmaResume.jpg";
-import TranscriptImage from "../static/NishitSharmaTranscript.jpg";
+import Resume from "../static/NishitSharmaResume.jpg";
+import Transcript from "../static/NishitSharmaTranscript.jpg";
 
 export default function Information() {
   const [activeDocument, setActiveDocument] = useState("summary");
@@ -65,18 +61,13 @@ export default function Information() {
         </p>
       </InfoCard>
     ),
-    resume: <DocumentViewer src={ResumeImage} alt="Resume" />,
-    transcript: <DocumentViewer src={TranscriptImage} alt="Transcript" />,
+    resume: <DocumentViewer src={Resume} alt="Resume" />,
+    transcript: <DocumentViewer src={Transcript} alt="Transcript" />,
   };
 
   return (
-    <SmoothAppear delay={2.5}>
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-        className="container px-4 mx-auto"
-      >
+    <SmoothAppear direction="up" delay={2.5}>
+      <motion.div initial="hidden" className="container px-4 mx-auto">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeDocument}

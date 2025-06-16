@@ -1,5 +1,4 @@
-// biome-ignore lint/suspicious/noRedundantUseStrict: It says that it is redundant even though use strict is in the code once
-"use strict";
+"use client";
 
 import localFont from "next/font/local";
 import { motion, AnimatePresence } from "motion/react";
@@ -9,35 +8,33 @@ import Link from "next/link";
 import LoadingSpinner from "./loading-spinner";
 import { SmoothAppear, hoverVariants, fadeInVariants } from "./animation-utils";
 
-export const scholarRegular = localFont({ 
-  src: "./fonts/scholar-regular.otf",
-  display: 'swap',
+export const scholarRegular = localFont({
+  src: "../static/fonts/scholar-regular.otf",
+  display: "swap",
   preload: true,
-  variable: '--font-scholar'
+  variable: "--font-scholar",
 });
 
-export const scholarItalic = localFont({ 
-  src: "./fonts/scholar-italic.otf",
-  display: 'swap',
+export const scholarItalic = localFont({
+  src: "../static/fonts/scholar-italic.otf",
+  display: "swap",
   preload: true,
-  variable: '--font-scholar-italic'
+  variable: "--font-scholar-italic",
 });
 
-export const manropeRegular = localFont({ 
-  src: "./fonts/manrope-regular.otf",
-  display: 'swap',
+export const manropeRegular = localFont({
+  src: "../static/fonts/manrope-regular.otf",
+  display: "swap",
   preload: true,
-  variable: '--font-manrope'
+  variable: "--font-manrope",
 });
 
-export const manropeSemiBold = localFont({ 
-  src: "./fonts/manrope-semibold.otf",
-  display: 'swap',
+export const manropeSemiBold = localFont({
+  src: "../static/fonts/manrope-semibold.otf",
+  display: "swap",
   preload: true,
-  variable: '--font-manrope-bold'
+  variable: "--font-manrope-bold",
 });
-
-export const headerBlur = 8;
 
 function checkMobile() {
   if (typeof window !== "undefined") {
@@ -45,16 +42,16 @@ function checkMobile() {
   }
 }
 
-export const nameDirection = checkMobile() ? "right" : "up";
+export const nameDirection = checkMobile() ? "up" : "right";
 export const footerDelay = checkMobile() ? 2.5 : 0;
 
-export const NavLink = ({ href, children }) => (
+export const NavLink = ({ href, children, scroll }) => (
   <motion.div
     whileHover={{ scale: 1.05 }}
     whileTap={{ scale: 0.95 }}
     className="rounded-lg"
   >
-    <Link href={href}>
+    <Link href={href} scroll={scroll}>
       <span
         className={`text-lg font-semibold px-1.5 ${manropeSemiBold.className}`}
       >
@@ -65,33 +62,17 @@ export const NavLink = ({ href, children }) => (
 );
 
 export const LazyLoadWrapper = ({ children }) => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-
-    return () => clearTimeout(timer);
+    setIsMounted(true);
   }, []);
 
-  return (
-    <AnimatePresence mode="wait">
-      {isLoading ? (
-        <LoadingSpinner key="loader" />
-      ) : (
-        <motion.div
-          key="content"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          {children}
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
+  if (!isMounted) {
+    return <LoadingSpinner />;
+  }
+
+  return <>{children}</>;
 };
 
 export const InfoCard = ({ children }) => (
@@ -125,59 +106,75 @@ export const DocumentViewer = memo(({ src, alt }) =>
   )
 );
 
-export const IconButton = ({ src, alt, onClick, 'aria-label': ariaLabel, 'aria-pressed': ariaPressed }) => (
-  <motion.div
+export const IconButton = ({
+  src,
+  alt,
+  onClick,
+  "aria-label": ariaLabel,
+  "aria-pressed": ariaPressed,
+}) => (
+  <motion.button
     whileHover="hover"
     whileTap="tap"
     variants={hoverVariants}
     onClick={onClick}
     className="container w-auto px-5 py-6 mx-10 text-center shadow-md cursor-pointer bg-white-500 rounded-3xl"
-    role="button"
     tabIndex={0}
     aria-label={ariaLabel}
     aria-pressed={ariaPressed}
     onKeyDown={(e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
+      if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
         onClick();
       }
     }}
   >
     <Image src={src} alt={alt} width={24} height={24} />
-  </motion.div>
+  </motion.button>
 );
 
-export const ProjectCard = ({ title, description, onClick }) => (
+export const ProjectCard = ({ title, description, category, onClick }) => (
   <motion.div
     variants={{ ...hoverVariants, ...fadeInVariants }}
     whileHover="hover"
     whileTap="tap"
-    className="container px-10 py-8 mx-5 text-left shadow-md rounded-3xl bg-black-600 max-w-md"
+    className="container h-full px-10 py-8 mx-auto text-left shadow-md rounded-3xl bg-black-600 flex flex-col cursor-pointer"
     onClick={onClick}
   >
-    <h2 className={`text-2xl mb-4 tracking-tight ${manropeSemiBold.className}`}>{title}</h2>
-    <p className={`leading-relaxed ${manropeRegular.className}`}>{description}</p>
-    <motion.button
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      className={`px-6 py-3 mt-6 font-bold text-white rounded-lg bg-white-500/10 hover:bg-white-500/20 ${manropeSemiBold.className}`}
+    <div className="flex-grow">
+      <p className={`text-sm mb-2 text-white-700 ${manropeRegular.className}`}>
+        {category}
+      </p>
+      <h2
+        className={`text-2xl mb-4 tracking-tight ${manropeSemiBold.className}`}
+      >
+        {title}
+      </h2>
+      <p
+        className={`leading-relaxed text-white-800 line-clamp-4 ${manropeRegular.className}`}
+      >
+        {description}
+      </p>
+    </div>
+    <motion.div
+      className={`mt-6 font-bold text-white-500 group-hover:text-white-600 ${manropeSemiBold.className}`}
     >
-      View Details
-    </motion.button>
+      View Details &rarr;
+    </motion.div>
   </motion.div>
 );
 
 export const ProjectModal = ({ isOpen, project, onClose }) => (
   <AnimatePresence>
-    {isOpen && (
+    {isOpen && project && (
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-50 flex items-center justify-center bg-opacity-75 bg-black-500"
+        className="fixed inset-0 z-50 flex items-center justify-center bg-black-500/80"
         onClick={onClose}
         style={{
-          backdropFilter: `blur(${headerBlur}px)`,
+          backdropFilter: "blur(8px)",
         }}
       >
         <motion.div
@@ -185,10 +182,58 @@ export const ProjectModal = ({ isOpen, project, onClose }) => (
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.9, opacity: 0 }}
           transition={{ type: "spring", duration: 0.5 }}
-          className="w-auto p-10 mx-4 text-center lg:w-6/12 bg-white-500 text-black-500 rounded-3xl"
+          className="w-full max-w-4xl p-8 mx-4 text-left bg-black-600 text-white-500 rounded-3xl max-h-[90vh] overflow-y-auto"
           onClick={(e) => e.stopPropagation()}
         >
-          {project}
+          <div className="flex justify-between items-start mb-4">
+            <h1 className="text-4xl font-bold tracking-tight">
+              {project.title}
+            </h1>
+            <span
+              className={`flex-shrink-0 ml-4 px-3 py-1 text-sm rounded-full ${
+                project.status === "Completed"
+                  ? "bg-green-500/20 text-green-300"
+                  : "bg-blue-500/20 text-blue-300"
+              }`}
+            >
+              {project.status}
+            </span>
+          </div>
+
+          <p className="text-lg text-white-700 mb-8 leading-relaxed">
+            {project.overview}
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            <div>
+              <h2 className="text-2xl font-semibold mb-4">Key Features</h2>
+              <ul className="list-disc list-inside space-y-2 text-white-700">
+                {project.keyFeatures.map((feature) => (
+                  <li key={feature}>{feature}</li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h2 className="text-2xl font-semibold mb-4">Technology Stack</h2>
+              <div className="flex flex-wrap gap-2">
+                {project.techStack.map((tech) => (
+                  <span
+                    key={tech}
+                    className="bg-white-500/10 px-3 py-1 rounded-full text-sm"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-8">
+            <h2 className="text-2xl font-semibold mb-4">Technical Highlight</h2>
+            <p className="text-white-700 bg-black-500/50 p-4 rounded-lg border border-white-500/20">
+              {project.technicalHighlight}
+            </p>
+          </div>
         </motion.div>
       </motion.div>
     )}

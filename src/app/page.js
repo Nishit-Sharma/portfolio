@@ -80,9 +80,6 @@ export const metadata = {
       "max-snippet": -1,
     },
   },
-  verification: {
-    google: "add-your-google-verification-code",
-  },
   alternates: {
     canonical: "https://nishitsharma.vercel.app",
     languages: {

@@ -1,26 +1,48 @@
-import { useState } from "react";
+"use client";
+
+import { useState, useEffect, useRef } from "react";
 import { motion } from "motion/react";
 import Script from "next/script";
+import { SmoothAppear } from "../utils/animation-utils";
 import {
-  containerVariants,
-  SmoothAppear,
-} from "../utils/animation-utils";
-import { manropeSemiBold, manropeRegular, ProjectCard, ProjectModal } from "../utils/page-utils";
+  manropeRegular,
+  manropeSemiBold,
+  scholarRegular,
+} from "../utils/page-utils";
+import { projectsData } from "../static/data/projectsData";
+import { ProjectCard, ProjectModal } from "../utils/page-utils";
 
 export default function Projects() {
-  const [modalContent, setModalContent] = useState(null);
+  const [filter, setFilter] = useState("All");
+  const [modalProject, setModalProject] = useState(null);
+  const projectsRef = useRef(null);
+
+  useEffect(() => {
+    if (window.location.hash === "#projects") {
+      projectsRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, []);
+
+  const categories = ["All", ...new Set(projectsData.map((p) => p.category))];
+
+  const filteredProjects = projectsData.filter((project) =>
+    filter === "All" ? true : project.category === filter
+  );
 
   const projects = [
     {
       id: "alpha-personal-assistant",
       title: "A.L.P.H.A Personal Assistant",
-      description: "A personal assistant designed to make life easier. Designed with React and Python",
+      description:
+        "A personal assistant designed to make life easier. Designed with React and Python",
       url: "https://github.com/Nishit-Sharma/NJTSA-Software-Development-LocalHost",
       datePublished: "2023",
       programmingLanguage: ["React", "Python"],
       details: (
         <>
-          <h1 className={`text-xl ${manropeSemiBold.className}`}>A.L.P.H.A Personal Assistant</h1>
+          <h1 className={`text-xl ${manropeSemiBold.className}`}>
+            A.L.P.H.A Personal Assistant
+          </h1>
           <p className={`mt-4 ${manropeRegular.className}`}>
             This was a collaborative project was submitted for the NJTSA
             Software Development competition. It is a personal assistant that
@@ -50,13 +72,16 @@ export default function Projects() {
     {
       id: "frc-charged-up-robot",
       title: "FRC Charged Up Robot",
-      description: "The code for MCST's FRC Robot during the Charged Up Year, 2023",
+      description:
+        "The code for MCST's FRC Robot during the Charged Up Year, 2023",
       url: "https://github.com/mcstrobotics/ChargedUp8588",
       datePublished: "2023",
       programmingLanguage: ["Java"],
       details: (
         <>
-          <h1 className={`text-xl ${manropeSemiBold.className}`}>FRC Charged Up Robot</h1>
+          <h1 className={`text-xl ${manropeSemiBold.className}`}>
+            FRC Charged Up Robot
+          </h1>
           <p className={`mt-4 ${manropeRegular.className}`}>
             This was also a collaborative project where I worked with my team to
             program our bot for the 2023 FRC season. We used Java to program the
@@ -90,7 +115,9 @@ export default function Projects() {
       programmingLanguage: ["JavaScript", "React", "Next.js"],
       details: (
         <>
-          <h1 className={`text-xl ${manropeSemiBold.className}`}>My Portfolio</h1>
+          <h1 className={`text-xl ${manropeSemiBold.className}`}>
+            My Portfolio
+          </h1>
           <p className={`mt-4 ${manropeRegular.className}`}>
             This portfolio website was my first time using Next.js, and I
             learned a lot about React and the thought process of a Web Designer.
@@ -110,8 +137,7 @@ export default function Projects() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className=
-              {`px-4 py-2 font-bold text-white rounded-sm ${manropeSemiBold.className}`}
+              className={`px-4 py-2 font-bold text-white rounded-sm ${manropeSemiBold.className}`}
             >
               View on GitHub
             </motion.button>
@@ -122,50 +148,72 @@ export default function Projects() {
   ];
 
   return (
-    <>
+    <SmoothAppear direction="up">
       <Script id="project-schema" type="application/ld+json">
         {JSON.stringify({
           "@context": "https://schema.org",
           "@type": "ItemList",
-          "itemListElement": projects.map((project, index) => ({
+          itemListElement: projects.map((project, index) => ({
             "@type": "SoftwareSourceCode",
-            "position": index + 1,
-            "name": project.title,
-            "description": project.description,
-            "url": project.url,
-            "datePublished": project.datePublished,
-            "programmingLanguage": project.programmingLanguage,
-            "author": {
+            position: index + 1,
+            name: project.title,
+            description: project.description,
+            url: project.url,
+            datePublished: project.datePublished,
+            programmingLanguage: project.programmingLanguage,
+            author: {
               "@type": "Person",
-              "name": "Nishit Sharma",
-              "url": "https://nishitsharma.vercel.app"
-            }
-          }))
+              name: "Nishit Sharma",
+              url: "https://nishitsharma.vercel.app",
+            },
+          })),
         })}
       </Script>
 
-      <SmoothAppear>
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="container flex flex-col items-center justify-center w-8/12 gap-4 px-4 py-12 mx-auto lg:flex-row lg:gap-12 lg:w-auto"
+      <section id="projects" className="py-20 text-center">
+        <h1
+          className={`mt-8 mb-12 text-7xl tracking-tight ${scholarRegular.className}`}
         >
-          {projects.map((project) => (
+          My Projects
+        </h1>
+
+        <div className="flex justify-center gap-2 mb-12 flex-wrap">
+          {categories.map((category) => (
+            <button
+              type="button"
+              key={category}
+              onClick={() => setFilter(category)}
+              className={`px-4 py-2 text-lg rounded-full transition-colors ${
+                manropeRegular.className
+              } ${
+                filter === category
+                  ? "bg-white-500 text-black-500 font-bold"
+                  : "bg-black-600 hover:bg-black-500"
+              }`}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-16">
+          {filteredProjects.map((project) => (
             <ProjectCard
-              key={project.id}
+              key={project.slug}
               title={project.title}
-              description={project.description}
-              onClick={() => setModalContent(project.details)}
+              description={project.overview}
+              category={project.category}
+              onClick={() => setModalProject(project)}
             />
           ))}
-          <ProjectModal
-            isOpen={modalContent !== null}
-            project={modalContent}
-            onClose={() => setModalContent(null)}
-          />
-        </motion.div>
-      </SmoothAppear>
-    </>
+        </div>
+
+        <ProjectModal
+          isOpen={modalProject !== null}
+          project={modalProject}
+          onClose={() => setModalProject(null)}
+        />
+      </section>
+    </SmoothAppear>
   );
 }
