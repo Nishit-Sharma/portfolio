@@ -1,4 +1,6 @@
-import { useState, useCallback } from "react";
+"use client";
+
+import { useState, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { SmoothAppear } from "../utils/animation-utils";
 import { InfoCard, DocumentViewer, IconButton } from "../utils/page-utils";
