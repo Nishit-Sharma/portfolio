@@ -189,13 +189,7 @@ export const ProjectModal = ({ isOpen, project, onClose }) => (
             <h1 className="text-4xl font-bold tracking-tight">
               {project.title}
             </h1>
-            <span
-              className={`flex-shrink-0 ml-4 px-3 py-1 text-sm rounded-full ${
-                project.status === "Completed"
-                  ? "bg-green-500/20 text-green-300"
-                  : "bg-blue-500/20 text-blue-300"
-              }`}
-            >
+            <span className="flex-shrink-0 ml-4 px-3 py-1 text-sm rounded-full">
               {project.status}
             </span>
           </div>

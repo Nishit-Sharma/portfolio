@@ -27,7 +27,7 @@ export const projectsData = [
     ],
     technicalHighlight:
       "The project features a robust, security-first architecture with a dedicated `PermissionManager` that governs all actions. This system assigns risk levels to different operations, validates inputs to prevent injection attacks, and provides a sandboxed environment for execution, ensuring that the assistant operates safely and reliably, even when performing sensitive tasks.",
-    status: "Completed",
+    status: "Work in Progress",
   },
   {
     slug: "intelligent-ocr-document-processor",
