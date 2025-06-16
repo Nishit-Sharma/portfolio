@@ -8,8 +8,20 @@ import Resume from "../static/NishitSharmaResume.jpg";
 import Transcript from "../static/NishitSharmaTranscript.jpg";
 
 export default function Information() {
-  // Check if user is on mobile
-  const isMobile = window.innerWidth < 768;
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkIsMobile();
+
+    window.addEventListener("resize", checkIsMobile);
+
+    return () => window.removeEventListener("resize", checkIsMobile);
+  }, []);
+
   const delay = isMobile ? 0 : 2.5;
 
   const [activeDocument, setActiveDocument] = useState("summary");
@@ -70,7 +82,7 @@ export default function Information() {
   };
 
   return (
-    <SmoothAppear direction="up" delay={{delay}}>
+    <SmoothAppear direction="up" delay={{ delay }}>
       <motion.div initial="hidden" className="container px-4 mx-auto">
         <AnimatePresence mode="wait">
           <motion.div
