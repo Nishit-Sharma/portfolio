@@ -1,18 +1,21 @@
 import MillionLint from '@million/lint';
-import withPWA from 'next-pwa';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    turbo: {
-      resolveAlias: {
-        './Sample.js': './app/Sample.tsx',
-        canvas: './empty-module.ts'
-      }
-    }
+  compress: true,
+  turbopack: {
+    resolveAlias: {
+      './Sample.js': './app/Sample.tsx',
+      canvas: './empty-module.ts',
+    },
   },
   images: {
-    domains: ['nishitsharma.vercel.app'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+      },
+    ],
   },
   webpack: (config, options) => {
     config.resolve.alias.canvas = false;
@@ -27,11 +30,6 @@ const nextConfig = {
   }
 };
 
-const withPWAConfig = withPWA({
-  dest: 'public',
-  disable: process.env.NODE_ENV === 'development',
-});
-
 export default MillionLint.next({
-  rsc: true
-})(withPWAConfig(nextConfig));
+  rsc: true,
+})(nextConfig);

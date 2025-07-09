@@ -43,7 +43,6 @@ function checkMobile() {
 }
 
 export const nameDirection = checkMobile() ? "up" : "right";
-export const footerDelay = checkMobile() ? 2.5 : 0;
 
 export const NavLink = ({ href, children, scroll }) => (
   <motion.div
@@ -60,20 +59,6 @@ export const NavLink = ({ href, children, scroll }) => (
     </Link>
   </motion.div>
 );
-
-export const LazyLoadWrapper = ({ children }) => {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  if (!isMounted) {
-    return <LoadingSpinner />;
-  }
-
-  return <>{children}</>;
-};
 
 export const InfoCard = ({ children }) => (
   <SmoothAppear>
@@ -182,7 +167,7 @@ export const ProjectModal = ({ isOpen, project, onClose }) => (
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.9, opacity: 0 }}
           transition={{ type: "spring", duration: 0.5 }}
-          className="w-full max-w-4xl p-8 mx-4 text-left bg-black-600 text-white-500 rounded-3xl max-h-[90vh] overflow-y-auto"
+          className="w-full max-w-sm md:max-w-4xl p-8 md:p-8 text-left bg-black-600 text-white-500 rounded-3xl max-h-[80vh] md:max-h-[90vh] overflow-y-auto no-scrollbar"
           onClick={(e) => e.stopPropagation()}
         >
           <div className="flex justify-between items-start mb-4">

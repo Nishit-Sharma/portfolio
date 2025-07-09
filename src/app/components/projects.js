@@ -1,12 +1,10 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { motion } from "motion/react";
 import Script from "next/script";
 import { SmoothAppear } from "../utils/animation-utils";
 import {
   manropeRegular,
-  manropeSemiBold,
   scholarRegular,
 } from "../utils/page-utils";
 import { projectsData } from "../static/data/projectsData";
@@ -29,135 +27,17 @@ export default function Projects() {
     filter === "All" ? true : project.category === filter
   );
 
-  const projects = [
-    {
-      id: "alpha-personal-assistant",
-      title: "A.L.P.H.A Personal Assistant",
-      description:
-        "A personal assistant designed to make life easier. Designed with React and Python",
-      url: "https://github.com/Nishit-Sharma/NJTSA-Software-Development-LocalHost",
-      datePublished: "2023",
-      programmingLanguage: ["React", "Python"],
-      details: (
-        <>
-          <h1 className={`text-xl ${manropeSemiBold.className}`}>
-            A.L.P.H.A Personal Assistant
-          </h1>
-          <p className={`mt-4 ${manropeRegular.className}`}>
-            This was a collaborative project was submitted for the NJTSA
-            Software Development competition. It is a personal assistant that
-            was designed to make ordinary tasks easier. Telling the time, date,
-            weather, googling things are all possible with A.L.P.H.A. It was
-            designed with React and Python, where React was used for the front
-            end and Python was used for the backend. I primarily worked on the
-            connection between React and Python, and the Python file itself.
-          </p>
-          <a
-            href="https://github.com/Nishit-Sharma/NJTSA-Software-Development-LocalHost"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-block mt-4"
-          >
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className={`px-4 py-2 font-bold text-white rounded-sm ${manropeSemiBold.className}`}
-            >
-              View on GitHub
-            </motion.button>
-          </a>
-        </>
-      ),
-    },
-    {
-      id: "frc-charged-up-robot",
-      title: "FRC Charged Up Robot",
-      description:
-        "The code for MCST's FRC Robot during the Charged Up Year, 2023",
-      url: "https://github.com/mcstrobotics/ChargedUp8588",
-      datePublished: "2023",
-      programmingLanguage: ["Java"],
-      details: (
-        <>
-          <h1 className={`text-xl ${manropeSemiBold.className}`}>
-            FRC Charged Up Robot
-          </h1>
-          <p className={`mt-4 ${manropeRegular.className}`}>
-            This was also a collaborative project where I worked with my team to
-            program our bot for the 2023 FRC season. We used Java to program the
-            robot, and I primarily worked on the autonomous code and the drive
-            code. This was the first big project I worked on as a team and I
-            took a lot away from it.
-          </p>
-          <a
-            href="https://github.com/mcstrobotics/ChargedUp8588"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-block mt-4"
-          >
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className={`px-4 py-2 font-bold text-white rounded-sm ${manropeSemiBold.className}`}
-            >
-              View on GitHub
-            </motion.button>
-          </a>
-        </>
-      ),
-    },
-    {
-      id: "my-portfolio",
-      title: "My Portfolio",
-      description: "This Portfolio Website!",
-      url: "https://github.com/Nishit-Sharma/portfolio",
-      datePublished: "2023",
-      programmingLanguage: ["JavaScript", "React", "Next.js"],
-      details: (
-        <>
-          <h1 className={`text-xl ${manropeSemiBold.className}`}>
-            My Portfolio
-          </h1>
-          <p className={`mt-4 ${manropeRegular.className}`}>
-            This portfolio website was my first time using Next.js, and I
-            learned a lot about React and the thought process of a Web Designer.
-            I used Tailwind CSS for styling and Framer Motion for animations,
-            which were also two new libraries for me. I also used Vercel for
-            deployment to make sure that my website was easily accessible. I
-            learned a lot about web development, React, and Next.js from this
-            project and it changed my perspective on web development in a
-            positive way
-          </p>
-          <a
-            href="https://github.com/Nishit-Sharma/portfolio"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-block mt-4"
-          >
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className={`px-4 py-2 font-bold text-white rounded-sm ${manropeSemiBold.className}`}
-            >
-              View on GitHub
-            </motion.button>
-          </a>
-        </>
-      ),
-    },
-  ];
-
   return (
     <SmoothAppear direction="up">
       <Script id="project-schema" type="application/ld+json">
         {JSON.stringify({
           "@context": "https://schema.org",
           "@type": "ItemList",
-          itemListElement: projects.map((project, index) => ({
+          itemListElement: projectsData.map((project, index) => ({
             "@type": "SoftwareSourceCode",
             position: index + 1,
             name: project.title,
-            description: project.description,
+            description: project.overview,
             url: project.url,
             datePublished: project.datePublished,
             programmingLanguage: project.programmingLanguage,

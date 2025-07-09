@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "motion/react";
 
 export const fadeInVariants = {
@@ -25,19 +27,6 @@ export const hoverVariants = {
   },
   tap: {
     scale: 0.95,
-  },
-};
-
-export const containerVariants = {
-  hidden: {
-    opacity: 0,
-  },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.3,
-    },
   },
 };
 

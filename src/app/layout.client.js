@@ -45,7 +45,7 @@ function Header() {
           <nav className="flex space-x-6">
             {/* <NavLink href="/blog">Blog</NavLink> */}
             {/* <NavLink href="/#projects">Projects</NavLink> */}
-            {/* <NavLink href="/contact">Contact</NavLink> */}
+            <NavLink href="/contact">Contact</NavLink>
           </nav>
         </SmoothAppear>
       </div>
