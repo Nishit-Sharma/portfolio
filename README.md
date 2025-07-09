@@ -7,19 +7,22 @@ You can view the live site here: [nishitsharma.vercel.app](https://nishitsharma.
 ## ✨ Features
 
 -   **Dynamic Project Showcase:** A comprehensive projects section with a filterable grid and detailed modal pop-ups for each entry.
+-   **Headless CMS Integration:** A fully-featured blog powered by Sanity.io for dynamic content management.
+-   **Contact Form:** A functional contact form with email notifications using Nodemailer and React Email.
 -   **Orchestrated Animations:** A polished, choreographed entry animation sequence built with Framer Motion that provides a professional user experience.
--   **Integrated Blog:** A fully functional blog to share technical write-ups and project deep dives.
 -   **Interactive Resume:** An accessible, web-native version of my resume.
 -   **Responsive Design:** A mobile-first design that looks great on all devices, from phones to desktops.
 -   **Performance Optimized:** Built with Next.js App Router for a hybrid rendering approach, leveraging Server Components for speed and Client Components for interactivity.
 
 ## 🛠️ Tech Stack
 
+-   **Animations:** [Framer Motion](https://www.framer.com/motion/)
+-   **CMS:** [Sanity.io](https://www.sanity.io/)
+-   **Deployment:** [Vercel](https://vercel.com/)
+-   **Email:** [Nodemailer](https://nodemailer.com/), [React Email](https://react.email/)
 -   **Framework:** [Next.js](https://nextjs.org/) (App Router)
 -   **Language:** JavaScript
 -   **Styling:** [Tailwind CSS](https://tailwindcss.com/)
--   **Animations:** [Framer Motion](https://www.framer.com/motion/)
--   **Deployment:** [Vercel](https://vercel.com/)
 
 ## 🚀 Getting Started
 
@@ -46,7 +49,3 @@ To run this project locally, follow these steps:
     ```
 
     Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details. 
