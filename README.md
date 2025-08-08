@@ -16,7 +16,7 @@ You can view the live site here: [nishitsharma.vercel.app](https://nishitsharma.
 
 ## 🛠️ Tech Stack
 
--   **Animations:** [Framer Motion](https://www.framer.com/motion/)
+-   **Animations:** [Motion](https://motion.dev)
 -   **CMS:** [Sanity.io](https://www.sanity.io/)
 -   **Deployment:** [Vercel](https://vercel.com/)
 -   **Email:** [Nodemailer](https://nodemailer.com/), [React Email](https://react.email/)
