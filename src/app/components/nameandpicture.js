@@ -32,7 +32,7 @@ export default function NameAndPicture() {
               <p
                 className={`text-xl lg:text-2xl tracking-wide leading-relaxed text-white-300 ${scholarItalic.className}`}
               >
-                Student • Robotics Enthusiast • Developer
+                High-Velocity Engineer • AI/Desktop Specialist • Building Proactive Copilots
               </p>
             </div>
           </SmoothAppear>

@@ -17,7 +17,8 @@ const options = { next: { revalidate: 30 } };
 
 export const metadata = {
   title: "Blog",
-  description: "Read technical write-ups and articles by Nishit Sharma on web development, robotics, and more.",
+  description: "Read technical write-ups and articles by Nishit Sharma on Web and AI development, Electron apps, real-time multimodal systems, and more.",
+  keywords: ["AI development", "Electron apps", "real-time AI", "multimodal", "contextual AI", "Nishit Sharma"],
 };
 
 export default async function BlogPage() {

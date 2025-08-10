@@ -43,7 +43,7 @@ function Header() {
         </SmoothAppear>
         <SmoothAppear direction="down" delay={1.85}>
           <nav className="flex space-x-6">
-            {/* <NavLink href="/blog">Blog</NavLink> */}
+            <NavLink href="/blog">Blog</NavLink>
             {/* <NavLink href="/#projects">Projects</NavLink> */}
             <NavLink href="/contact">Contact</NavLink>
           </nav>

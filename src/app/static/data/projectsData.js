@@ -1,38 +1,25 @@
 export const projectsData = [
   {
-    slug: "ai-voice-assistant-jarvis",
-    title: "AI-Powered Voice Assistant (Jarvis)",
-    category: "AI/ML & Automation",
+    slug: "valorant-strategy-analyzer",
+    title: "Valorant Strategy Analyzer",
+    category: "AI",
     overview:
-      "A sophisticated, voice-activated AI assistant designed to streamline user productivity by controlling desktop applications, managing information, and executing complex commands through natural language. Inspired by the fictional AI, this project emphasizes a secure, modular architecture and leverages a suite of modern APIs to provide a powerful and extensible personal assistant experience, with a focus on using free-tier services.",
+      "During a match of Valorant, teams have very clear tells on what they do. The point of the app is for the user to upload a video of a match that has the minimap showing and the app is able to predict what the enemies will do based on where they are. It will scan through every round of the game and generate a report of what a team likes to do during a map, how they like to execute sites, and who is in key areas of the map during the executes.",
     keyFeatures: [
-      "Utilizes local wake-word detection and speech-to-text engines to enable hands-free operation.",
-      "Executes tasks across the operating system and web browsers, from opening applications to automating online workflows.",
-      "Seamlessly connects with Google services (Calendar, Gmail), Spotify, and weather APIs to manage daily tasks and information.",
-      "Features a modular design that allows for the easy addition of new capabilities and integrations.",
+      "Video analysis of Valorant gameplay.",
+      "Predictive analysis of enemy team strategies.",
+      "Round-by-round report generation.",
+      "Identification of key player positions and site execution patterns.",
     ],
-    techStack: [
-      "Python",
-      "asyncio",
-      "pydantic",
-      "Google Gemini",
-      "SpeechRecognition",
-      "pyttsx3",
-      "Whisper",
-      "PyAutoGUI",
-      "Playwright",
-      "Selenium",
-      "Google API Client",
-      "Spotipy",
-    ],
+    techStack: ["Python", "OpenCV", "PyTorch/TensorFlow", "Docker", "FastAPI", "PostgreSQL", "Next.js"],
     technicalHighlight:
-      "The project features a robust, security-first architecture with a dedicated `PermissionManager` that governs all actions. This system assigns risk levels to different operations, validates inputs to prevent injection attacks, and provides a sandboxed environment for execution, ensuring that the assistant operates safely and reliably, even when performing sensitive tasks.",
-    status: "Work in Progress",
+      "Distributed PyTorch/OpenCV pipeline for real-time event extraction and proactive recommendations.",
+    status: "Completed",
   },
   {
     slug: "intelligent-ocr-document-processor",
     title: "Intelligent OCR Document Processor",
-    category: "Desktop App",
+    category: "Desktop Apps",
     overview:
       "A powerful desktop application designed to streamline document workflows by converting images and PDFs into searchable text. It leverages Optical Character Recognition (OCR) to extract text and then intelligently categorizes the documents based on their content. This tool is ideal for individuals and businesses looking to digitize and organize paper-based information with speed and accuracy.",
     keyFeatures: [
@@ -50,7 +37,7 @@ export const projectsData = [
       "PDF.js",
     ],
     technicalHighlight:
-      "The application's core strength lies in its efficient, client-side document processing pipeline. It integrates the Tesseract.js OCR engine for in-app text recognition and a custom categorization service directly within an Electron-based desktop architecture, ensuring that all processing occurs locally on the user's machine for maximum privacy and performance.",
+      "Cross-platform Electron desktop app with sub-second Tesseract.js processing, ensuring privacy-focused, always-on AI. Built and deployed in 2 days.",
     status: "Completed",
   },
   {
@@ -76,55 +63,6 @@ export const projectsData = [
     ],
     technicalHighlight:
       "The application's core strength lies in its dynamic and efficient data handling. A custom React hook (`useActivities`) was developed to construct complex, compound Firestore queries on the fly based on user-selected filters and sorting options. This hook also leverages Firestore's real-time `onSnapshot` listener, providing an instantly responsive user experience by pushing live data updates to the front end without manual intervention.",
-    status: "Completed",
-  },
-  {
-    slug: "valorant-strategy-analyzer",
-    title: "Valorant Strategy Analyzer",
-    category: "AI/ML",
-    overview:
-      "During a match of Valorant, teams have very clear tells on what they do. The point of the app is for the user to upload a video of a match that has the minimap showing and the app is able to predict what the enemies will do based on where they are. It will scan through every round of the game and generate a report of what a team likes to do during a map, how they like to execute sites, and who is in key areas of the map during the executes.",
-    keyFeatures: [
-      "Video analysis of Valorant gameplay.",
-      "Predictive analysis of enemy team strategies.",
-      "Round-by-round report generation.",
-      "Identification of key player positions and site execution patterns.",
-    ],
-    techStack: ["Python", "OpenCV", "PyTorch/TensorFlow", "MoviePy"],
-    technicalHighlight:
-      "The core of this project will be a computer vision model trained to recognize agents, abilities, and map locations from the minimap in a Valorant gameplay video. It will use this data to build a state model of each round, identifying patterns and predicting enemy team behavior with a high degree of accuracy.",
-    status: "Planned",
-  },
-  {
-    slug: "coding-time-at-the-inventory",
-    title: "C++ Labs: Coding Time at the Inventory",
-    category: "C++",
-    overview:
-      "A C++ application developed to manage inventory data, demonstrating fundamental concepts of object-oriented programming, data structures, and file I/O. The project focuses on efficient data handling and a clean, console-based user interface.",
-    keyFeatures: [
-      "Create, read, update, and delete inventory records.",
-      "Data persistence through file streaming.",
-      "Implementation of custom data structures for inventory management.",
-    ],
-    techStack: ["C++", "File I/O"],
-    technicalHighlight:
-      "This project emphasizes robust error handling and memory management in C++, ensuring stability and reliability when processing inventory files.",
-    status: "Completed",
-  },
-  {
-    slug: "rise-of-the-minis",
-    title: "C++ Labs: Rise of the Minis",
-    category: "C++",
-    overview:
-      "A text-based adventure game built in C++, showcasing skills in algorithmic thinking, state management, and creative problem-solving. Players navigate a world, interact with characters, and make choices that affect the outcome of the story.",
-    keyFeatures: [
-      "Complex narrative branching based on user input.",
-      "Dynamic event system to manage game state.",
-      "Use of object-oriented principles to model game entities.",
-    ],
-    techStack: ["C++"],
-    technicalHighlight:
-      "The game features a modular design that allows for easy expansion of the story, characters, and game mechanics, demonstrating a forward-thinking approach to software architecture in a game development context.",
     status: "Completed",
   },
   {
@@ -154,13 +92,13 @@ export const projectsData = [
       "Fully responsive design that works on all devices.",
       "Dynamic project and blog sections powered by local data.",
       "Optimized for performance with Next.js features like Server Components and Image Optimization.",
-      "Interactive UI with animations using Framer Motion.",
+      "Interactive UI with animations using Motion.",
     ],
     techStack: [
       "Next.js",
       "React",
       "Tailwind CSS",
-      "Framer Motion",
+      "Motion",
       "JavaScript",
     ],
     technicalHighlight:
