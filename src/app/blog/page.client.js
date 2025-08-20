@@ -2,17 +2,33 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import Script from "next/script";
 import { motion } from "motion/react";
 import { SmoothAppear, fadeInVariants, hoverVariants } from "../utils/animation-utils";
 import {
   manropeRegular,
   manropeSemiBold,
   scholarRegular,
-} from "../utils/page-utils";
+} from "../fonts";
 
 export default function BlogClient({ posts }) {
   return (
     <SmoothAppear direction="up">
+      <Script id="blog-json-ld" type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Blog",
+          name: "Nishit Sharma Blog",
+          url: "https://nishitsharma.vercel.app/blog",
+          blogPost: posts.map((post) => ({
+            "@type": "BlogPosting",
+            headline: post.title,
+            datePublished: post.publishedAt,
+            url: `https://nishitsharma.vercel.app/blog/${post.slug.current}`,
+            image: post.imageUrl || undefined,
+          })),
+        })}
+      </Script>
       <main className="container mx-auto min-h-screen max-w-6xl pt-20 p-8">
         <motion.div 
           className="mb-12 text-center"

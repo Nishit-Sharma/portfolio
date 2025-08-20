@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Script from "next/script";
 import Image from "next/image";
 import { motion } from "motion/react";
 import { PortableText } from "next-sanity";
@@ -13,7 +14,7 @@ import {
   manropeRegular,
   manropeSemiBold,
   scholarRegular,
-} from "@/app/utils/page-utils";
+} from "@/app/fonts";
 
 const portableTextComponents = {
   block: {
@@ -87,6 +88,43 @@ export default function PostClient({ post }) {
 
   return (
     <SmoothAppear direction="up">
+      <Script id="post-json-ld" type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: post.title,
+          datePublished: post.publishedAt,
+          dateModified: post._updatedAt || post.publishedAt,
+          author: post.author?.name
+            ? { "@type": "Person", name: post.author.name }
+            : undefined,
+          image: post.imageUrl || undefined,
+          mainEntityOfPage: {
+            "@type": "WebPage",
+            "@id": `https://nishitsharma.vercel.app/blog/${post.slug?.current || ""}`,
+          },
+        })}
+      </Script>
+      <Script id="breadcrumbs-json-ld" type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Blog",
+              item: "https://nishitsharma.vercel.app/blog",
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: post.title,
+              item: `https://nishitsharma.vercel.app/blog/${post.slug?.current || ""}`,
+            },
+          ],
+        })}
+      </Script>
       <main className="container mx-auto min-h-screen max-w-4xl pt-22 p-8">
         <motion.div
           className="mb-8"

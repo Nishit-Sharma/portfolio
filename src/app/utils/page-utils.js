@@ -1,40 +1,11 @@
 "use client";
 
-import localFont from "next/font/local";
 import { motion, AnimatePresence } from "motion/react";
-import { useState, useEffect, useMemo, memo } from "react";
+import { memo } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import LoadingSpinner from "./loading-spinner";
 import { SmoothAppear, hoverVariants, fadeInVariants } from "./animation-utils";
-
-export const scholarRegular = localFont({
-  src: "../static/fonts/scholar-regular.otf",
-  display: "swap",
-  preload: true,
-  variable: "--font-scholar",
-});
-
-export const scholarItalic = localFont({
-  src: "../static/fonts/scholar-italic.otf",
-  display: "swap",
-  preload: true,
-  variable: "--font-scholar-italic",
-});
-
-export const manropeRegular = localFont({
-  src: "../static/fonts/manrope-regular.otf",
-  display: "swap",
-  preload: true,
-  variable: "--font-manrope",
-});
-
-export const manropeSemiBold = localFont({
-  src: "../static/fonts/manrope-semibold.otf",
-  display: "swap",
-  preload: true,
-  variable: "--font-manrope-bold",
-});
+import { manropeRegular, manropeSemiBold } from "../fonts";
 
 function checkMobile() {
   if (typeof window !== "undefined") {
@@ -73,23 +44,18 @@ export const InfoCard = ({ children }) => (
   </SmoothAppear>
 );
 
-export const DocumentViewer = memo(({ src, alt }) =>
-  useMemo(
-    () => (
-      <motion.div className="container w-auto max-w-3xl px-10 py-6 mx-auto text-center shadow-2xl rounded-3xl bg-white-500">
-        <Image
-          src={src}
-          alt={alt}
-          width={700}
-          height={700}
-          priority={true}
-          className="mx-auto rounded-lg"
-        />
-      </motion.div>
-    ),
-    [src, alt]
-  )
-);
+export const DocumentViewer = memo(({ src, alt }) => (
+  <motion.div className="container w-auto max-w-3xl px-10 py-6 mx-auto text-center shadow-2xl rounded-3xl bg-white-500">
+    <Image
+      src={src}
+      alt={alt}
+      width={700}
+      height={700}
+      priority={true}
+      className="mx-auto rounded-lg"
+    />
+  </motion.div>
+));
 
 export const IconButton = ({
   src,

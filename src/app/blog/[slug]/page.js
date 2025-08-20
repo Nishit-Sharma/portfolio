@@ -44,6 +44,35 @@ export async function generateMetadata({ params }) {
   return {
     title: post.title,
     description: post.summary || post.title,
+    alternates: {
+      canonical: `https://nishitsharma.vercel.app/blog/${post.slug?.current || ""}`,
+    },
+    openGraph: {
+      type: "article",
+      title: post.title,
+      description: post.summary || post.title,
+      url: `https://nishitsharma.vercel.app/blog/${post.slug?.current || ""}`,
+      images: post.mainImage && projectId && dataset
+        ? [
+            {
+              url: imageUrlBuilder({ projectId, dataset })
+                .image(post.mainImage)
+                .fit("max")
+                .width(1200)
+                .height(630)
+                .url(),
+              width: 1200,
+              height: 630,
+              alt: post.title,
+            },
+          ]
+        : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.summary || post.title,
+    },
   };
 }
 

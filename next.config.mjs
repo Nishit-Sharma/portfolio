@@ -3,12 +3,7 @@ import MillionLint from '@million/lint';
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   compress: true,
-  turbopack: {
-    resolveAlias: {
-      './Sample.js': './app/Sample.tsx',
-      canvas: './empty-module.ts',
-    },
-  },
+  turbopack: {},
   images: {
     remotePatterns: [
       {
@@ -17,7 +12,8 @@ const nextConfig = {
       },
     ],
   },
-  webpack: (config, options) => {
+  webpack: (config) => {
+    // Ensure optional 'canvas' dependency is stubbed out for server bundles if present
     config.resolve.alias.canvas = false;
     config.resolve.extensionAlias = {
       '.js': ['.js', '.ts', '.tsx']

@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { scholarRegular } from "./page-utils";
+import { scholarRegular } from "../fonts";
 
 const LoadingSpinner = () => {
   return (

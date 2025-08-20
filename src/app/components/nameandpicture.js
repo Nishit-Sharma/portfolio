@@ -1,10 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import { motion } from "motion/react";
-import {
-  scholarRegular,
-  scholarItalic,
-  nameDirection,
-} from "../utils/page-utils";
+import { nameDirection } from "../utils/page-utils";
+import { scholarRegular, scholarItalic } from "../fonts";
 import { SmoothAppear } from "../utils/animation-utils";
 import NishitSharmaPicture from "../static/NishitSharma.png";
 

@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 
 import "./globals.css";
 
-import GithubIcon from "./static/Github.png";
+import GithubIcon from "./static/github.png";
 import InstagramIcon from "./static/instagram.png";
 import LinkedInIcon from "./static/linkedin.png";
 
