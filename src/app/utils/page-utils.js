@@ -44,7 +44,7 @@ export const InfoCard = ({ children }) => (
   </SmoothAppear>
 );
 
-export const DocumentViewer = memo(({ src, alt }) => (
+const DocumentViewerComponent = ({ src, alt }) => (
   <motion.div className="container w-auto max-w-3xl px-10 py-6 mx-auto text-center shadow-2xl rounded-3xl bg-white-500">
     <Image
       src={src}
@@ -55,7 +55,11 @@ export const DocumentViewer = memo(({ src, alt }) => (
       className="mx-auto rounded-lg"
     />
   </motion.div>
-));
+);
+
+DocumentViewerComponent.displayName = "DocumentViewer";
+
+export const DocumentViewer = memo(DocumentViewerComponent);
 
 export const IconButton = ({
   src,
