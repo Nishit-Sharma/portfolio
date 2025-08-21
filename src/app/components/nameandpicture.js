@@ -17,7 +17,7 @@ export default function NameAndPicture() {
               <h1
                 className={`text-5xl font-bold tracking-wider leading-tight lg:text-7xl ${scholarRegular.className}`}
               >
-                Hello, I'm
+                Hello, I&apos;m
                 <span className="block mt-2">Nishit Sharma</span>
               </h1>
 

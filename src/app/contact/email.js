@@ -41,7 +41,7 @@ const ContactFormEmail = ({ name, email, subject, message }) => {
                 New Contact Form Submission
               </Heading>
               <Text className="text-brand-muted">
-                You've received a new message from your contact form.
+                You&apos;ve received a new message from your contact form.
               </Text>
             </Section>
 

@@ -36,12 +36,12 @@ export default function Information() {
       <InfoCard>
         <p className="space-y-4">
           I am a high-velocity software engineer specializing in full-stack AI
-          apps. I've shipped production-grade tools in days—like an Electron OCR
+          apps. I&apos;ve shipped production-grade tools in days—like an Electron OCR
           desktop app for real-time processing and a PyTorch pipeline for
           multimodal video analysis. As Robotics President, I led a 100+ team to
           hypergrowth (40% expansion, $10K raised) while mastering Java
           codebases in 24 hours. Passionate about human-computer interaction;
-          let's build AI that predicts intent.
+          let&apos;s build AI that predicts intent.
         </p>
       </InfoCard>
     ),
