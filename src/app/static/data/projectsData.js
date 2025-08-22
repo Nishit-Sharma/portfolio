@@ -2,7 +2,7 @@ export const projectsData = [
   {
     slug: "valorant-strategy-analyzer",
     title: "Valorant Strategy Analyzer",
-    category: "AI",
+    category: "AI Tools",
     overview:
       "During a match of Valorant, teams have very clear tells on what they do. The point of the app is for the user to upload a video of a match that has the minimap showing and the app is able to predict what the enemies will do based on where they are. It will scan through every round of the game and generate a report of what a team likes to do during a map, how they like to execute sites, and who is in key areas of the map during the executes.",
     keyFeatures: [

@@ -5,6 +5,7 @@ import { motion } from "motion/react";
 import { SmoothAppear, fadeInVariants } from "./utils/animation-utils";
 import { NavLink } from "./utils/page-utils";
 import { useState, useEffect } from "react";
+import Cursor from "./utils/cursor";
 
 import "./globals.css";
 
@@ -112,17 +113,20 @@ function Footer() {
 
 export default function ClientLayout({ children }) {
   return (
-    <main>
-      <Header />
-      <motion.main
-        initial="hidden"
-        animate="visible"
-        variants={fadeInVariants}
-        className="flex-grow"
-      >
-        {children}
-      </motion.main>
-      <Footer />
-    </main>
+    <>
+      <Cursor />
+      <main>
+        <Header />
+        <motion.main
+          initial="hidden"
+          animate="visible"
+          variants={fadeInVariants}
+          className="flex-grow"
+        >
+          {children}
+        </motion.main>
+        <Footer />
+      </main>
+    </>
   );
 }

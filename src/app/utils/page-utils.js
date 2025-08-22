@@ -68,7 +68,7 @@ export const IconButton = ({
   "aria-label": ariaLabel,
   "aria-pressed": ariaPressed,
 }) => (
-  <motion.button
+  <motion.div
     whileHover="hover"
     whileTap="tap"
     variants={hoverVariants}
@@ -85,7 +85,7 @@ export const IconButton = ({
     }}
   >
     <Image src={src} alt={alt} width={24} height={24} />
-  </motion.button>
+  </motion.div>
 );
 
 export const ProjectCard = ({ title, description, category, onClick }) => (
@@ -111,10 +111,15 @@ export const ProjectCard = ({ title, description, category, onClick }) => (
         {description}
       </p>
     </div>
-    <motion.div
+    {/* <motion.div
       className={`mt-6 font-bold text-white-500 group-hover:text-white-600 ${manropeSemiBold.className}`}
     >
       View Details &rarr;
+    </motion.div> */}
+    <motion.div
+      className={`mt-6 font-bold text-white-500 group-hover:text-white-600 ${manropeSemiBold.className}`}
+    >
+      <button type="button" className="p-0.5">View Details &rarr;</button>
     </motion.div>
   </motion.div>
 );

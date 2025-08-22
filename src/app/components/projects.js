@@ -92,7 +92,7 @@ const Tabs = ({ tabs, activeTab, onTabChange }) => {
             padding: idx === 0 ? "4px 0px 4px 4px" : idx === tabs.length - 1 ? "4px 4px 4px 0px" : 4,
           }}
         >
-          <motion.button
+          <motion.div
             className="relative w-full p-2 flex justify-center items-center text-sm rounded-lg focus:outline-none transition-colors"
             whileFocus={{
               outline: "2px solid var(--accent)",
@@ -106,14 +106,15 @@ const Tabs = ({ tabs, activeTab, onTabChange }) => {
               color: activeTab === tab.id ? "#f5f5f5" : "var(--feint-text)",
             }}
           >
-            <span
-              className="z-10"
+            <motion.button
+              className="z-10 p-1"
               style={{
                 color: activeTab === tab.id ? "#f5f5f5" : "var(--feint-text)",
               }}
+              onClick={() => onTabChange(tab.id)}
             >
               {tab.label}
-            </span>
+            </motion.button>
 
             {tab.id === activeTab ? (
               <motion.span
@@ -130,7 +131,7 @@ const Tabs = ({ tabs, activeTab, onTabChange }) => {
                 }}
               />
             ) : null}
-          </motion.button>
+          </motion.div>
         </motion.li>
       ))}
     </ul>
@@ -278,7 +279,7 @@ export default function Projects() {
       </Script>
 
       <section ref={projectsRef} id="projects" className="py-20 text-center">
-        <h1 className={`mt-8 mb-12 text-4xl md:text-7xl tracking-tight ${scholarRegular.className}`}>My Projects</h1>
+        <div className={`mt-8 mb-12 text-4xl md:text-7xl tracking-tight ${scholarRegular.className}`}></div>
 
         <div className="relative flex flex-col gap-8 justify-center items-center min-w-[280px] w-[clamp(280px,90dvw,10000px)] h-full">
           <Tabs tabs={tabs} activeTab={activeTab} onTabChange={handleTabChange} />
