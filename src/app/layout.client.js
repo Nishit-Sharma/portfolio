@@ -6,6 +6,7 @@ import { SmoothAppear, fadeInVariants } from "./utils/animation-utils";
 import { NavLink } from "./utils/page-utils";
 import { useState, useEffect } from "react";
 import Cursor from "./utils/cursor";
+import { DocumentProvider } from "./contexts/DocumentContext";
 
 import "./globals.css";
 
@@ -113,7 +114,7 @@ function Footer() {
 
 export default function ClientLayout({ children }) {
   return (
-    <>
+    <DocumentProvider>
       <Cursor />
       <main>
         <Header />
@@ -127,6 +128,6 @@ export default function ClientLayout({ children }) {
         </motion.main>
         <Footer />
       </main>
-    </>
+    </DocumentProvider>
   );
 }

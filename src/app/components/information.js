@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { SmoothAppear } from "../utils/animation-utils";
 import { InfoCard, DocumentViewer, IconButton } from "../utils/page-utils";
+import { useDocument } from "../contexts/DocumentContext";
 import ResumeIcon from "../static/resume.png";
 
 import Resume from "../static/NishitSharmaResume.png";
@@ -17,19 +17,7 @@ export default function Information() {
 
   const phoneDelay = checkMobile() ? 0 : 2.5;
 
-  const [activeDocument, setActiveDocument] = useState("summary");
-
-  const [resumeClick, setResumeClick] = useState(false);
-
-  const handleResumeClick = useCallback(() => {
-    if (activeDocument === "resume") {
-      setActiveDocument("summary");
-      setResumeClick(false);
-    } else {
-      setActiveDocument("resume");
-      setResumeClick(true);
-    }
-  }, [activeDocument]);
+  const { activeDocument, handleResumeClick, resumeClick } = useDocument();
 
   const content = {
     summary: (
@@ -67,9 +55,10 @@ export default function Information() {
           <IconButton
             src={ResumeIcon}
             alt="View Resume"
-            onClick={() => handleResumeClick()}
+            onClick={handleResumeClick}
             aria-label="Toggle Resume View"
             aria-pressed={resumeClick}
+            data-cursor-zone="view-resume"
           />
         </motion.div>
       </motion.div>

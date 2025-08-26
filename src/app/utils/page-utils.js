@@ -67,6 +67,7 @@ export const IconButton = ({
   onClick,
   "aria-label": ariaLabel,
   "aria-pressed": ariaPressed,
+  "data-cursor-zone": dataCursorZone,
 }) => (
   <motion.div
     whileHover="hover"
@@ -77,6 +78,7 @@ export const IconButton = ({
     tabIndex={0}
     aria-label={ariaLabel}
     aria-pressed={ariaPressed}
+    data-cursor-zone={dataCursorZone}
     onKeyDown={(e) => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
