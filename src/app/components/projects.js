@@ -12,10 +12,10 @@ import { ProjectCard, ProjectModal } from "../utils/page-utils"
 
 const categoryColors = {
   All: "#a0a0a0",
-  AI: "#4a2d3a",
+  "AI Tools": "#4a2d3a",
   "Desktop Apps": "#2a4a3c",
   "Web App": "#2d3a4a",
-  Robotics: "#3a2d4a",
+  "Robotics": "#3a2d4a",
 }
 
 const useMounted = () => {
@@ -180,7 +180,7 @@ export default function Projects() {
       categories.map((category) => ({
         id: category,
         label: category,
-        color: categoryColors[category] || "#a0a0a0",
+        color: categoryColors[category],
         description: `Projects in ${category} category`,
       })),
     [categories],
