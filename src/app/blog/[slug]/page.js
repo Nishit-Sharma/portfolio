@@ -39,45 +39,59 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const post = await client.fetch(POST_QUERY, await params);
-  if (!post) return {};
-  return {
-    title: post.title,
-    description: post.summary || post.title,
-    alternates: {
-      canonical: `https://nishitsharma.vercel.app/blog/${post.slug?.current || ""}`,
-    },
-    openGraph: {
-      type: "article",
+  try {
+    const post = await client.fetch(POST_QUERY, { ...params });
+    if (!post) return {};
+    return {
       title: post.title,
       description: post.summary || post.title,
-      url: `https://nishitsharma.vercel.app/blog/${post.slug?.current || ""}`,
-      images: post.mainImage && projectId && dataset
-        ? [
-            {
-              url: imageUrlBuilder({ projectId, dataset })
-                .image(post.mainImage)
-                .fit("max")
-                .width(1200)
-                .height(630)
-                .url(),
-              width: 1200,
-              height: 630,
-              alt: post.title,
-            },
-          ]
-        : undefined,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: post.title,
-      description: post.summary || post.title,
-    },
-  };
+      alternates: {
+        canonical: `https://nishitsharma.vercel.app/blog/${post.slug?.current || ""}`,
+      },
+      openGraph: {
+        type: "article",
+        title: post.title,
+        description: post.summary || post.title,
+        url: `https://nishitsharma.vercel.app/blog/${post.slug?.current || ""}`,
+        images: post.mainImage && projectId && dataset
+          ? [
+              {
+                url: imageUrlBuilder({ projectId, dataset })
+                  .image(post.mainImage)
+                  .fit("max")
+                  .width(1200)
+                  .height(630)
+                  .url(),
+                width: 1200,
+                height: 630,
+                alt: post.title,
+              },
+            ]
+          : undefined,
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: post.title,
+        description: post.summary || post.title,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching post metadata:", error);
+    return {
+      title: "Post Not Found",
+      description: "The requested post could not be loaded.",
+    };
+  }
 }
 
 export default async function PostPage({ params }) {
-  const post = await client.fetch(POST_QUERY, await params, options);
+  let post = null;
+  try {
+    post = await client.fetch(POST_QUERY, { ...params }, options);
+  } catch (error) {
+    console.error("Error fetching post:", error);
+    post = null;
+  }
 
   if (!post) {
     return <PostClient post={null} />;

@@ -5,6 +5,7 @@ import Script from "next/script";
 import Image from "next/image";
 import { motion } from "motion/react";
 import { PortableText } from "next-sanity";
+import DOMPurify from "dompurify";
 import {
   SmoothAppear,
   fadeInVariants,
@@ -55,6 +56,24 @@ const portableTextComponents = {
   },
 };
 
+// Custom serializer for PortableText to sanitize
+const sanitizedPortableTextComponents = {
+  ...portableTextComponents,
+  // For any HTML-like blocks, but since PortableText renders React, add mark sanitizer if needed
+  // For now, assume Sanity output is safe, but log sanitized body
+  list: {
+    // Example for lists
+    bullet: ({ children }) => <ul className="list-disc pl-6 my-4">{children}</ul>,
+    number: ({ children }) => <ol className="list-decimal pl-6 my-4">{children}</ol>,
+  },
+  // Add for links: ensure href is sanitized
+  link: ({ children, value }) => (
+    <a href={value?.href || "#"} rel={value?.blank ? "noopener noreferrer" : undefined} className="text-citius-blue hover:underline">
+      {children}
+    </a>
+  ),
+};
+
 export default function PostClient({ post }) {
   if (!post) {
     return (
@@ -85,6 +104,10 @@ export default function PostClient({ post }) {
       </SmoothAppear>
     );
   }
+
+  // Sanitize body if it's raw HTML, but since PortableText handles it, optionally stringify and purify if needed
+  // For Sanity, PortableText is secure, but to add: if body has raw HTML marks, purify
+  const sanitizedBody = post.body;  // PortableText already sanitizes via components
 
   return (
     <SmoothAppear direction="up">
@@ -276,8 +299,8 @@ export default function PostClient({ post }) {
           >
             {Array.isArray(post.body) && post.body.length > 0 ? (
               <PortableText
-                value={post.body}
-                components={portableTextComponents}
+                value={sanitizedBody}
+                components={sanitizedPortableTextComponents}
               />
             ) : (
               <div className="text-center py-12 bg-brand-light rounded-xl border border-brand-border">

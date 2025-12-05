@@ -23,13 +23,15 @@ export default function Information() {
     summary: (
       <InfoCard>
         <p className="space-y-4">
-          I am a high-velocity software engineer specializing in full-stack AI
-          apps. I&apos;ve shipped production-grade tools in days—like an Electron OCR
-          desktop app for real-time processing and a PyTorch pipeline for
-          multimodal video analysis. As Robotics President, I led a 100+ team to
-          hypergrowth (40% expansion, $10K raised) while mastering Java
-          codebases in 24 hours. Passionate about human-computer interaction;
-          let&apos;s build AI that predicts intent.
+          <span className="block">
+            Freelance full-stack developer and SWE intern building production web experiences for travel and retail. I move fast from design systems to deployment with Next.js, TypeScript, Tailwind, Motion, and modern auth/payments.
+          </span>
+          <span className="block">
+            Recently redesigned Citius Holidays&apos; corporate travel/MICE site with Sanity CMS, Motion-powered sections, contact automation, and analytics instrumentation.
+          </span>
+          <span className="block">
+            Building a B2C payment platform for Citius Holidays with Next.js  , TypeScript, Drizzle/PostgreSQL, BetterAuth, and Razorpay orchestration for checkout, receipts, and itinerary visibility. Freshman Rep at Stevens Blueprint, shadowing the executive board and leading internal development initiatives for the student-run product studio.
+          </span>
         </p>
       </InfoCard>
     ),

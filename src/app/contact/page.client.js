@@ -15,12 +15,12 @@ export default function ContactClient() {
   const [badgeState, setBadgeState] = useState("idle");
   const formRef = useRef(null);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e, retryCount = 0) => {  // Add retry param
     e.preventDefault();
     if (isSubmitting) return;
     setIsSubmitting(true);
     setBadgeState("processing");
-    // setStatus("Sending...");
+    setStatus("Sending...");  // Uncommented
     
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
@@ -36,17 +36,24 @@ export default function ContactClient() {
       });
 
       if (res.ok) {
-        // setStatus("Thanks for your message! I'll get back to you soon.");
+        setStatus("Thanks for your message! I'll get back to you soon.");  // Uncommented
         e.target.reset();
         setBadgeState("success");
       } else {
-        const data = await res.json();
-        // setStatus(data.error || "Oops! There was a problem.");
-        setBadgeState("error");
+        const errorData = await res.json();
+        throw new Error(errorData.error || "Submission failed");
       }
-    } catch {
-      setStatus("Oops! There was a problem.");
-      // setBadgeState("error");
+    } catch (error) {
+      console.error("Submission error:", error);
+      if (retryCount < 3) {  // Retry up to 3 times
+        const delay = Math.pow(2, retryCount) * 1000;  // Exponential backoff: 1s, 2s, 4s
+        setStatus(`Error: ${error.message}. Retrying in ${delay/1000}s... (${retryCount + 1}/3)`);
+        setTimeout(() => handleSubmit(e, retryCount + 1), delay);
+        return;
+      } else {
+        setStatus("Oops! There was a problem. Please try again later.");  // Updated
+        setBadgeState("error");  // Uncommented
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -68,7 +75,7 @@ export default function ContactClient() {
 
         <form
           ref={formRef}
-          onSubmit={handleSubmit}
+          onSubmit={(e) => handleSubmit(e)}  // Pass e to handleSubmit
           className="space-y-6 bg-black-600 p-8 rounded-2xl shadow-2xl"
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -122,7 +129,7 @@ export default function ContactClient() {
             />
           </div>
         </form>
-        {status && <p className="text-center mt-6 text-lg">{status}</p>}
+        {status && <p className="text-center mt-6 text-lg" aria-live="polite">{status}</p>}
       </div>
     </SmoothAppear>
   );

@@ -7,13 +7,13 @@ const DynamicNameAndPicture = lazy(() => import("./components/nameandpicture"));
 const DynamicInformation = lazy(() => import("./components/information"));
 const DynamicProjects = lazy(() => import("./components/projects"));
 
-export default function Home() {
+export default function Home({ projectsData = [] }) {
   return (
     <main className="flex flex-col items-center content-center justify-center w-full">
       <Suspense fallback={<LoadingSpinner />}>
         <DynamicNameAndPicture />
         <DynamicInformation />
-        <DynamicProjects />
+        <DynamicProjects projectsData={projectsData} />
       </Suspense>
     </main>
   );

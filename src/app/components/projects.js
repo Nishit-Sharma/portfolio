@@ -1,7 +1,7 @@
 "use client"
 
 import { motion, useMotionTemplate, useSpring, useTransform, useVelocity } from "motion/react"
-import { useEffect, useRef, useState, useMemo, useCallback } from "react"
+import { useEffect, useRef, useState, useMemo, useCallback, useTransition } from "react"
 import Script from "next/script"
 import { SmoothAppear } from "../utils/animation-utils"
 
@@ -138,10 +138,10 @@ const Tabs = ({ tabs, activeTab, onTabChange }) => {
   )
 }
 
-const ProjectCategoryContent = ({ category, onProjectClick }) => {
+const ProjectCategoryContent = ({ category, onProjectClick, dataToUse }) => {
   const filteredProjects = useMemo(() => {
-    return category === "All" ? projectsData : projectsData.filter((project) => project.category === category)
-  }, [category])
+    return category === "All" ? dataToUse : dataToUse.filter((project) => project.category === category)
+  }, [category, dataToUse])
 
   return (
     <div
@@ -163,7 +163,7 @@ const ProjectCategoryContent = ({ category, onProjectClick }) => {
   )
 }
 
-export default function Projects() {
+export default function Projects({ projectsData: propData = [] }) {
   const [activeTab, setActiveTab] = useState("All")
   const [modalProject, setModalProject] = useState(null)
   const projectsRef = useRef(null)
@@ -173,7 +173,10 @@ export default function Projects() {
   const viewsContainerRef = useRef(null)
   const [viewsContainerWidth, setViewsContainerWidth] = useState(0)
 
-  const categories = useMemo(() => ["All", ...new Set(projectsData.map((p) => p.category))], [])
+  // Use propData if provided, else import (client-side fallback)
+  const dataToUse = propData.length > 0 ? propData : projectsData;
+
+  const categories = useMemo(() => ["All", ...new Set(dataToUse.map((p) => p.category))], [dataToUse])
 
   const tabs = useMemo(
     () =>
@@ -186,8 +189,12 @@ export default function Projects() {
     [categories],
   )
 
+  const [isPending, startTransition] = useTransition();
+
   const handleTabChange = useCallback((tab) => {
-    setActiveTab(tab)
+    startTransition(() => {
+      setActiveTab(tab)
+    });
   }, [])
 
   useEffect(() => {
@@ -261,7 +268,7 @@ export default function Projects() {
         {JSON.stringify({
           "@context": "https://schema.org",
           "@type": "ItemList",
-          itemListElement: projectsData.map((project, index) => ({
+          itemListElement: dataToUse.map((project, index) => ({
             "@type": "SoftwareSourceCode",
             position: index + 1,
             name: project.title,
@@ -278,7 +285,12 @@ export default function Projects() {
         })}
       </Script>
 
-      <section ref={projectsRef} id="projects" className="py-20 text-center">
+      <section 
+        ref={projectsRef} 
+        id="projects" 
+        className="py-20 text-center"
+        aria-label="Projects showcase"
+      >
         <div className={`mt-8 mb-12 text-4xl md:text-7xl tracking-tight ${scholarRegular.className}`}></div>
 
         <div className="relative flex flex-col gap-8 justify-center items-center min-w-[280px] w-[clamp(280px,90dvw,10000px)] h-full">
@@ -299,13 +311,21 @@ export default function Projects() {
                   viewIndex={idx}
                   activeIndex={tabs.findIndex((t) => t.id === activeTab)}
                 >
-                  <ProjectCategoryContent category={tab.id} onProjectClick={setModalProject} />
+                  <ProjectCategoryContent category={tab.id} onProjectClick={setModalProject} dataToUse={dataToUse} />
                 </View>
               ))}
           </div>
         </div>
 
-        <ProjectModal isOpen={modalProject !== null} project={modalProject} onClose={() => setModalProject(null)} />
+        <ProjectModal 
+          isOpen={modalProject !== null} 
+          project={modalProject} 
+          onClose={() => setModalProject(null)}
+          aria-modal="true"
+          role="dialog"
+          aria-labelledby="modal-title"
+          aria-describedby="modal-description"
+        />
       </section>
     </SmoothAppear>
   )
