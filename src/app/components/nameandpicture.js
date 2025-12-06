@@ -38,7 +38,7 @@ export default function NameAndPicture() {
     },
     exit: {
       scale: 1,
-      x: 250,
+      x: "100%",
       rotate: 5,
       opacity: [1, 1, 0],
       zIndex: 2,
@@ -51,6 +51,8 @@ export default function NameAndPicture() {
       },
     },
   };
+
+  const isLandscape = imageIndex === 2;
 
   return (
     <div className="relative w-full overflow-hidden bg-black-500">
@@ -81,7 +83,11 @@ export default function NameAndPicture() {
           </SmoothAppear>
 
           <SmoothAppear delay={2} direction="left">
-            <div className="relative w-72 h-72 lg:w-96 lg:h-96">
+            <div
+              className={`relative h-72 lg:h-96 transition-all duration-500 ease-in-out ${
+                isLandscape ? "aspect-video" : "w-72 lg:w-96"
+              }`}
+            >
               <div className="absolute inset-0 transform scale-95 bg-gradient-to-br from-white-500/20 to-transparent rounded-3xl rotate-6" />
               <motion.div
                 className="relative h-full w-full cursor-pointer"
