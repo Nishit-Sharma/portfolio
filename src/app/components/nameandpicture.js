@@ -1,72 +1,61 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
-import { useCallback, useMemo, useState } from "react";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import { nameDirection } from "../utils/page-utils";
 import { scholarRegular, scholarItalic } from "../fonts";
 import { SmoothAppear } from "../utils/animation-utils";
 import NishitSharmaPicture from "../static/NishitSharma.png";
-import MyKing from "../static/myking.png";
-import MyGoats from "../static/mygoats.png";
+import MyKingPicture from "../static/myking.png";
+import MyGoatsPicture from "../static/mygoats.png";
 
 export default function NameAndPicture() {
-  const portraits = useMemo(
-    () => [
-      {
-        src: NishitSharmaPicture,
-        alt: "Nishit Sharma portrait",
-        width: NishitSharmaPicture.width,
-        height: NishitSharmaPicture.height,
-        mode: "cover",
-      },
-      {
-        src: MyKing,
-        alt: "Nishit Sharma with FNS",
-        width: MyKing.width,
-        height: MyKing.height,
-        mode: "cover",
-      },
-      {
-        src: MyGoats,
-        alt: "Team photo with NRG roster",
-        width: MyGoats.width,
-        height: MyGoats.height,
-        mode: "contain",
-        sizeMultiplier: 1.4,
-      },
-    ],
-    []
-  );
+  const [imageIndex, setImageIndex] = useState(0);
+  const images = [NishitSharmaPicture, MyKingPicture, MyGoatsPicture];
 
-  const [activeIndex, setActiveIndex] = useState(0);
-  const cyclePortrait = useCallback(() => {
-    setActiveIndex((prev) => (prev + 1) % portraits.length);
-  }, [portraits.length]);
+  const cycleImage = () => {
+    setImageIndex((prev) => (prev + 1) % images.length);
+  };
 
-  const activePortrait = portraits[activeIndex];
-  const activeAspect =
-    activePortrait?.width && activePortrait?.height
-      ? activePortrait.width / activePortrait.height
-      : 1;
-  const sizeMultiplier = activePortrait?.sizeMultiplier ?? 1;
-
-  const getLayerStyles = (index) => {
-    const offset = (index - activeIndex + portraits.length) % portraits.length;
-    // 0 = active, 1 = middle, 2 = back
-    if (offset === 0) {
-      return { scale: 1, y: 0, zIndex: 30, boxShadow: "0 25px 60px rgba(0,0,0,0.5)" };
-    }
-    if (offset === 1) {
-      return { scale: 0.94, y: -12, zIndex: 20, opacity: 0.9 };
-    }
-    return { scale: 0.88, y: -24, zIndex: 10, opacity: 0.8 };
+  const variants = {
+    enter: {
+      scale: 1,
+      x: 0,
+      opacity: 1,
+      zIndex: 0,
+    },
+    center: {
+      scale: 1,
+      x: 0,
+      opacity: 1,
+      rotate: 0,
+      zIndex: 1,
+      transition: {
+        duration: 0.4,
+        ease: "easeInOut",
+      },
+    },
+    exit: {
+      scale: 1,
+      x: 250,
+      rotate: 5,
+      opacity: [1, 1, 0],
+      zIndex: 2,
+      transition: {
+        duration: 0.4,
+        ease: "easeInOut",
+        opacity: {
+          times: [0, 0.7, 1],
+        },
+      },
+    },
   };
 
   return (
     <div className="relative w-full overflow-hidden bg-black-500">
       <div className="container px-4 mx-auto">
-        <div className="flex flex-col items-center justify-center gap-8 py-20 lg:flex-row lg:py-24">
+        <div className="flex flex-col items-center justify-center gap-12 py-20 lg:flex-row lg:py-24">
           <SmoothAppear delay={0} direction={nameDirection}>
             <div className="space-y-8 lg:w-1/2 text-center lg:text-left">
               <h1
@@ -84,54 +73,42 @@ export default function NameAndPicture() {
               />
 
               <p
-                className={`text-xl tracking-wide leading-relaxed text-white-300 ${scholarItalic.className}`}
+                className={`text-xl lg:text-2xl tracking-wide leading-relaxed text-white-300 ${scholarItalic.className}`}
               >
-                Freelance Full-Stack Developer • SWE Intern @ Citius Holidays • Shipping Next.js/Tailwind products
+                High-Velocity Engineer • AI/Desktop Specialist • Building Proactive Copilots
               </p>
             </div>
           </SmoothAppear>
 
           <SmoothAppear delay={2} direction="left">
-            <motion.div
-              onClick={cyclePortrait}
-              className="relative focus:outline-none"
-              style={{
-                aspectRatio: activeAspect,
-                width: `clamp(${18 * sizeMultiplier}rem, ${22 * sizeMultiplier}vw, ${24 * sizeMultiplier}rem)`,
-                minHeight: `${18 * sizeMultiplier}rem`,
-              }}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              aria-label="Cycle profile photos"
-            >
-              <div className="absolute inset-0 transform scale-95 bg-gradient-to-br from-white-500/20 to-transparent rounded-3xl rotate-6 pointer-events-none" />
-
-              {portraits.map((portrait, index) => {
-                const layer = getLayerStyles(index);
-                return (
+            <div className="relative w-72 h-72 lg:w-96 lg:h-96">
+              <div className="absolute inset-0 transform scale-95 bg-gradient-to-br from-white-500/20 to-transparent rounded-3xl rotate-6" />
+              <motion.div
+                className="relative h-full w-full cursor-pointer"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={cycleImage}
+              >
+                <AnimatePresence initial={false}>
                   <motion.div
-                    key={portrait.alt}
-                    className="absolute inset-0 overflow-hidden rounded-3xl"
-                    animate={layer}
-                    initial={layer}
-                    transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                    style={{
-                      zIndex: layer.zIndex,
-                      opacity: layer.opacity ?? 1,
-                    }}
+                    key={imageIndex}
+                    variants={variants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    className="absolute inset-0 w-full h-full shadow-xl rounded-3xl overflow-hidden"
                   >
                     <Image
-                      src={portrait.src}
-                      alt={portrait.alt}
-                      className={portrait.mode === "contain" ? "object-contain" : "object-cover"}
-                      priority={index === activeIndex}
+                      src={images[imageIndex]}
+                      alt="Nishit Sharma"
+                      className="object-cover"
+                      priority
                       fill
-                      sizes={`(max-width: 1024px) ${18 * sizeMultiplier}rem, ${24 * sizeMultiplier}rem`}
                     />
                   </motion.div>
-                );
-              })}
-            </motion.div>
+                </AnimatePresence>
+              </motion.div>
+            </div>
           </SmoothAppear>
         </div>
       </div>
