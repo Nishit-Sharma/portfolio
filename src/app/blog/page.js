@@ -18,9 +18,30 @@ const options = { next: { revalidate: 30 } };
 export const metadata = {
   title: "Blog",
   description: "Read technical write-ups and articles by Nishit Sharma on Web and AI development, Electron apps, real-time multimodal systems, and more.",
-  keywords: ["AI development", "Electron apps", "real-time AI", "multimodal", "contextual AI", "Nishit Sharma"],
+  keywords: ["Nishit Sharma", "blog", "articles", "technical writing"],
   alternates: {
     canonical: "https://nishitsharma.vercel.app/blog",
+  },
+  openGraph: {
+    type: "website",
+    url: "https://nishitsharma.vercel.app/blog",
+    title: "Blog | Nishit Sharma",
+    description: "Technical write-ups and articles by Nishit Sharma.",
+    siteName: "Nishit Sharma's Portfolio",
+    images: [
+      {
+        url: "/NishitSharma.png",
+        width: 1200,
+        height: 630,
+        alt: "Nishit Sharma - Software Engineer and Full-Stack Developer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blog | Nishit Sharma",
+    description: "Technical write-ups and articles.",
+    images: ["/NishitSharma.png"],
   },
 };
 

@@ -42,17 +42,28 @@ export async function generateMetadata({ params }) {
   try {
     const post = await client.fetch(POST_QUERY, { ...params });
     if (!post) return {};
+
+    const canonicalUrl = `https://nishitsharma.vercel.app/blog/${post.slug?.current || ""}`;
+    const description = post.summary || post.title;
+    const keywords = post.categories?.map(cat => cat.title).join(", ") || "blog, article, Nishit Sharma";
+
     return {
       title: post.title,
-      description: post.summary || post.title,
+      description: description,
+      keywords: [keywords, "Nishit Sharma", "blog", "article", "technical writing"].join(", "),
       alternates: {
-        canonical: `https://nishitsharma.vercel.app/blog/${post.slug?.current || ""}`,
+        canonical: canonicalUrl,
       },
+      authors: [{ name: post.author?.name || "Nishit Sharma" }],
       openGraph: {
         type: "article",
         title: post.title,
-        description: post.summary || post.title,
-        url: `https://nishitsharma.vercel.app/blog/${post.slug?.current || ""}`,
+        description: description,
+        url: canonicalUrl,
+        siteName: "Nishit Sharma's Portfolio",
+        publishedTime: post.publishedAt,
+        modifiedTime: post._updatedAt,
+        authors: [post.author?.name || "Nishit Sharma"],
         images: post.mainImage && projectId && dataset
           ? [
               {
@@ -67,12 +78,38 @@ export async function generateMetadata({ params }) {
                 alt: post.title,
               },
             ]
-          : undefined,
+          : [
+              {
+                url: "/NishitSharma.png",
+                width: 1200,
+                height: 630,
+                alt: "Nishit Sharma - Software Engineer and Full-Stack Developer",
+              },
+            ],
       },
       twitter: {
         card: "summary_large_image",
         title: post.title,
-        description: post.summary || post.title,
+        description: description,
+        images: post.mainImage && projectId && dataset
+          ? [imageUrlBuilder({ projectId, dataset })
+              .image(post.mainImage)
+              .fit("max")
+              .width(1200)
+              .height(630)
+              .url()]
+          : ["/NishitSharma.png"],
+      },
+      robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+          index: true,
+          follow: true,
+          maxVideoPreview: -1,
+          maxImagePreview: "large",
+          maxSnippet: -1,
+        },
       },
     };
   } catch (error) {
