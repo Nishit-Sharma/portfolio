@@ -6,9 +6,9 @@ import { motion, AnimatePresence } from "motion/react";
 import { nameDirection } from "../utils/page-utils";
 import { scholarRegular, scholarItalic } from "../fonts";
 import { SmoothAppear } from "../utils/animation-utils";
-import NishitSharmaPicture from "../static/NishitSharma.png";
-import MyKingPicture from "../static/myking.png";
-import MyGoatsPicture from "../static/mygoats.png";
+import NishitSharmaPicture from "../static/NishitSharma.webp";
+import MyKingPicture from "../static/myking.webp";
+import MyGoatsPicture from "../static/mygoats.webp";
 
 export default function NameAndPicture() {
   const [imageIndex, setImageIndex] = useState(0);

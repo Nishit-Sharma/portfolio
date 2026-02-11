@@ -4,9 +4,8 @@ import { motion, AnimatePresence } from "motion/react";
 import { SmoothAppear } from "../utils/animation-utils";
 import { InfoCard, DocumentViewer, IconButton } from "../utils/page-utils";
 import { useDocument } from "../contexts/DocumentContext";
-import ResumeIcon from "../static/resume.png";
-
-import Resume from "../static/NishitSharmaResume.png";
+import ResumeIcon from "../static/resume.webp";
+import Resume from "../static/NishitSharmaResume.webp";
 
 export default function Information() {
   function checkMobile() {

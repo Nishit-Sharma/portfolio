@@ -30,7 +30,7 @@ export const metadata = {
     siteName: "Nishit Sharma's Portfolio",
     images: [
       {
-        url: "/NishitSharma.png",
+        url: "/NishitSharma.webp",
         width: 1200,
         height: 630,
         alt: "Nishit Sharma - Software Engineer and Full-Stack Developer",
@@ -41,7 +41,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Blog | Nishit Sharma",
     description: "Technical write-ups and articles.",
-    images: ["/NishitSharma.png"],
+    images: ["/NishitSharma.webp"],
   },
 };
 

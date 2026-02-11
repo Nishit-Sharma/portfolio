@@ -80,7 +80,7 @@ export async function generateMetadata({ params }) {
             ]
           : [
               {
-                url: "/NishitSharma.png",
+                url: "/NishitSharma.webp",
                 width: 1200,
                 height: 630,
                 alt: "Nishit Sharma - Software Engineer and Full-Stack Developer",
@@ -98,7 +98,7 @@ export async function generateMetadata({ params }) {
               .width(1200)
               .height(630)
               .url()]
-          : ["/NishitSharma.png"],
+          : ["/NishitSharma.webp"],
       },
       robots: {
         index: true,

@@ -10,9 +10,9 @@ import { DocumentProvider } from "./contexts/DocumentContext";
 
 import "./globals.css";
 
-import GithubIcon from "./static/github.png";
-import InstagramIcon from "./static/instagram.png";
-import LinkedInIcon from "./static/linkedin.png";
+import GithubIcon from "./static/github.webp";
+import InstagramIcon from "./static/instagram.webp";
+import LinkedInIcon from "./static/linkedin.webp";
 
 function Header() {
   const [header, setHeader] = useState(false);
