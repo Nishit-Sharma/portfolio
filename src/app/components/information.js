@@ -23,13 +23,13 @@ export default function Information() {
       <InfoCard>
         <p className="space-y-4">
           <span className="block">
-            Freelance full-stack developer and SWE intern building production web experiences for travel and retail. I move fast from design systems to deployment with Next.js, TypeScript, Tailwind, Motion, and modern auth/payments.
+            I&apos;m a Computer Science student at Stevens Institute of Technology and a full-stack engineer who builds software for real users.
           </span>
           <span className="block">
-            Recently redesigned Citius Holidays&apos; corporate travel/MICE site with Sanity CMS, Motion-powered sections, contact automation, and analytics instrumentation.
+            I work across the stack, from UI and product polish to APIs, data models, auth, and deployment. Recently, I&apos;ve worked on Citius Connect, a Convex-backed travel operations portal for Citius Holidays, and Royals & Radiant, a production e-commerce/admin platform for a jewelry and fashion brand
           </span>
           <span className="block">
-            Building a B2C payment platform for Citius Holidays with Next.js  , TypeScript, Drizzle/PostgreSQL, BetterAuth, and Razorpay orchestration for checkout, receipts, and itinerary visibility. Freshman Rep at Stevens Blueprint, shadowing the executive board and leading internal development initiatives for the student-run product studio.
+            I also spend time teaching and leading in student tech communities — running workshops, mentoring peers, and helping people get ready to ship on real teams.
           </span>
         </p>
       </InfoCard>

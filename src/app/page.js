@@ -9,14 +9,14 @@ const DynamicPageClient = dynamic(() => import("./page.client"), {
 export const metadata = {
   title: "Home",
   description:
-    "Portfolio of Nishit Sharma — freelance full-stack developer and SWE intern building production-grade web experiences for travel and retail with Next.js, TypeScript, Tailwind, modern auth/payments, and CMS-driven content.",
+    "Portfolio of Nishit Sharma — full-stack engineer building CRM, e-commerce, operations tooling, and technical education programs for real users.",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://nishitsharma.vercel.app",
     title: "Nishit Sharma | Software Engineer & Full-Stack Developer",
     description:
-      "Freelance full-stack developer and SWE intern building production web experiences for travel and retail with Next.js, TypeScript, Tailwind, modern auth/payments, and CMS-driven content.",
+      "Full-stack engineer building CRM, e-commerce, operations tooling, and tech-for-social-good education programs for real users.",
     siteName: "Nishit Sharma's Portfolio",
     images: [
       {
@@ -31,7 +31,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Nishit Sharma | Software Engineer & Full-Stack Developer",
     description:
-      "Freelance full-stack developer and SWE intern shipping production-grade web experiences for travel and retail.",
+      "Full-stack engineer building CRM, e-commerce, operations tooling, and technical education programs.",
     images: ["/NishitSharma.webp"],
   },
 };

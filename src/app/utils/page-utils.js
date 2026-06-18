@@ -160,6 +160,17 @@ export const ProjectModal = ({ isOpen, project, onClose }) => (
             {project.overview}
           </p>
 
+          {project.url ? (
+            <a
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mb-8 inline-block text-sm font-semibold uppercase tracking-wider text-white-500 hover:text-white-300"
+            >
+              view repo &rarr;
+            </a>
+          ) : null}
+
           <div className="grid md:grid-cols-2 gap-8">
             <div>
               <h2 className="text-2xl font-semibold mb-4">Key Features</h2>

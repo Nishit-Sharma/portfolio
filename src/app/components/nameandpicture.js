@@ -77,7 +77,7 @@ export default function NameAndPicture() {
               <p
                 className={`text-xl lg:text-2xl tracking-wide leading-relaxed text-white-300 ${scholarItalic.className}`}
               >
-                High-Velocity Engineer • AI/Desktop Specialist • Building Proactive Copilots
+                Full-Stack Engineer • Operations Tooling • Tech-for-Social-Good
               </p>
             </div>
           </SmoothAppear>
