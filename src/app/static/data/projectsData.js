@@ -17,24 +17,24 @@ export const projectsData = [
       "Convex-backed staff workflows connect lead intake, proposal work, traveller operations, notifications, and audit trails without exposing sensitive operational data broadly.",
     status: "Active",
   },
-  {
-    slug: "royals-and-radiant",
-    title: "Royals & Radiant",
-    category: "Web App",
-    overview:
-      "Royals & Radiant is a production e-commerce platform and admin dashboard for a jewelry and fashion brand. I built storefront, checkout, inventory, image upload, category, order, and admin workflows so nontechnical owners could manage the store without editing code.",
-    keyFeatures: [
-      "Product browsing with multi-level categories.",
-      "Persistent cart and Stripe checkout flow.",
-      "Protected admin dashboard for product, category, order, and user workflows.",
-      "Bulk product uploads and Vercel Blob image uploads.",
-      "Combo discounts, route protection, and user management scripts.",
-    ],
-    techStack: ["Next.js 16", "TypeScript", "Prisma", "PostgreSQL", "BetterAuth", "Stripe", "Resend", "Vercel Blob", "Tailwind", "Motion"],
-    technicalHighlight:
-      "The storefront and protected admin flows share the same product, category, order, and image-management model so store operators can run day-to-day commerce without developer handoffs.",
-    status: "Active",
-  },
+  // {
+  //   slug: "royals-and-radiant",
+  //   title: "Royals & Radiant",
+  //   category: "Web App",
+  //   overview:
+  //     "Royals & Radiant is a production e-commerce platform and admin dashboard for a jewelry and fashion brand. I built storefront, checkout, inventory, image upload, category, order, and admin workflows so nontechnical owners could manage the store without editing code.",
+  //   keyFeatures: [
+  //     "Product browsing with multi-level categories.",
+  //     "Persistent cart and Stripe checkout flow.",
+  //     "Protected admin dashboard for product, category, order, and user workflows.",
+  //     "Bulk product uploads and Vercel Blob image uploads.",
+  //     "Combo discounts, route protection, and user management scripts.",
+  //   ],
+  //   techStack: ["Next.js 16", "TypeScript", "Prisma", "PostgreSQL", "BetterAuth", "Stripe", "Resend", "Vercel Blob", "Tailwind", "Motion"],
+  //   technicalHighlight:
+  //     "The storefront and protected admin flows share the same product, category, order, and image-management model so store operators can run day-to-day commerce without developer handoffs.",
+  //   status: "Active",
+  // },
   {
     slug: "blueprint-tech-team",
     title: "Blueprint Tech Team",

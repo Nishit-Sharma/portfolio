@@ -26,8 +26,7 @@ export default function Information() {
             I&apos;m a Computer Science student at Stevens Institute of Technology and a full-stack engineer who builds software for real users.
           </span>
           <span className="block">
-            I work across the stack, from UI and product polish to APIs, data models, auth, and deployment. Recently, I&apos;ve worked on Citius Connect, a Convex-backed travel operations portal for Citius Holidays, and Royals & Radiant, a production e-commerce/admin platform for a jewelry and fashion brand
-          </span>
+            I work across the stack, from UI and product polish to APIs, data models, auth, and deployment. Recently, I&apos;ve worked on Citius Connect, a Convex-backed travel operations portal for Citius Holidays          </span>
           <span className="block">
             I also spend time teaching and leading in student tech communities — running workshops, mentoring peers, and helping people get ready to ship on real teams.
           </span>
